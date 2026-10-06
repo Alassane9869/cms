@@ -204,71 +204,138 @@
     <main class="flex-1">
 
         <!-- ========================================================= -->
-        <!-- HERO SECTION : Institutionnelle, digne et rassurante -->
+        <!-- HERO SECTION : Image de fond majestueuse & Rendu Étatique -->
         <!-- ========================================================= -->
-        <section class="hero-pattern text-white py-14 sm:py-20 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <section class="relative text-white py-16 sm:py-24 overflow-hidden bg-[#071d33]">
+            
+            <!-- 1. IMAGE DE FOND RÉELLE AVEC DÉGRADÉ ROYAL MULTI-COUCHES -->
+            <div class="absolute inset-0 z-0">
+                <img src="{{ asset('images/caisse.jpg') }}" alt="Siège National CMSS Direction Générale" 
+                     class="w-full h-full object-cover object-center filter brightness-[0.70] contrast-[1.15] scale-105 transform duration-700">
+                
+                <!-- Overlay bleu nuit étatique dégradé pour lisibilité et dignité maximale -->
+                <div class="absolute inset-0 bg-gradient-to-r from-[#06182a]/97 via-[#0B3B60]/90 to-[#06182a]/85 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#071d33] via-transparent to-black/40"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-400/20 via-transparent to-transparent"></div>
+            </div>
 
-                    <!-- Colonne Texte -->
+            <!-- Filigrane d'emblème officiel en arrière-plan -->
+            <div class="absolute right-4 bottom-4 lg:right-20 lg:bottom-10 opacity-10 pointer-events-none z-0">
+                <img src="{{ asset('images/logo.jpg') }}" alt="" class="w-96 h-96 object-contain rounded-full">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+                    <!-- Colonne Gauche : Titres, Missions & Actions -->
                     <div class="lg:col-span-7 space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-blue-100">
+                        
+                        <!-- Badge Institutionnel -->
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-blue-100 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>Portail Numérique Officiel des Retraités et Assurés Sociaux</span>
+                            <span>🇲🇱 Portail Officiel de la Protection Sociale &bull; République du Mali</span>
                         </div>
 
+                        <!-- Titre Principal -->
                         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
                             La Sécurité Sociale au service des <span class="text-amber-300">Serviteurs de l'État</span> et de leurs Familles.
                         </h1>
 
-                        <p class="text-base sm:text-lg text-blue-100 font-normal leading-relaxed max-w-2xl">
-                            Gestion des pensions civiles et militaires, Assurance Maladie Obligatoire (AMO) et prestations familiales. Déposez vos réclamations et suivez vos dossiers en ligne en toute transparence.
+                        <!-- Sous-titre explicatif -->
+                        <p class="text-base sm:text-lg text-blue-100/90 font-normal leading-relaxed max-w-2xl">
+                            Pensions civiles et militaires, Assurance Maladie Obligatoire (AMO) et prestations familiales. Déposez vos réclamations et suivez l'instruction de vos dossiers en temps réel.
                         </p>
 
-                        <!-- Call To Actions -->
+                        <!-- Call To Actions Stratégiques -->
                         <div class="flex flex-wrap items-center gap-3 pt-2">
-                            <a href="{{ route('register') }}" class="px-6 py-3.5 rounded-xl bg-white text-[#0B3B60] hover:bg-blue-50 font-extrabold text-sm uppercase tracking-wider shadow-lg transition flex items-center gap-2">
-                                <i class="fas fa-user-shield"></i>
+                            <a href="{{ route('register') }}" 
+                               class="px-6 py-3.5 rounded-xl bg-white text-[#0B3B60] hover:bg-blue-50 font-extrabold text-sm uppercase tracking-wider shadow-xl hover:shadow-2xl transition flex items-center gap-2 group">
+                                <i class="fas fa-user-shield text-[#0B3B60] group-hover:scale-110 transition"></i>
                                 <span>Créer mon Espace Assuré</span>
                             </a>
-                            <a href="{{ route('guide.reclamation') }}" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold text-sm transition flex items-center gap-2 backdrop-blur-sm">
-                                <i class="fas fa-book-reader"></i>
+                            <a href="{{ route('guide.reclamation') }}" 
+                               class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold text-sm transition flex items-center gap-2 backdrop-blur-sm">
+                                <i class="fas fa-book-reader text-amber-300"></i>
                                 <span>Comment faire une réclamation ?</span>
                             </a>
-                            <a href="{{ route('reclamation.publique') }}" class="px-4 py-3.5 rounded-xl text-blue-200 hover:text-white font-semibold text-xs transition">
+                            <a href="{{ route('reclamation.publique') }}" 
+                               class="px-4 py-3.5 rounded-xl text-blue-200 hover:text-white font-semibold text-xs transition">
                                 Déposer sans compte &rarr;
                             </a>
                         </div>
 
-                        <!-- Baromètre des chiffres clés -->
-                        <div class="pt-6 border-t border-white/15 grid grid-cols-3 gap-4 text-left">
-                            <div>
+                        <!-- Baromètre des chiffres clés en cartes transparentes -->
+                        <div class="pt-6 border-t border-white/15 grid grid-cols-3 gap-3 sm:gap-4 text-left">
+                            <div class="p-3 rounded-xl bg-black/25 backdrop-blur-sm border border-white/10">
                                 <div class="text-2xl sm:text-3xl font-black text-white">+350 000</div>
-                                <div class="text-xs text-blue-200 font-medium mt-0.5">Pensionnés & Assurés</div>
+                                <div class="text-[11px] sm:text-xs text-blue-200 font-medium mt-0.5">Pensionnés & Assurés</div>
                             </div>
-                            <div>
+                            <div class="p-3 rounded-xl bg-black/25 backdrop-blur-sm border border-white/10">
                                 <div class="text-2xl sm:text-3xl font-black text-amber-300">48h &ndash; 72h</div>
-                                <div class="text-xs text-blue-200 font-medium mt-0.5">Délai moyen d'instruction</div>
+                                <div class="text-[11px] sm:text-xs text-blue-200 font-medium mt-0.5">Délai d'instruction</div>
                             </div>
-                            <div>
+                            <div class="p-3 rounded-xl bg-black/25 backdrop-blur-sm border border-white/10">
                                 <div class="text-2xl sm:text-3xl font-black text-emerald-400">9 Agences</div>
-                                <div class="text-xs text-blue-200 font-medium mt-0.5">Présence régionale au Mali</div>
+                                <div class="text-[11px] sm:text-xs text-blue-200 font-medium mt-0.5">Réseau territorial</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Colonne Visuelle : Siège officiel CMSS -->
+                    <!-- Colonne Droite : Carte d'Autorité Officielle (Direction Générale & Siège) -->
                     <div class="lg:col-span-5">
-                        <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-slate-900 group">
-                            <img src="{{ asset('images/caisse.jpg') }}" alt="Bâtiment Siège CMSS Bamako" class="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
-                            <div class="absolute bottom-4 left-4 right-4 text-white">
-                                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/50 backdrop-blur-md text-[11px] font-bold text-amber-300 mb-1">
-                                    <i class="fas fa-landmark"></i> Siège National CMSS
+                        <div class="rounded-3xl bg-slate-900/80 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden p-6 text-white space-y-5">
+                            
+                            <!-- En-tête de la carte -->
+                            <div class="flex items-center justify-between pb-4 border-b border-white/15">
+                                <div class="flex items-center gap-3">
+                                    <img src="{{ asset('images/armoiries-mali.jpg') }}" alt="Mali" class="w-10 h-10 rounded-full border border-white/30 object-cover">
+                                    <div>
+                                        <div class="text-[10px] uppercase font-bold tracking-wider text-amber-300">République du Mali</div>
+                                        <div class="text-sm font-extrabold text-white">Direction Générale CMSS</div>
+                                    </div>
                                 </div>
-                                <p class="text-sm font-bold">Hamdallaye ACI 2000, Bamako &mdash; République du Mali</p>
-                                <p class="text-xs text-slate-300">Accueil, immatriculation et traitement centralisé des pensions</p>
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span>Actif</span>
+                                </span>
                             </div>
+
+                            <!-- Bloc M. Ichaka Koné, DG -->
+                            <div class="flex items-center gap-4 bg-white/5 p-3.5 rounded-2xl border border-white/10">
+                                <img src="{{ asset('images/equipe/dg.jpg') }}" alt="DG Ichaka Koné" 
+                                     class="w-16 h-16 rounded-xl object-cover object-top border-2 border-amber-300/60 shadow-md shrink-0">
+                                <div>
+                                    <div class="text-xs font-bold text-amber-300 uppercase tracking-wide">Directeur Général</div>
+                                    <div class="text-base font-extrabold text-white leading-tight mt-0.5">M. Ichaka Koné</div>
+                                    <p class="text-[11px] text-blue-100/80 leading-snug mt-1">
+                                        « Assurer la gestion, la rigueur et la proximité de la sécurité sociale pour tous les agents de l'État. »
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Repères Siège & Services -->
+                            <div class="space-y-2 text-xs text-blue-100/90 pt-1">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fas fa-landmark text-amber-300 w-4 text-center"></i>
+                                    <span><strong>Siège National :</strong> Hamdallaye ACI 2000, Bamako</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fas fa-clock text-emerald-400 w-4 text-center"></i>
+                                    <span><strong>Accueil physique :</strong> Lundi &ndash; Vendredi (7h30 &ndash; 16h00)</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fas fa-globe text-sky-400 w-4 text-center"></i>
+                                    <span><strong>Portail Numérique :</strong> Accessible 24h/24 & 7j/7</span>
+                                </div>
+                            </div>
+
+                            <!-- Bouton rapide vers le suivi -->
+                            <div class="pt-2">
+                                <a href="#suivi-rapide" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-[#0B3B60] hover:from-blue-500 hover:to-[#093150] text-white font-bold text-xs uppercase tracking-wider text-center block transition shadow-md border border-white/15">
+                                    <i class="fas fa-search mr-1.5"></i> Suivre une réclamation en direct
+                                </a>
+                            </div>
+
                         </div>
                     </div>
 
