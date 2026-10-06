@@ -148,6 +148,7 @@ if ($targetWebroot) {
 
     // Créer le .htaccess bridge
     $bridgeHtaccess = "<IfModule mod_rewrite.c>\n" .
+        "    Options +FollowSymLinks\n" .
         "    <IfModule mod_negotiation.c>\n" .
         "        Options -MultiViews -Indexes\n" .
         "    </IfModule>\n" .
@@ -159,12 +160,15 @@ if ($targetWebroot) {
 
     file_put_contents($targetWebroot . '/.htaccess', $bridgeHtaccess);
 
-    // Copier ou lier les assets build
-    if (is_dir($baseDir . '/public/build') && !is_dir($targetWebroot . '/build')) {
+    // Copier ou lier les assets build, images et storage
+    if (is_dir($baseDir . '/public/build') && !file_exists($targetWebroot . '/build')) {
         @symlink($baseDir . '/public/build', $targetWebroot . '/build');
     }
-    if (is_dir($baseDir . '/public/images') && !is_dir($targetWebroot . '/images')) {
+    if (is_dir($baseDir . '/public/images') && !file_exists($targetWebroot . '/images')) {
         @symlink($baseDir . '/public/images', $targetWebroot . '/images');
+    }
+    if (is_dir($baseDir . '/storage/app/public') && !file_exists($targetWebroot . '/storage')) {
+        @symlink($baseDir . '/storage/app/public', $targetWebroot . '/storage');
     }
 
     logMsg("✅ Pont webroot configuré automatiquement dans : " . htmlspecialchars($targetWebroot), "success");
