@@ -36,13 +36,13 @@ class PublicReclamationController extends Controller
         // Équipes dirigeantes & départements opérationnels
         $equipe = [
             [
-                'nom' => 'Mme Diarra Aminata Sissoko',
-                'role' => 'Directrice Générale',
+                'nom' => 'M. Ichaka Koné',
+                'role' => 'Directeur Général',
                 'direction' => 'Direction Générale CMSS',
                 'statut' => 'Direction Active',
                 'badge_color' => 'emerald',
                 'image' => 'images/equipe/dg.jpg',
-                'description' => 'Pilotage stratégique, modernisation numérique des services de retraite et garantie de la sécurité sociale des agents de l\'État.',
+                'description' => 'Le Directeur Général dirige la Direction Générale et assure la gestion administrative, technique et financière de l\'organisme sous le contrôle du Conseil d\'Administration.',
             ],
             [
                 'nom' => 'M. Bakary Traoré',
