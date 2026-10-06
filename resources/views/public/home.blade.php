@@ -714,88 +714,104 @@
                         La Chaîne de Décision & Traitement de vos Requêtes
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-2xl mx-auto leading-relaxed">
-                        Sous l'autorité du Directeur Général, des équipes dédiées instruisent et régularisent chaque
-                        réclamation d'usager dans le strict respect de la réglementation.
+                        Sous l'autorité du Directeur Général, la CMSS garantit l'impartialité, l'équité et le traitement diligent de toutes les réclamations des usagers.
                     </p>
                 </div>
 
-                <!-- Deux Grands Piliers d'Autorité : Direction Générale & Guichet Central -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mb-10">
-                    @foreach($equipe as $index => $membre)
-                        <div
-                            class="bg-white rounded-3xl border {{ $index === 0 ? 'border-amber-400/90 ring-4 ring-amber-300/20' : 'border-slate-200/90' }} shadow-xl overflow-hidden flex flex-col justify-between hover:-translate-y-1 transition duration-300">
+                <!-- Carte Exclusive & Prestigieuse du Directeur Général -->
+                <div class="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-amber-400/80 shadow-2xl overflow-hidden hover:shadow-amber-100/50 transition duration-300 mb-10">
+                    <div class="grid grid-cols-1 md:grid-cols-12 items-stretch">
+                        
+                        <!-- Photo du Directeur Général (5 colonnes) avec cadrage parfait -->
+                        <div class="md:col-span-5 relative bg-gradient-to-b from-slate-900 via-slate-800 to-slate-950 min-h-[340px] md:min-h-full overflow-hidden flex items-center justify-center">
+                            <img src="{{ asset('images/equipe/dg.jpg') }}" alt="M. Ichaka Koné - Directeur Général CMSS" loading="lazy" decoding="async"
+                                class="w-full h-full object-cover object-top hover:scale-105 transition duration-500">
+                            
+                            <!-- Dégradé protecteur -->
+                            <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent pointer-events-none"></div>
+
+                            <!-- Badges sur la photo -->
+                            <div class="absolute top-4 left-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black bg-amber-400 text-slate-950 shadow-md uppercase tracking-wider">
+                                    Direction Générale
+                                </span>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-md text-slate-800 shadow-md border border-slate-200">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <span>Direction Active</span>
+                                </span>
+                            </div>
+
+                            <!-- Nom & Titre en bas de photo -->
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <h3 class="font-black text-xl leading-tight text-white drop-shadow-md">
+                                    M. Ichaka Koné
+                                </h3>
+                                <p class="text-xs text-amber-300 font-bold mt-1">
+                                    Directeur Général de la CMSS
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Contenu & Engagement Officiel (7 colonnes) -->
+                        <div class="md:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                             <div>
-                                <!-- Photo grand format avec cadrage parfait -->
-                                <div class="relative h-72 sm:h-80 bg-slate-900 overflow-hidden group">
-                                    <img src="{{ asset($membre['image']) }}" alt="{{ $membre['nom'] }}" loading="lazy"
-                                        decoding="async"
-                                        class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105">
-
-                                    <!-- Dégradé fin pour contraste du texte -->
-                                    <div
-                                        class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent pointer-events-none">
-                                    </div>
-
-                                    <!-- Badge Institutionnel Haut Gauche -->
-                                    <div class="absolute top-4 left-4">
-                                        @if($index === 0)
-                                            <span
-                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black bg-amber-400 text-slate-950 shadow-md uppercase tracking-wider">
-                                                Direction Générale CMSS
-                                            </span>
-                                        @else
-                                            <span
-                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black bg-blue-600 text-white shadow-md uppercase tracking-wider">
-                                                Guichet Central National
-                                            </span>
-                                        @endif
-                                    </div>
-
-                                    <!-- Badge Statut Opérationnel Haut Droite -->
-                                    <div class="absolute top-4 right-4">
-                                        <span
-                                            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-md text-slate-800 shadow-md border border-slate-200">
-                                            <span
-                                                class="w-2 h-2 rounded-full {{ $membre['badge_color'] == 'emerald' ? 'bg-emerald-500' : 'bg-blue-600' }} animate-pulse"></span>
-                                            <span>{{ $membre['statut'] }}</span>
-                                        </span>
-                                    </div>
-
-                                    <!-- Nom et Titre sur la photo -->
-                                    <div class="absolute bottom-4 left-5 right-5 text-white">
-                                        <h3 class="font-black text-lg sm:text-xl leading-tight text-white drop-shadow-sm">
-                                            {{ $membre['nom'] }}
-                                        </h3>
-                                        <p class="text-xs sm:text-sm text-amber-300 font-bold mt-1">
-                                            {{ $membre['role'] }}
-                                        </p>
-                                    </div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#0B3B60] text-xs font-black uppercase tracking-wider mb-4">
+                                    <i class="fas fa-shield-alt text-amber-500"></i>
+                                    <span>Autorité Supérieure d'Arbitrage</span>
                                 </div>
 
-                                <!-- Corps descriptif riche -->
-                                <div class="p-6 sm:p-7">
-                                    <div
-                                        class="flex items-center gap-2 mb-2 text-xs font-black text-[#0B3B60] uppercase tracking-wider">
-                                        <i class="fas fa-shield-alt text-amber-500"></i>
-                                        <span>{{ $membre['direction'] }}</span>
+                                <h3 class="text-lg sm:text-xl font-black text-slate-900 leading-snug mb-3">
+                                    Engagement Solennel pour le Respect des Droits des Usagers
+                                </h3>
+
+                                <!-- Citation du Directeur Général -->
+                                <blockquote class="p-4 rounded-2xl bg-amber-50/70 border-l-4 border-amber-400 text-slate-700 text-xs sm:text-sm italic leading-relaxed mb-5">
+                                    « La célérité, la transparence et l'écoute attentive des usagers constituent le socle fondamental de notre mission républicaine de service public. »
+                                </blockquote>
+
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                                    Sous le contrôle du Conseil d'Administration, le Directeur Général assure le pilotage stratégique, technique et financier de la Caisse Malienne de Sécurité Sociale. Il veille avec la plus haute rigueur à l'impartialité du traitement des requêtes, à la liquidation juste des pensions et à l'arbitrage diligent des contestations AMO des fonctionnaires, retraités et ayants droit.
+                                </p>
+
+                                <!-- 3 Piliers d'Engagement -->
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-center">
+                                        <div class="w-8 h-8 mx-auto rounded-lg bg-blue-100 text-[#0B3B60] flex items-center justify-center text-xs mb-1.5">
+                                            <i class="fas fa-balance-scale"></i>
+                                        </div>
+                                        <div class="text-[11px] font-bold text-slate-900">Équité Rigoureuse</div>
+                                        <div class="text-[10px] text-slate-500">Conformité légale</div>
                                     </div>
-                                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                        {{ $membre['description'] }}
-                                    </p>
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-center">
+                                        <div class="w-8 h-8 mx-auto rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center text-xs mb-1.5">
+                                            <i class="fas fa-gavel"></i>
+                                        </div>
+                                        <div class="text-[11px] font-bold text-slate-900">Arbitrage Direct</div>
+                                        <div class="text-[10px] text-slate-500">Voie de recours</div>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-center">
+                                        <div class="w-8 h-8 mx-auto rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs mb-1.5">
+                                            <i class="fas fa-stopwatch"></i>
+                                        </div>
+                                        <div class="text-[11px] font-bold text-slate-900">Délai Maîtrisé</div>
+                                        <div class="text-[10px] text-slate-500">Instruction sous 48h</div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Bas de carte avec repères d'accueil -->
-                            <div
-                                class="p-5 px-6 sm:px-7 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+                            <!-- Footer carte -->
+                            <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
                                 <span class="flex items-center gap-1.5 font-bold text-slate-700">
                                     <i class="fas fa-check-circle text-emerald-600"></i>
-                                    <span>{{ $index === 0 ? 'Haute Autorité d\'Arbitrage' : 'Accueil & Réclamations' }}</span>
+                                    <span>Cabinet du Directeur Général</span>
                                 </span>
                                 <span class="font-mono text-slate-400 text-[11px]">Hamdallaye ACI 2000, Bamako</span>
                             </div>
+
                         </div>
-                    @endforeach
+                    </div>
                 </div>
 
                 <!-- Bandeau des 3 Pôles Techniques Opérationnels -->

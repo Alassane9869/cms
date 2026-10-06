@@ -34,27 +34,18 @@ class PublicReclamationController extends Controller
             }
         }
 
-        // Équipes de direction & chaîne d'instruction des réclamations
-        $equipe = [
-            [
-                'nom' => 'M. Ichaka Koné',
-                'role' => 'Directeur Général',
-                'direction' => 'Direction Générale CMSS',
-                'statut' => 'Direction Active',
-                'badge_color' => 'emerald',
-                'image' => 'images/equipe/dg.jpg',
-                'description' => 'Le Directeur Général dirige la Direction Générale et assure la gestion administrative, technique et financière de l\'organisme sous le contrôle du Conseil d\'Administration. Il veille à la qualité du service public, à l\'impartialité et au traitement diligent de toutes les réclamations des usagers.',
-            ],
-            [
-                'nom' => 'Division Accueil, Écoute & Réclamations',
-                'role' => 'Cellule Centrale d\'Écoute Usagers',
-                'direction' => 'Centre National de Traitement des Requêtes',
-                'statut' => 'Permanence Ouverte (7h30 - 16h00)',
-                'badge_color' => 'emerald',
-                'image' => 'images/caisse.jpg',
-                'description' => 'Guichet unique d\'enregistrement, d\'instruction technique, de notification et d\'orientation de toutes les réclamations formulées par les fonctionnaires, militaires, retraités et veuves sur l\'ensemble du territoire national.',
-            ],
+        // Haute Direction : Le Directeur Général de la CMSS
+        $directeur = [
+            'nom' => 'M. Ichaka Koné',
+            'role' => 'Directeur Général',
+            'direction' => 'Direction Générale de la CMSS',
+            'statut' => 'Direction Active',
+            'badge_color' => 'emerald',
+            'image' => 'images/equipe/dg.jpg',
+            'citation' => 'La célérité, la transparence et l\'écoute attentive des usagers constituent le socle fondamental de notre mission de service public.',
+            'description' => 'Sous le contrôle du Conseil d\'Administration, le Directeur Général assure la direction générale et la gestion administrative, technique et financière de la Caisse Malienne de Sécurité Sociale. Il veille avec la plus haute rigueur à l\'impartialité du traitement des requêtes, à la qualité du service rendu aux assurés et au dénouement diligent de toutes les réclamations des fonctionnaires, retraités et ayants droit.',
         ];
+        $equipe = [$directeur];
 
         return view('public.home', compact(
             'categories',
@@ -63,7 +54,8 @@ class PublicReclamationController extends Controller
             'tauxResolution',
             'dossierSuivi',
             'refIntrouvable',
-            'equipe'
+            'equipe',
+            'directeur'
         ));
     }
 

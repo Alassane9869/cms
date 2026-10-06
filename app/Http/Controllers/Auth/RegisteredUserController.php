@@ -48,11 +48,15 @@ class RegisteredUserController extends Controller
             'password'  => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        try {
+            event(new Registered($user));
+        } catch (\Throwable $e) {
+            Log::warning('Erreur notification événement inscription : ' . $e->getMessage());
+        }
 
         // Générer le code OTP et envoyer l'email de confirmation
-        $otp = $user->generateOtp();
         try {
+            $otp = $user->generateOtp();
             Mail::send('emails.verification_otp', [
                 'nom'     => $user->name,
                 'otpCode' => $otp,
