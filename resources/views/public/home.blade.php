@@ -202,147 +202,147 @@
         <!-- HERO SECTION : Image de fond majestueuse & Rendu Étatique -->
         <!-- ========================================================= -->
         <!-- ========================================================= -->
-        <!-- HERO SECTION : Image de fond lumineuse & Rendu Étatique -->
+        <!-- HERO SECTION : Image de fond lumineuse & Rendu Étatique Aéré -->
         <!-- ========================================================= -->
-        <section class="relative text-white py-12 sm:py-20 lg:py-24 overflow-hidden bg-[#0A3355]">
+        <section class="relative text-white py-10 sm:py-16 lg:py-20 overflow-hidden bg-[#0A3355]">
             
-            <!-- 1. IMAGE DE FOND RÉELLE HAUTE QUALITÉ DU SIÈGE CMSS (LUMINEUSE & CLAIRE) -->
+            <!-- 1. IMAGE DE FOND RÉELLE DU SIÈGE CMSS (LUMINEUSE & TRANSPARENTE) -->
             <div class="absolute inset-0 z-0">
                 <img src="{{ asset('images/caisse.jpg') }}" alt="Siège National CMSS Direction Générale" 
                      class="w-full h-full object-cover object-center filter brightness-[1.05] contrast-[1.02] transform duration-700">
                 
-                <!-- Overlay bleu officiel aéré, lumineux et semi-transparent pour garder le bâtiment visible et éclatant -->
-                <div class="absolute inset-0 bg-gradient-to-r from-[#072d4c]/88 via-[#0B3B60]/75 to-[#0e4b77]/60"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#082842]/90 via-transparent to-white/10"></div>
+                <!-- Overlay transparent léger préservant la netteté et la lumière naturelle du bâtiment -->
+                <div class="absolute inset-0 bg-gradient-to-r from-[#072d4c]/75 via-[#0B3B60]/60 to-[#0e4b77]/45"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#082842]/85 via-transparent to-white/10"></div>
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400/20 via-transparent to-transparent"></div>
             </div>
 
             <!-- Filigrane d'emblème officiel en arrière-plan -->
-            <div class="absolute right-4 bottom-4 lg:right-20 lg:bottom-10 opacity-15 pointer-events-none z-0">
-                <img src="{{ asset('images/logo.jpg') }}" alt="" class="w-80 h-80 sm:w-96 sm:h-96 object-contain rounded-full">
+            <div class="absolute right-4 bottom-4 lg:right-20 lg:bottom-10 opacity-10 pointer-events-none z-0">
+                <img src="{{ asset('images/logo.jpg') }}" alt="" class="w-72 h-72 sm:w-80 sm:h-80 object-contain rounded-full">
             </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
 
-                    <!-- Colonne Gauche : Titres, Guichet & Actions -->
-                    <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+                    <!-- Colonne Gauche : Titres, Guichet & Actions (plus équilibrée) -->
+                    <div class="lg:col-span-7 xl:col-span-8 space-y-4 sm:space-y-5">
                         
                         <!-- Badge Institutionnel Guichet Réclamations -->
-                        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[11px] sm:text-xs font-semibold text-white shadow-sm">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[10px] sm:text-xs font-semibold text-white shadow-xs">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                             <span>🇲🇱 Guichet Numérique des Réclamations &bull; CMSS Mali</span>
                         </div>
 
-                        <!-- Titre Principal -->
-                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-snug sm:leading-tight drop-shadow-xs">
+                        <!-- Titre Principal (taille ajustée, moins encombrant) -->
+                        <h1 class="text-2xl sm:text-3xl lg:text-[2.6rem] font-black tracking-tight leading-snug lg:leading-tight drop-shadow-xs">
                             Portail Officiel des <span class="text-amber-300">Réclamations &amp; Requêtes</span> de la CMSS
                         </h1>
 
                         <!-- Sous-titre explicatif -->
-                        <p class="text-sm sm:text-base lg:text-lg text-blue-50 font-normal leading-relaxed max-w-2xl drop-shadow-xs">
+                        <p class="text-xs sm:text-sm lg:text-base text-blue-50 font-normal leading-relaxed max-w-2xl drop-shadow-xs">
                             Plateforme officielle dédiée au dépôt sécurisé et au suivi en direct de vos requêtes (Pensions de Retraite, Assurance Maladie Obligatoire AMO, Prestations Familiales).
                         </p>
 
-                        <!-- Cadre Information : Compte Obligatoire & Vérification OTP -->
-                        <div class="p-3.5 sm:p-4 rounded-2xl bg-[#072744]/80 backdrop-blur-md border border-amber-300/40 text-[11px] sm:text-xs text-blue-100 flex items-start gap-2.5 max-w-2xl shadow-lg">
-                            <i class="fas fa-shield-alt text-amber-300 text-sm sm:text-base mt-0.5 shrink-0"></i>
+                        <!-- Cadre Information : Compte Obligatoire & Vérification OTP (plus compact & translucide) -->
+                        <div class="p-3 sm:p-3.5 rounded-xl bg-black/30 backdrop-blur-md border border-amber-300/40 text-[11px] sm:text-xs text-blue-100 flex items-start gap-2.5 max-w-2xl shadow-sm">
+                            <i class="fas fa-shield-alt text-amber-300 text-sm mt-0.5 shrink-0"></i>
                             <div class="leading-relaxed">
                                 <strong class="text-amber-300 font-bold">Formalité Obligatoire :</strong>
-                                Pour garantir la recevabilité juridique de vos démarches et assurer le suivi en temps réel de votre dossier, la <strong>création d'un Espace Assuré avec validation par code OTP</strong> (envoyé par e-mail) est requise.
+                                Pour garantir la recevabilité de vos démarches et le suivi en temps réel, la <strong>création d'un Espace Assuré avec validation OTP</strong> par e-mail est requise.
                                 <span class="block text-slate-300 text-[10px] mt-0.5">Pour les informations générales et textes de loi : <a href="https://cmss.ml" target="_blank" class="text-amber-300 underline font-semibold">www.cmss.ml</a></span>
                             </div>
                         </div>
 
-                        <!-- Call To Actions Stratégiques (optimisé pour le nouveau flux compte obligatoire) -->
-                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+                        <!-- Call To Actions Stratégiques (format compact et élégant) -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 pt-0.5">
                             <a href="{{ route('register') }}" 
-                               class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-[#0B3B60] hover:bg-blue-50 font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-xl hover:shadow-2xl transition flex items-center justify-center gap-2 group text-center">
+                               class="w-full sm:w-auto px-5 py-2.5 sm:py-3 rounded-xl bg-white text-[#0B3B60] hover:bg-blue-50 font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition flex items-center justify-center gap-2 group text-center">
                                 <i class="fas fa-user-plus text-[#0B3B60] group-hover:scale-110 transition"></i>
                                 <span>Créer mon Compte Assuré</span>
                             </a>
                             <a href="{{ route('login') }}" 
-                               class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-lg text-center">
+                               class="w-full sm:w-auto px-5 py-2.5 sm:py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-md text-center">
                                 <i class="fas fa-sign-in-alt text-slate-950"></i>
                                 <span>Se Connecter &amp; Déposer</span>
                             </a>
                             <a href="{{ route('guide.reclamation') }}" 
-                               class="w-full sm:w-auto px-4 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white border border-white/30 font-bold text-xs transition flex items-center justify-center gap-1.5 backdrop-blur-sm text-center">
+                               class="w-full sm:w-auto px-4 py-2.5 sm:py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white border border-white/30 font-bold text-xs transition flex items-center justify-center gap-1.5 backdrop-blur-sm text-center">
                                 <i class="fas fa-book-reader text-amber-300"></i>
                                 <span>Comment réclamer ?</span>
                             </a>
                         </div>
 
-                        <!-- Baromètre des chiffres clés en cartes transparentes et lumineuses -->
-                        <div class="pt-4 sm:pt-6 border-t border-white/20 grid grid-cols-3 gap-2 sm:gap-4 text-center sm:text-left">
-                            <div class="p-2.5 sm:p-3 rounded-xl bg-white/15 backdrop-blur-md border border-white/25 shadow-sm">
-                                <div class="text-xl sm:text-3xl font-black text-white">+350k</div>
-                                <div class="text-[10px] sm:text-xs text-blue-100 font-medium mt-0.5">Assurés &amp; Retraités</div>
+                        <!-- Baromètre des chiffres clés en cartes discrètes et lumineuses -->
+                        <div class="pt-3 sm:pt-4 border-t border-white/20 grid grid-cols-3 gap-2 sm:gap-3 text-center sm:text-left max-w-xl">
+                            <div class="p-2 sm:p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xs">
+                                <div class="text-lg sm:text-2xl font-black text-white">+350k</div>
+                                <div class="text-[10px] sm:text-[11px] text-blue-100 font-medium mt-0.5">Assurés &amp; Retraités</div>
                             </div>
-                            <div class="p-2.5 sm:p-3 rounded-xl bg-white/15 backdrop-blur-md border border-white/25 shadow-sm">
-                                <div class="text-lg sm:text-3xl font-black text-amber-300">48h &ndash; 72h</div>
-                                <div class="text-[10px] sm:text-xs text-blue-100 font-medium mt-0.5">Délai d'instruction</div>
+                            <div class="p-2 sm:p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xs">
+                                <div class="text-base sm:text-2xl font-black text-amber-300">48h &ndash; 72h</div>
+                                <div class="text-[10px] sm:text-[11px] text-blue-100 font-medium mt-0.5">Délai d'instruction</div>
                             </div>
-                            <div class="p-2.5 sm:p-3 rounded-xl bg-white/15 backdrop-blur-md border border-white/25 shadow-sm">
-                                <div class="text-xl sm:text-3xl font-black text-emerald-300">9 Agences</div>
-                                <div class="text-[10px] sm:text-xs text-blue-100 font-medium mt-0.5">Réseau Mali</div>
+                            <div class="p-2 sm:p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xs">
+                                <div class="text-lg sm:text-2xl font-black text-emerald-300">9 Agences</div>
+                                <div class="text-[10px] sm:text-[11px] text-blue-100 font-medium mt-0.5">Réseau Mali</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Colonne Droite : Carte d'Autorité Officielle (Lumineuse avec logo CMSS) -->
-                    <div class="lg:col-span-5">
-                        <div class="rounded-2xl sm:rounded-3xl bg-[#0B3B60]/85 backdrop-blur-xl border border-white/30 shadow-2xl overflow-hidden p-5 sm:p-6 text-white space-y-4 sm:space-y-5">
+                    <!-- Colonne Droite : Carte d'Autorité Officielle (DIMINUÉE & PLUS TRANSPARENTE) -->
+                    <div class="lg:col-span-5 xl:col-span-4 lg:ml-auto w-full max-w-md">
+                        <div class="rounded-2xl bg-[#062038]/50 backdrop-blur-md border border-white/25 shadow-xl overflow-hidden p-4 sm:p-4.5 text-white space-y-3.5">
                             
-                            <!-- En-tête de la carte -->
-                            <div class="flex items-center justify-between pb-3 sm:pb-4 border-b border-white/20">
-                                <div class="flex items-center gap-2.5 sm:gap-3">
-                                    <img src="{{ asset('images/armoiries-mali.jpg') }}" alt="Mali" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/40 object-cover shadow-sm">
+                            <!-- En-tête de la carte (compact) -->
+                            <div class="flex items-center justify-between pb-2.5 border-b border-white/15">
+                                <div class="flex items-center gap-2">
+                                    <img src="{{ asset('images/armoiries-mali.jpg') }}" alt="Mali" class="w-8 h-8 rounded-full border border-white/40 object-cover shadow-xs">
                                     <div>
-                                        <div class="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-amber-300">République du Mali</div>
-                                        <div class="text-xs sm:text-sm font-extrabold text-white">Caisse Malienne de Sécurité Sociale</div>
+                                        <div class="text-[9px] uppercase font-bold tracking-wider text-amber-300 leading-none">République du Mali</div>
+                                        <div class="text-xs font-black text-white leading-tight mt-0.5">CMSS Mali</div>
                                     </div>
                                 </div>
-                                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-500/25 text-emerald-200 border border-emerald-400/40 flex items-center gap-1.5 shrink-0">
+                                <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-emerald-500/25 text-emerald-200 border border-emerald-400/40 flex items-center gap-1 shrink-0">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                                     <span>Guichet Ouvert</span>
                                 </span>
                             </div>
 
-                            <!-- Bloc LOGO CMSS & Identité -->
-                            <div class="flex items-center gap-3.5 sm:gap-4 bg-white/15 p-3 sm:p-3.5 rounded-2xl border border-white/25 shadow-xs">
-                                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-white p-1.5 border border-white/40 shadow-md shrink-0 flex items-center justify-center">
+                            <!-- Bloc LOGO CMSS & Identité (fin et translucide) -->
+                            <div class="flex items-center gap-3 bg-white/10 p-2.5 rounded-xl border border-white/15 shadow-2xs">
+                                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-white p-1 border border-white/30 shadow-xs shrink-0 flex items-center justify-center">
                                     <img src="{{ asset('images/logo.jpg') }}" alt="Logo Officiel CMSS" class="w-full h-full object-contain">
                                 </div>
                                 <div>
-                                    <div class="text-[10px] sm:text-xs font-bold text-amber-300 uppercase tracking-wide">Établissement Public de Prévoyance</div>
-                                    <div class="text-sm sm:text-base font-extrabold text-white leading-tight mt-0.5">CMSS Mali</div>
-                                    <p class="text-[10px] sm:text-[11px] text-blue-100 leading-snug mt-1">
-                                        Protection sociale solidaire, impartialité et célérité dans le traitement de vos réclamations.
+                                    <div class="text-[9px] font-bold text-amber-300 uppercase tracking-wide">Établissement Public de Prévoyance</div>
+                                    <div class="text-xs font-black text-white leading-tight mt-0.5">Caisse Malienne de Sécurité Sociale</div>
+                                    <p class="text-[10px] text-blue-100/90 leading-tight mt-0.5">
+                                        Traitement diligent et impartial des requêtes d'usagers.
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Repères Siège & Services -->
-                            <div class="space-y-2 text-xs text-blue-50 pt-1">
-                                <div class="flex items-center gap-2.5">
-                                    <i class="fas fa-landmark text-amber-300 w-4 text-center shrink-0"></i>
-                                    <span class="text-[11px] sm:text-xs"><strong>Siège National :</strong> Hamdallaye ACI 2000, Bamako</span>
+                            <!-- Repères Siège & Services (compact) -->
+                            <div class="space-y-1.5 text-[11px] text-blue-50/90 pt-0.5">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-landmark text-amber-300 w-3.5 text-center shrink-0 text-xs"></i>
+                                    <span><strong>Siège :</strong> Hamdallaye ACI 2000, Bamako</span>
                                 </div>
-                                <div class="flex items-center gap-2.5">
-                                    <i class="fas fa-clock text-emerald-300 w-4 text-center shrink-0"></i>
-                                    <span class="text-[11px] sm:text-xs"><strong>Accueil physique :</strong> Lun &ndash; Ven (7h30 &ndash; 16h00)</span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-clock text-emerald-300 w-3.5 text-center shrink-0 text-xs"></i>
+                                    <span><strong>Accueil :</strong> Lun &ndash; Ven (7h30 &ndash; 16h00)</span>
                                 </div>
-                                <div class="flex items-center gap-2.5">
-                                    <i class="fas fa-globe text-sky-300 w-4 text-center shrink-0"></i>
-                                    <span class="text-[11px] sm:text-xs"><strong>Guichet Numérique :</strong> Dépôt &amp; suivi 24h/24 &amp; 7j/7</span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-globe text-sky-300 w-3.5 text-center shrink-0 text-xs"></i>
+                                    <span><strong>Guichet Numérique :</strong> 24h/24 &amp; 7j/7</span>
                                 </div>
                             </div>
 
-                            <!-- Bouton rapide vers le suivi -->
-                            <div class="pt-1">
-                                <a href="#suivi-rapide" class="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-white text-[#0B3B60] hover:bg-blue-50 font-black text-xs uppercase tracking-wider text-center block transition shadow-md">
-                                    <i class="fas fa-search mr-1.5"></i> Suivre une réclamation en direct
+                            <!-- Bouton rapide vers le suivi (élégant) -->
+                            <div class="pt-0.5">
+                                <a href="#suivi-rapide" class="w-full py-2 px-3 rounded-xl bg-white/95 hover:bg-white text-[#0B3B60] font-black text-[11px] uppercase tracking-wider text-center block transition shadow-sm">
+                                    <i class="fas fa-search mr-1"></i> Suivre une réclamation en direct
                                 </a>
                             </div>
 
