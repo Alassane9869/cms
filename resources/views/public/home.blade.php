@@ -3,8 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CMSS Portail">
+    <meta name="theme-color" content="#0B3B60">
+
     <title>Portail Officiel des Réclamations & Requêtes - CMSS Mali</title>
+
+    <!-- Favicon & Icône Officielle CMSS -->
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
+    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpg') }}">
+
     <meta name="description"
         content="Portail numérique officiel dédié au dépôt et au suivi des réclamations des assurés sociaux et retraités de la Caisse Malienne de Sécurité Sociale (CMSS).">
 

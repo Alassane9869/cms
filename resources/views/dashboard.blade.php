@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-900 flex items-center justify-center font-bold">
-                <i class="fas fa-tachometer-alt"></i>
+        <div class="flex items-center gap-2.5 sm:gap-3">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-100 text-[#0B3B60] flex items-center justify-center font-bold text-xs sm:text-base shrink-0">
+                <i class="fas fa-chart-line"></i>
             </div>
-            <div>
-                <h1 class="text-xl font-bold text-slate-900">Tableau de bord</h1>
-                <p class="text-xs text-slate-500">Vue d'ensemble des réclamations citoyennes et courriers administratifs</p>
+            <div class="min-w-0">
+                <h1 class="text-sm sm:text-lg font-bold text-slate-900 leading-tight truncate">Tableau de bord</h1>
+                <p class="text-[11px] text-slate-500 truncate hidden sm:block">Vue d'ensemble des réclamations citoyennes et courriers administratifs</p>
             </div>
         </div>
     </x-slot>

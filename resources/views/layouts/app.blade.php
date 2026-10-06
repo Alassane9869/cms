@@ -2,8 +2,20 @@
 <html lang="fr" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CMSS Assuré">
+    <meta name="theme-color" content="#0B3B60">
+    <meta name="mobile-web-app-capable" content="yes">
+
     <title>{{ config('app.name', 'CMSS - Gestion des Réclamations') }}</title>
+
+    <!-- Favicon & Icône Officielle CMSS -->
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
+    <link rel="shortcut icon" type="image/jpeg" href="{{ asset('images/logo.jpg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpg') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +25,15 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     @endauth
     <style>
+        :root {
+            --sat: env(safe-area-inset-top, 0px);
+            --sab: env(safe-area-inset-bottom, 0px);
+            --sal: env(safe-area-inset-left, 0px);
+            --sar: env(safe-area-inset-right, 0px);
+        }
         body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+        .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 0px); }
+        .safe-bottom { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px); }
         .sidebar-gradient {
             background: linear-gradient(180deg, #0f1f38 0%, #17325c 50%, #1e3a5f 100%);
         }
@@ -374,41 +394,48 @@
     <!-- Main Content Area -->
     <div class="md:pl-64 flex flex-col min-h-screen">
 
-        <!-- Topbar -->
-        <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200/80 px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <!-- Hamburger Toggle (Mobile) -->
-                <button @click="sidebarOpen = !sidebarOpen" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">
-                    <i class="fas fa-bars text-lg"></i>
+        <!-- Topbar Adaptée iPhone & Android -->
+        <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-3 sm:px-6 lg:px-8 min-h-[3.75rem] sm:min-h-[4rem] flex items-center justify-between gap-2 shadow-xs transition-all">
+            <div class="flex items-center gap-2 sm:gap-3.5 min-w-0 flex-1">
+                <!-- Hamburger Toggle (Mobile Touch Target 40px) -->
+                <button @click="sidebarOpen = !sidebarOpen" 
+                        class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 active:scale-95 transition shrink-0 border border-slate-200/60" 
+                        aria-label="Menu principal">
+                    <i class="fas fa-bars-staggered text-base text-[#0B3B60]"></i>
                 </button>
 
-                <!-- Page Header Title -->
-                <div>
+                <!-- Mini Logo CMSS sur Mobile -->
+                <a href="{{ route('dashboard') }}" class="md:hidden shrink-0 flex items-center">
+                    <img src="{{ asset('images/logo.jpg') }}" alt="CMSS" class="w-8 h-8 rounded-lg object-contain border border-slate-200/80 shadow-xs">
+                </a>
+
+                <!-- Titre de Page Dynamique / Header Slot -->
+                <div class="min-w-0 truncate">
                     @isset($header)
                         {{ $header }}
                     @else
-                        <h1 class="text-lg font-bold text-slate-900 leading-tight">CMSS Gestion</h1>
+                        <h1 class="text-sm sm:text-lg font-bold text-slate-900 leading-tight truncate">CMSS Gestion</h1>
                     @endisset
                 </div>
             </div>
 
-            <!-- Topbar Right Info -->
-            <div class="flex items-center gap-3 sm:gap-5">
-                <div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+            <!-- Topbar Droite : Date & Profil Rapide -->
+            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+                <div class="hidden lg:flex items-center gap-2 text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
                     <i class="fas fa-calendar-day text-blue-600"></i>
                     <span>{{ now()->locale('fr')->isoFormat('LL') }}</span>
                 </div>
 
-                <div class="flex items-center gap-3 pl-3 sm:border-l sm:border-slate-200">
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold {{ auth()->user() && auth()->user()->isAdmin() ? 'bg-indigo-100 text-indigo-800' : 'bg-blue-100 text-blue-800' }}">
-                        <i class="fas fa-shield-alt mr-1"></i>
+                <div class="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-3 sm:border-l sm:border-slate-200">
+                    <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 rounded-full text-[10px] sm:text-xs font-bold {{ auth()->user() && auth()->user()->isAdmin() ? 'bg-indigo-100 text-indigo-800' : 'bg-blue-100 text-blue-800' }}">
+                        <i class="fas fa-shield-alt mr-1 text-[9px] sm:text-[10px]"></i>
                         {{ strtoupper(auth()->user()->role ?? 'AGENT') }}
                     </span>
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1.5">
-                            <i class="fas fa-power-off"></i>
+                        <button type="submit" title="Se déconnecter" class="text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-2.5 py-1.5 sm:px-3 rounded-lg transition inline-flex items-center gap-1.5 active:scale-95">
+                            <i class="fas fa-power-off text-xs"></i>
                             <span class="hidden sm:inline">Quitter</span>
                         </button>
                     </form>
@@ -417,7 +444,7 @@
         </header>
 
         <!-- Flash Messages & Page Content -->
-        <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        <main class="flex-1 p-3.5 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto pb-28 md:pb-8">
             <!-- Global Flash Messages -->
             @if(session('success'))
                 <div class="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-center justify-between shadow-sm animate-fade-in">
@@ -463,8 +490,84 @@
             {{ $slot }}
         </main>
 
+        <!-- Barre de Navigation Inférieure Mobile (iOS Safari & Android Chrome) -->
+        <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-2xl safe-bottom">
+            <div class="grid grid-cols-5 items-center h-16 px-1">
+                @if(auth()->user() && auth()->user()->isCitoyen())
+                    <!-- 1. Accueil -->
+                    <a href="{{ route('dashboard') }}" class="flex flex-col items-center justify-center py-1 {{ request()->routeIs('dashboard') && !request()->has('view') ? 'text-[#0B3B60] font-extrabold' : 'text-slate-500' }} hover:text-[#0B3B60] active:scale-95 transition">
+                        <i class="fas fa-home text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Accueil</span>
+                    </a>
+
+                    <!-- 2. Mes Réclamations -->
+                    <a href="{{ route('dashboard') }}#mes-reclamations" class="flex flex-col items-center justify-center py-1 text-slate-500 hover:text-[#0B3B60] active:scale-95 transition">
+                        <i class="fas fa-folder-open text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Dossiers</span>
+                    </a>
+
+                    <!-- 3. Bouton Central Surélevé (FAB) : Déposer une réclamation -->
+                    <div class="flex flex-col items-center justify-center -mt-5">
+                        <a href="{{ route('dashboard') }}#nouvelle-reclamation" 
+                           class="w-12 h-12 rounded-full bg-[#0B3B60] text-amber-300 shadow-lg shadow-[#0B3B60]/30 border-2 border-white flex items-center justify-center text-xl active:scale-90 transition hover:bg-[#07233B]" 
+                           title="Déposer une réclamation">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <span class="text-[10px] font-bold text-[#0B3B60] mt-0.5">Réclamer</span>
+                    </div>
+
+                    <!-- 4. Guide & Droits -->
+                    <a href="{{ route('guide.reclamation') }}" class="flex flex-col items-center justify-center py-1 {{ request()->routeIs('guide.*') ? 'text-[#0B3B60] font-extrabold' : 'text-slate-500' }} hover:text-[#0B3B60] active:scale-95 transition">
+                        <i class="fas fa-book-bookmark text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Guide</span>
+                    </a>
+
+                    <!-- 5. Menu Drawer -->
+                    <button @click="sidebarOpen = true" class="flex flex-col items-center justify-center py-1 text-slate-500 hover:text-[#0B3B60] active:scale-95 transition">
+                        <i class="fas fa-bars text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Menu</span>
+                    </button>
+                @else
+                    <!-- Navigation Mobile pour Agents / Administrateurs -->
+                    <!-- 1. Tableau de bord -->
+                    <a href="{{ route('dashboard') }}" class="flex flex-col items-center justify-center py-1 {{ request()->routeIs('dashboard') ? 'text-[#0B3B60] font-extrabold' : 'text-slate-500' }} active:scale-95 transition">
+                        <i class="fas fa-tachometer-alt text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Bord</span>
+                    </a>
+
+                    <!-- 2. Réclamations -->
+                    <a href="{{ route('reclamations.index') }}" class="flex flex-col items-center justify-center py-1 {{ request()->routeIs('reclamations.*') ? 'text-[#0B3B60] font-extrabold' : 'text-slate-500' }} active:scale-95 transition">
+                        <i class="fas fa-clipboard-list text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Réclam.</span>
+                    </a>
+
+                    <!-- 3. FAB Central : Nouveau Courrier / Réclamation -->
+                    <div class="flex flex-col items-center justify-center -mt-5">
+                        <a href="{{ route('reclamations.create') }}" 
+                           class="w-12 h-12 rounded-full bg-[#0B3B60] text-amber-300 shadow-lg shadow-[#0B3B60]/30 border-2 border-white flex items-center justify-center text-xl active:scale-90 transition hover:bg-[#07233B]" 
+                           title="Créer une réclamation">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <span class="text-[10px] font-bold text-[#0B3B60] mt-0.5">Nouveau</span>
+                    </div>
+
+                    <!-- 4. Courriers -->
+                    <a href="{{ route('courriers.index') }}" class="flex flex-col items-center justify-center py-1 {{ request()->routeIs('courriers.*') ? 'text-[#0B3B60] font-extrabold' : 'text-slate-500' }} active:scale-95 transition">
+                        <i class="fas fa-envelope text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Courriers</span>
+                    </a>
+
+                    <!-- 5. Menu Drawer -->
+                    <button @click="sidebarOpen = true" class="flex flex-col items-center justify-center py-1 text-slate-500 hover:text-[#0B3B60] active:scale-95 transition">
+                        <i class="fas fa-bars text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Menu</span>
+                    </button>
+                @endif
+            </div>
+        </nav>
+
         <!-- Footer -->
-        <footer class="border-t border-slate-200 bg-white py-4 px-6 text-center text-xs text-slate-500">
+        <footer class="border-t border-slate-200 bg-white py-4 px-6 text-center text-xs text-slate-500 hidden md:block">
             &copy; {{ date('Y') }} Caisse Malienne de Sécurité Sociale (CMSS) &mdash; Système Intégré de Gestion des Réclamations et Courriers.
         </footer>
     </div>
