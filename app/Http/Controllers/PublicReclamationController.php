@@ -12,10 +12,21 @@ use Illuminate\Support\Facades\Hash;
 
 class PublicReclamationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categories = Categorie::all();
-        return view('public.reclamation', compact('categories'));
+        $dossierSuivi = null;
+        $refIntrouvable = false;
+
+        if ($request->filled('suivi')) {
+            $reference = trim($request->suivi);
+            $dossierSuivi = Reclamation::where('reference', $reference)->with('categorie')->first();
+            if (!$dossierSuivi) {
+                $refIntrouvable = true;
+            }
+        }
+
+        return view('public.reclamation', compact('categories', 'dossierSuivi', 'refIntrouvable'));
     }
 
     public function store(Request $request)
