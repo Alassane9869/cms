@@ -14,7 +14,10 @@
 
 define('LARAVEL_START', microtime(true));
 
-header('Content-Type: text/html; charset=utf-8');
+$isCli = (php_sapi_name() === 'cli');
+
+if (!$isCli) {
+    header('Content-Type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,15 +40,21 @@ header('Content-Type: text/html; charset=utf-8');
 <div class="card">
     <h1>🚀 Déploiement Automatique o2switch &bull; CMSS Mali</h1>
     <p style="color: #94a3b8; font-size: 14px;">Initialisation de l'environnement de production en un clic.</p>
-
 <?php
+}
 
 $baseDir = __DIR__;
 $output = [];
 
 function logMsg($msg, $type = 'info') {
-    echo "<div class='step $type'>$msg</div>";
-    flush();
+    global $isCli;
+    if ($isCli) {
+        $clean = strip_tags(str_replace(['<br>', '<br/>', '<br />'], "\n", $msg));
+        echo "[$type] $clean\n";
+    } else {
+        echo "<div class='step $type'>$msg</div>";
+        flush();
+    }
 }
 
 // 1. Vérification / Création du fichier .env
@@ -163,6 +172,8 @@ if ($targetWebroot) {
 
 logMsg("🎉 <strong>Déploiement terminé avec succès !</strong> Votre portail CMSS Mali est opérationnel.", "success");
 
+<?php
+if (!$isCli) {
 ?>
     <div style="margin-top: 25px; text-align: center;">
         <a href="https://cmss.danayaplus.com" target="_blank" class="btn">Accéder au Portail CMSS &rarr;</a>
@@ -170,3 +181,6 @@ logMsg("🎉 <strong>Déploiement terminé avec succès !</strong> Votre portail
 </div>
 </body>
 </html>
+<?php
+}
+
