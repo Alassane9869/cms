@@ -6,7 +6,7 @@ deployment:
     - find /home/vuxe8870/cmss.danayaplus.com/ -name ".htaccess" -exec chmod 644 {} +
     - chmod -R 777 /home/vuxe8870/cmss.danayaplus.com/storage
     - chmod -R 777 /home/vuxe8870/cmss.danayaplus.com/bootstrap/cache
-    - cp -n /home/vuxe8870/cmss.danayaplus.com/.env.production /home/vuxe8870/cmss.danayaplus.com/.env || true
+    - cp -f /home/vuxe8870/cmss.danayaplus.com/.env.production /home/vuxe8870/cmss.danayaplus.com/.env || true
     - /opt/cpanel/composer/bin/composer --working-dir=/home/vuxe8870/cmss.danayaplus.com/ install --no-dev --optimize-autoloader || composer --working-dir=/home/vuxe8870/cmss.danayaplus.com/ install --no-dev --optimize-autoloader || true
     - /usr/local/bin/php /home/vuxe8870/cmss.danayaplus.com/artisan key:generate --force || true
     - /usr/local/bin/php /home/vuxe8870/cmss.danayaplus.com/artisan migrate --force --seed
