@@ -29,6 +29,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+
+        // Les comptes de gestion (Admin et Agent) accèdent directement à leur espace sans OTP
+        if ($user && ($user->isAdmin() || $user->isAgent())) {
+            if (!$user->hasVerifiedEmail()) {
+                $user->forceFill(['email_verified_at' => now()])->save();
+            }
+            return redirect()->route('dashboard');
+        }
+
+        if ($user && !$user->hasVerifiedEmail()) {
+            return redirect()->route('otp.verify.notice');
+        }
+
         return redirect()->intended(route('dashboard'));
     }
 

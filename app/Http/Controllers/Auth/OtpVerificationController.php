@@ -18,8 +18,11 @@ class OtpVerificationController extends Controller
     {
         $user = $request->user();
 
-        if ($user && $user->hasVerifiedEmail()) {
-            return redirect()->intended(route('dashboard', absolute: false));
+        if ($user && ($user->isAdmin() || $user->isAgent() || $user->hasVerifiedEmail())) {
+            if (!$user->hasVerifiedEmail()) {
+                $user->forceFill(['email_verified_at' => now()])->save();
+            }
+            return redirect()->route('dashboard');
         }
 
         // Si l'utilisateur n'a pas encore de code ou s'il a expiré, on en génère un automatiquement

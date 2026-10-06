@@ -21,11 +21,12 @@ class DatabaseSeeder extends Seeder
         $admin = User::firstOrCreate(
             ['email' => 'admin@cmss.ml'],
             [
-                'name'      => 'Direction Générale CMSS',
-                'password'  => Hash::make('Admin@2026!'),
-                'role'      => 'admin',
-                'telephone' => '+223 20 22 45 00',
-                'service'   => 'Direction des Systèmes d\'Information',
+                'name'              => 'Direction Générale CMSS',
+                'password'          => Hash::make('Admin@2026!'),
+                'role'              => 'admin',
+                'telephone'         => '+223 20 22 45 00',
+                'service'           => 'Direction des Systèmes d\'Information',
+                'email_verified_at' => now(),
             ]
         );
 
@@ -33,11 +34,12 @@ class DatabaseSeeder extends Seeder
         $agent = User::firstOrCreate(
             ['email' => 'agent@cmss.ml'],
             [
-                'name'      => 'Mamadou Traoré',
-                'password'  => Hash::make('Agent@2026!'),
-                'role'      => 'agent',
-                'telephone' => '+223 76 12 34 56',
-                'service'   => 'Service Instruction & Réclamations',
+                'name'              => 'Mamadou Traoré',
+                'password'          => Hash::make('Agent@2026!'),
+                'role'              => 'agent',
+                'telephone'         => '+223 76 12 34 56',
+                'service'           => 'Service Instruction & Réclamations',
+                'email_verified_at' => now(),
             ]
         );
 
@@ -45,11 +47,12 @@ class DatabaseSeeder extends Seeder
         $citoyen = User::firstOrCreate(
             ['email' => 'assure@example.com'],
             [
-                'name'      => 'Fatoumata Coulibaly',
-                'password'  => Hash::make('Assure@2026!'),
-                'role'      => 'utilisateur',
-                'telephone' => '+223 65 43 21 00',
-                'service'   => null,
+                'name'              => 'Fatoumata Coulibaly',
+                'password'          => Hash::make('Assure@2026!'),
+                'role'              => 'utilisateur',
+                'telephone'         => '+223 65 43 21 00',
+                'service'           => null,
+                'email_verified_at' => now(),
             ]
         );
 
