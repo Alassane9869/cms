@@ -111,19 +111,19 @@
                         </a>
                     </div>
 
-                    <!-- Canal 2 -->
+                    <!-- Canal 2 : Validation OTP par E-mail -->
                     <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-xl mb-4">
-                                <i class="fas fa-paper-plane"></i>
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl mb-4">
+                                <i class="fas fa-shield-alt"></i>
                             </div>
-                            <h3 class="font-extrabold text-base text-slate-900 mb-2">Dépôt Express sans compte</h3>
+                            <h3 class="font-extrabold text-base text-slate-900 mb-2">Validation E-mail par OTP</h3>
                             <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                                Remplissez le formulaire public direct avec votre nom et email. Un numéro de suivi <code class="text-[#0B3B60] font-bold">REC-XXXXXXXX</code> vous sera attribué immédiatement.
+                                Pour garantir la sécurité et la validité légale de votre dossier, la création d'un compte avec saisie d'un code de sécurité à 6 chiffres (OTP) reçu par mail est obligatoire.
                             </p>
                         </div>
-                        <a href="{{ route('reclamation.publique') }}" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider text-center block transition">
-                            Dépôt rapide
+                        <a href="{{ route('register') }}" class="w-full py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider text-center block transition border border-amber-200">
+                            Activer mon compte (OTP)
                         </a>
                     </div>
 
@@ -306,7 +306,7 @@
                     <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
                         <h4 class="font-bold text-sm text-slate-900 mb-1">Que faire si je perds mon numéro de référence REC-XXXXXXXX ?</h4>
                         <p class="text-xs text-slate-600 leading-relaxed">
-                            Si vous avez créé un Espace Assuré, votre dossier reste enregistré dans votre historique à vie. Si vous avez fait un dépôt sans compte, vous pouvez retrouver votre référence dans l'email de confirmation envoyé lors de la soumission.
+                            Grâce à votre Espace Assuré certifié, votre dossier et vos récépissés restent enregistrés dans votre historique en ligne à vie. Vous pouvez également retrouver votre référence dans l'accusé de réception envoyé à votre adresse e-mail vérifiée par OTP.
                         </p>
                     </div>
 
@@ -323,14 +323,14 @@
             <div class="rounded-2xl bg-gradient-to-r from-[#0B3B60] to-[#124d7c] text-white p-8 text-center space-y-4">
                 <h3 class="text-2xl font-black">Prêt à soumettre votre dossier ?</h3>
                 <p class="text-xs sm:text-sm text-blue-100 max-w-lg mx-auto">
-                    Créez votre compte en quelques clics ou déposez directement votre requête pour obtenir votre récépissé horodaté.
+                    Créez votre compte en quelques instants, validez votre adresse avec votre code OTP et déposez votre requête officielle.
                 </p>
                 <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
                     <a href="{{ route('register') }}" class="px-6 py-3 rounded-xl bg-white text-[#0B3B60] font-extrabold text-xs uppercase tracking-wider shadow-md hover:bg-blue-50 transition">
-                        Créer mon Compte Assuré
+                        Créer mon Compte Assuré (OTP)
                     </a>
-                    <a href="{{ route('reclamation.publique') }}" class="px-6 py-3 rounded-xl bg-white/10 border border-white/30 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 transition">
-                        Déposer sans compte
+                    <a href="{{ route('login') }}" class="px-6 py-3 rounded-xl bg-white/10 border border-white/30 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/20 transition">
+                        Se Connecter
                     </a>
                 </div>
             </div>

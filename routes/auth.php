@@ -35,8 +35,22 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 });
 
+use App\Http\Controllers\Auth\OtpVerificationController;
+
 Route::middleware('auth')->group(function () {
-    Route::get('verify-email', EmailVerificationPromptController::class)
+    // Vérification par Code OTP
+    Route::get('verify-otp', [OtpVerificationController::class, 'notice'])
+        ->name('otp.verify.notice');
+
+    Route::post('verify-otp', [OtpVerificationController::class, 'verify'])
+        ->middleware('throttle:10,1')
+        ->name('otp.verify.submit');
+
+    Route::post('verify-otp/resend', [OtpVerificationController::class, 'resend'])
+        ->middleware('throttle:5,1')
+        ->name('otp.resend');
+
+    Route::get('verify-email', [OtpVerificationController::class, 'notice'])
         ->name('verification.notice');
 
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)

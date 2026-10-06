@@ -13,6 +13,9 @@ use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -47,9 +50,23 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        // Générer le code OTP et envoyer l'email de confirmation
+        $otp = $user->generateOtp();
+        try {
+            Mail::send('emails.verification_otp', [
+                'nom'     => $user->name,
+                'otpCode' => $otp,
+            ], function ($message) use ($user) {
+                $message->to($user->email)
+                        ->subject('Code de vérification OTP - Activation de votre compte CMSS');
+            });
+        } catch (\Throwable $e) {
+            Log::warning('Erreur envoi OTP lors de l\'inscription : ' . $e->getMessage());
+        }
+
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false))
-            ->with('success', 'Bienvenue sur votre Espace Assuré CMSS ! Vous pouvez désormais déposer et suivre vos réclamations.');
+        return redirect()->route('otp.verify.notice')
+            ->with('status', 'Un code de vérification à 6 chiffres a été envoyé par email à l\'adresse ' . $user->email . '. Veuillez le saisir pour valider votre compte.');
     }
 }

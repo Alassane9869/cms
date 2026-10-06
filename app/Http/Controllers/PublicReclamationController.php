@@ -102,46 +102,68 @@ class PublicReclamationController extends Controller
         $dossierSuivi = null;
         $refIntrouvable = false;
 
+        // Si l'utilisateur recherche un dossier avec son code de référence
         if ($request->filled('suivi')) {
             $reference = trim($request->suivi);
             $dossierSuivi = Reclamation::where('reference', $reference)->with('categorie')->first();
             if (!$dossierSuivi) {
                 $refIntrouvable = true;
             }
+            return view('public.reclamation', compact('categories', 'dossierSuivi', 'refIntrouvable'));
+        }
+
+        // Obligation réglementaire : création de compte & vérification OTP requises pour déposer
+        if (!auth()->check()) {
+            session(['url.intended' => route('reclamation.publique')]);
+            return redirect()->route('register')
+                ->with('info', 'Pour déposer une réclamation et garantir le suivi légal de votre dossier, vous devez créer votre Espace Assuré et confirmer votre adresse email par code de sécurité (OTP).');
+        }
+
+        if (!auth()->user()->hasVerifiedEmail()) {
+            session(['url.intended' => route('reclamation.publique')]);
+            return redirect()->route('otp.verify.notice')
+                ->with('info', 'Veuillez saisir votre code de sécurité OTP reçu par email pour valider votre compte avant de déposer une réclamation.');
         }
 
         return view('public.reclamation', compact('categories', 'dossierSuivi', 'refIntrouvable'));
     }
 
     /**
-     * Traitement de la soumission publique
+     * Traitement de la soumission d'une réclamation
      */
     public function store(Request $request)
     {
+        // Contrôle d'accès : Compte obligatoire et email vérifié par OTP
+        if (!auth()->check()) {
+            session(['url.intended' => route('reclamation.publique')]);
+            return redirect()->route('register')
+                ->with('info', 'Pour déposer une réclamation, vous devez d\'abord créer un compte et valider votre adresse email par code OTP.');
+        }
+
+        $user = auth()->user();
+
+        if (!$user->hasVerifiedEmail()) {
+            session(['url.intended' => route('reclamation.publique')]);
+            return redirect()->route('otp.verify.notice')
+                ->with('info', 'Veuillez d\'abord valider votre adresse email par code OTP.');
+        }
+
         $request->validate([
-            'nom'          => 'required|string|max:255',
-            'email'        => 'required|email',
-            'telephone'    => 'nullable|string|max:20',
             'objet'        => 'required|string|max:255',
             'description'  => 'required|string',
             'categorie_id' => 'nullable|exists:categories,id',
+            'telephone'    => 'nullable|string|max:20',
         ]);
 
-        // Créer ou trouver l'utilisateur citoyen
-        $user = User::firstOrCreate(
-            ['email' => $request->email],
-            [
-                'name'      => $request->nom,
-                'password'  => Hash::make(Str::random(12)),
-                'role'      => 'utilisateur',
-                'telephone' => $request->telephone,
-            ]
-        );
+        // Mise à jour du téléphone si renseigné
+        if ($request->filled('telephone') && empty($user->telephone)) {
+            $user->update(['telephone' => $request->telephone]);
+        }
 
-        // Générer une référence unique
+        // Générer une référence unique officielle
         $reference = 'REC-' . strtoupper(Str::random(8));
 
-        // Sauvegarder la réclamation dans la base de données
+        // Sauvegarder la réclamation liée au compte vérifié de l'usager
         $reclamation = Reclamation::create([
             'reference'    => $reference,
             'objet'        => $request->objet,
@@ -152,25 +174,21 @@ class PublicReclamationController extends Controller
             'statut'       => 'en_attente',
         ]);
 
-        $nom   = $request->nom;
-        $email = $request->email;
-        $objet = $request->objet;
-
-        // Envoyer email de confirmation au citoyen (avec tolérance aux pannes réseau)
+        // Envoyer email officiel d'accusé de réception
         try {
             Mail::send('emails.reclamation_confirmation', [
-                'nom'       => $nom,
-                'objet'     => $objet,
+                'nom'       => $user->name,
+                'objet'     => $request->objet,
                 'reference' => $reference,
-            ], function($message) use ($email, $reference) {
-                $message->to($email)
-                        ->subject('Confirmation de votre réclamation - ' . $reference);
+            ], function($message) use ($user, $reference) {
+                $message->to($user->email)
+                        ->subject('Accusé de réception officiel de votre réclamation - ' . $reference);
             });
         } catch (\Throwable $e) {
-            \Illuminate\Support\Facades\Log::warning('Email confirmation réclamation non délivré : ' . $e->getMessage());
+            Log::warning('Email confirmation réclamation non délivré : ' . $e->getMessage());
         }
 
         return redirect()->route('reclamation.publique', ['suivi' => $reference])
-                         ->with('success', 'Votre réclamation a été enregistrée avec succès ! Référence officielle attribuée : ' . $reference);
+                         ->with('success', 'Votre réclamation officielle a été enregistrée avec succès sous la référence ' . $reference . '. Un accusé de réception a été envoyé à ' . $user->email . '.');
     }
 }

@@ -31,12 +31,46 @@ class ExampleTest extends TestCase
     }
 
     /**
-     * Test que la page publique de dépôt de réclamation est accessible.
+     * Test que le dépôt de réclamation redirige un usager non-connecté vers l'inscription.
      */
-    public function test_public_reclamation_page_is_accessible(): void
+    public function test_unauthenticated_user_is_redirected_to_register_for_reclamation(): void
     {
         $response = $this->get('/soumettre-reclamation');
+        $response->assertRedirect(route('register'));
+    }
+
+    /**
+     * Test qu'un assuré connecté avec email vérifié accède au formulaire officiel de réclamation.
+     */
+    public function test_verified_user_can_access_reclamation_form(): void
+    {
+        $citoyen = User::factory()->create([
+            'role'              => 'utilisateur',
+            'email_verified_at' => now(),
+        ]);
+
+        $response = $this->actingAs($citoyen)->get('/soumettre-reclamation');
         $response->assertStatus(200);
+        $response->assertSee('Formulaire de Réclamation Usager');
+    }
+
+    /**
+     * Test du flux de vérification par code OTP.
+     */
+    public function test_user_can_verify_email_with_otp_code(): void
+    {
+        $user = User::factory()->create([
+            'email_verified_at' => null,
+            'otp_code'          => '123456',
+            'otp_expires_at'    => now()->addMinutes(15),
+        ]);
+
+        $response = $this->actingAs($user)->post('/verify-otp', [
+            'otp_code' => '123456',
+        ]);
+
+        $response->assertRedirect(route('reclamation.publique'));
+        $this->assertNotNull($user->fresh()->email_verified_at);
     }
 
     /**

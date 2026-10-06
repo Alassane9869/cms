@@ -91,9 +91,9 @@
                     <i class="fas fa-book-open"></i>
                     <span>Comment réclamer ? (Guide)</span>
                 </a>
-                <a href="#formulaire-reclamation" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
-                    <i class="fas fa-edit"></i>
-                    <span>Déposer sans compte</span>
+                <a href="{{ route('register') }}" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Espace Assuré (OTP)</span>
                 </a>
                 <a href="#suivi-dossier" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
                     <i class="fas fa-search"></i>
@@ -359,46 +359,70 @@
                                     </h3>
                                 </div>
 
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <!-- Nom complet -->
-                                    <div>
+                                @auth
+                                    <!-- Profil vérifié connecté -->
+                                    <div class="mb-5 p-3.5 rounded-xl bg-blue-50 border border-blue-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 rounded-full bg-[#0B3B60] text-white flex items-center justify-center font-black text-sm shrink-0">
+                                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-[#0B3B60] text-sm">{{ auth()->user()->name }}</div>
+                                                <div class="text-xs text-slate-600 flex flex-wrap items-center gap-2">
+                                                    <span>{{ auth()->user()->email }}</span>
+                                                    <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                                                        <i class="fas fa-shield-alt text-[9px]"></i> Email Vérifié par OTP
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="text-[11px] font-semibold text-slate-500">Compte Assuré Certifié CMSS</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <!-- Nom complet (prérempli) -->
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
+                                                Nom et Prénoms (Enregistré)
+                                            </label>
+                                            <input type="text" 
+                                                   value="{{ auth()->user()->name }}" 
+                                                   readonly
+                                                   class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-600 text-sm py-2.5 px-3 cursor-not-allowed">
+                                        </div>
+
+                                        <!-- Email (prérempli) -->
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
+                                                Adresse E-mail (Vérifiée)
+                                            </label>
+                                            <input type="email" 
+                                                   value="{{ auth()->user()->email }}" 
+                                                   readonly
+                                                   class="w-full rounded-lg border-slate-200 bg-slate-50 text-slate-600 text-sm py-2.5 px-3 cursor-not-allowed">
+                                        </div>
+                                    </div>
+
+                                    <!-- Téléphone -->
+                                    <div class="mt-4">
                                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
-                                            Nom et Prénoms <span class="text-red-600">*</span>
+                                            Numéro de Téléphone Joignable
                                         </label>
                                         <input type="text" 
-                                               name="nom" 
-                                               value="{{ old('nom') }}" 
-                                               required
-                                               class="w-full rounded-lg border-slate-300 text-sm py-2.5 px-3 focus:border-[#0B3B60] focus:ring focus:ring-[#0B3B60]/10"
-                                               placeholder="Ex: Amadou Coulibaly">
+                                               name="telephone" 
+                                               value="{{ old('telephone', auth()->user()->telephone) }}" 
+                                               class="w-full sm:w-2/3 rounded-lg border-slate-300 text-sm py-2.5 px-3 focus:border-[#0B3B60] focus:ring focus:ring-[#0B3B60]/10"
+                                               placeholder="+223 XX XX XX XX">
+                                        <p class="text-[11px] text-slate-500 mt-1">Numéro pour le contact direct par l'agent instructeur en charge de votre dossier.</p>
                                     </div>
-
-                                    <!-- Email -->
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
-                                            Adresse E-mail <span class="text-red-600">*</span>
-                                        </label>
-                                        <input type="email" 
-                                               name="email" 
-                                               value="{{ old('email') }}" 
-                                               required
-                                               class="w-full rounded-lg border-slate-300 text-sm py-2.5 px-3 focus:border-[#0B3B60] focus:ring focus:ring-[#0B3B60]/10"
-                                               placeholder="adresse@domaine.com">
+                                @else
+                                    <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs mb-4">
+                                        <strong>Attention :</strong> Vous devez être connecté avec un compte vérifié pour déposer une réclamation.
+                                        <a href="{{ route('register') }}" class="font-bold underline ml-1 text-[#0B3B60]">Créer un compte ici</a>
                                     </div>
-                                </div>
-
-                                <!-- Téléphone -->
-                                <div class="mt-4">
-                                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">
-                                        Numéro de Téléphone Joignable
-                                    </label>
-                                    <input type="text" 
-                                           name="telephone" 
-                                           value="{{ old('telephone') }}" 
-                                           class="w-full sm:w-2/3 rounded-lg border-slate-300 text-sm py-2.5 px-3 focus:border-[#0B3B60] focus:ring focus:ring-[#0B3B60]/10"
-                                           placeholder="+223 XX XX XX XX">
-                                    <p class="text-[11px] text-slate-500 mt-1">Numéro pour le contact direct par l'agent instructeur en charge de votre dossier.</p>
-                                </div>
+                                @endauth
                             </div>
 
                             <!-- SECTION 2 : Motif de la Réclamation -->

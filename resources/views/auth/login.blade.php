@@ -93,11 +93,11 @@
             <span>Créer mon compte particulier (Assuré)</span>
         </a>
 
-        <!-- Lien Déposer sans compte -->
+        <!-- Lien Suivre une réclamation existante -->
         <div class="pt-2 text-center">
-            <a href="{{ route('reclamation.publique') }}" class="text-xs text-slate-500 hover:text-[#0B3B60] hover:underline inline-flex items-center gap-1.5">
-                <i class="fas fa-paper-plane text-[10px]"></i>
-                <span>Déposer ou suivre une réclamation sans compte</span>
+            <a href="{{ route('home') }}#suivi-rapide" class="text-xs text-slate-500 hover:text-[#0B3B60] hover:underline inline-flex items-center gap-1.5">
+                <i class="fas fa-search text-[10px]"></i>
+                <span>Suivre l'avancement d'un dossier avec ma référence (REC-...)</span>
             </a>
         </div>
     </form>

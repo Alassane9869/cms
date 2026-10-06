@@ -4,7 +4,19 @@
             <img src="{{ asset('images/logo.jpg') }}" alt="CMSS" class="w-full h-full object-contain">
         </div>
         <h2 class="text-lg font-bold text-[#0B3B60]">Création de Compte Assuré</h2>
-        <p class="text-xs text-slate-500 mt-1">Créez votre espace personnel pour déposer et suivre l'historique de vos réclamations</p>
+        <p class="text-xs text-slate-500 mt-1">Créez votre espace officiel pour déposer vos réclamations et suivre vos dossiers</p>
+    </div>
+
+    @if (session('info'))
+        <div class="mb-4 p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 flex items-start gap-2 shadow-xs">
+            <i class="fas fa-shield-alt text-blue-600 mt-0.5 shrink-0"></i>
+            <span class="leading-relaxed">{{ session('info') }}</span>
+        </div>
+    @endif
+
+    <div class="mb-4 p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-900 flex items-center gap-2">
+        <i class="fas fa-lock text-amber-600 shrink-0"></i>
+        <span>Un code de vérification à 6 chiffres (OTP) vous sera envoyé par e-mail pour activer votre compte.</span>
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-4">
