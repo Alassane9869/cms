@@ -1,0 +1,43 @@
+{
+  "_index.esm-Cs37hTBO.js": {
+    "file": "assets/index.esm-Cs37hTBO.js",
+    "name": "index.esm"
+  },
+  "node_modules/firebase/app/dist/esm/index.esm.js": {
+    "file": "assets/index.esm-DcidEMSW.js",
+    "name": "index.esm",
+    "src": "node_modules/firebase/app/dist/esm/index.esm.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index.esm-Cs37hTBO.js"
+    ]
+  },
+  "node_modules/firebase/messaging/dist/esm/index.esm.js": {
+    "file": "assets/index.esm-BXXs97_7.js",
+    "name": "index.esm",
+    "src": "node_modules/firebase/messaging/dist/esm/index.esm.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_index.esm-Cs37hTBO.js"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-aPu9sa-D.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CXitzOc5.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "node_modules/firebase/app/dist/esm/index.esm.js",
+      "node_modules/firebase/messaging/dist/esm/index.esm.js"
+    ]
+  }
+}
