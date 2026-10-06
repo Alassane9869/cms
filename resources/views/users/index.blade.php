@@ -1,105 +1,119 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 style="font-size: 20px; font-weight: 700; color: #1e3a5f;">
-            <i class="fas fa-users"></i> Gestion des Utilisateurs
-        </h2>
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-900 flex items-center justify-center font-bold">
+                <i class="fas fa-users-cog text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-extrabold text-slate-900 leading-tight">Gestion des Utilisateurs</h1>
+                <p class="text-xs text-slate-500">Administration des comptes agents, administrateurs et assurés</p>
+            </div>
+        </div>
     </x-slot>
 
     @if(session('success'))
-        <div style="background: #d1fae5; border-left: 4px solid #10b981; color: #065f46; padding: 14px 20px; border-radius: 8px; margin-bottom: 20px;">
-            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        <div class="mb-5 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-center gap-3 shadow-xs">
+            <i class="fas fa-check-circle text-emerald-600 text-lg"></i>
+            <span class="text-sm font-semibold">{{ session('success') }}</span>
         </div>
     @endif
 
     @if(session('error'))
-        <div style="background: #fee2e2; border-left: 4px solid #ef4444; color: #991b1b; padding: 14px 20px; border-radius: 8px; margin-bottom: 20px;">
-            <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+        <div class="mb-5 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 flex items-center gap-3 shadow-xs">
+            <i class="fas fa-exclamation-triangle text-rose-600 text-lg"></i>
+            <span class="text-sm font-semibold">{{ session('error') }}</span>
         </div>
     @endif
 
-    <div class="card" style="padding: 0; overflow: hidden;">
+    <div class="card p-0! overflow-hidden shadow-sm border border-slate-200">
 
-        <div style="padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb;">
-            <div style="color: #6b7280; font-size: 14px;">
-                Total : <strong style="color: #1e3a5f;">{{ $users->total() }}</strong> utilisateur(s)
+        <!-- Header tableau responsive -->
+        <div class="p-4 sm:p-6 border-b border-slate-200 bg-slate-50/50 flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+            <div class="text-xs sm:text-sm text-slate-600 font-medium">
+                Total : <strong class="text-[#0B3B60] font-black text-base">{{ $users->total() }}</strong> utilisateur(s)
             </div>
-            <a href="{{ route('users.create') }}" class="btn-primary">
-                <i class="fas fa-user-plus"></i> Nouvel Utilisateur
+            <a href="{{ route('users.create') }}" class="btn-primary w-full sm:w-auto justify-center shadow-xs">
+                <i class="fas fa-user-plus"></i>
+                <span>Nouvel Utilisateur</span>
             </a>
         </div>
 
-        <table class="table-custom" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Rôle</th>
-                    <th>Téléphone</th>
-                    <th>Service</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($users as $user)
-                <tr>
-                    <td style="color: #9ca3af; font-size: 13px;">{{ $loop->iteration }}</td>
-                    <td>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="background: linear-gradient(135deg, #1e3a5f, #2d6a9f); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-user" style="color: white; font-size: 14px;"></i>
+        <!-- Table responsive -->
+        <div class="table-responsive-wrapper">
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom & Prénom</th>
+                        <th>Email</th>
+                        <th>Rôle</th>
+                        <th>Téléphone</th>
+                        <th>Date création</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    @forelse($users as $user)
+                    <tr class="hover:bg-slate-50/80 transition">
+                        <td class="text-slate-400 font-mono text-xs">{{ $loop->iteration }}</td>
+                        <td>
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-full bg-linear-to-tr from-[#0B3B60] to-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                                    {{ strtoupper(substr($user->name, 0, 1)) }}
+                                </div>
+                                <span class="font-bold text-slate-900">{{ $user->name }}</span>
                             </div>
-                            <span style="font-weight: 600; color: #1e3a5f;">{{ $user->name }}</span>
-                        </div>
-                    </td>
-                    <td style="color: #6b7280; font-size: 13px;">{{ $user->email }}</td>
-                    <td>
-                        @if($user->role == 'admin')
-                            <span class="badge" style="background: #fee2e2; color: #991b1b;"> Admin</span>
-                        @elseif($user->role == 'agent')
-                            <span class="badge" style="background: #dbeafe; color: #1e40af;"> Agent</span>
-                        @else
-                            <span class="badge" style="background: #f3f4f6; color: #6b7280;"> Utilisateur</span>
-                        @endif
-                    </td>
-                    <td style="color: #6b7280; font-size: 13px;">{{ $user->telephone ?? '-' }}</td>
-                    <td style="color: #6b7280; font-size: 13px;">{{ $user->service ?? '-' }}</td>
-                    <td style="color: #6b7280; font-size: 13px;">{{ $user->created_at->format('d/m/Y') }}</td>
-                    <td>
-                        <div style="display: flex; gap: 6px;">
-                            <a href="{{ route('users.show', $user) }}"
-                               style="background: #eff6ff; color: #2d6a9f; padding: 6px 10px; border-radius: 6px; text-decoration: none; font-size: 13px;">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="{{ route('users.edit', $user) }}"
-                               style="background: #d1fae5; color: #059669; padding: 6px 10px; border-radius: 6px; text-decoration: none; font-size: 13px;">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                        onclick="return confirm('Supprimer cet utilisateur ?')"
-                                        style="background: #fee2e2; color: #dc2626; padding: 6px 10px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px;">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="8" style="text-align: center; padding: 40px; color: #9ca3af;">
-                        <i class="fas fa-users" style="font-size: 40px; margin-bottom: 10px; display: block;"></i>
-                        Aucun utilisateur trouvé.
-                    </td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+                        </td>
+                        <td class="text-slate-600 text-xs font-mono">{{ $user->email }}</td>
+                        <td>
+                            @if($user->role == 'admin')
+                                <span class="badge bg-indigo-100 text-indigo-800 border border-indigo-200 font-bold">🛡️ Administrateur</span>
+                            @elseif($user->role == 'agent')
+                                <span class="badge bg-blue-100 text-blue-800 border border-blue-200 font-semibold">💼 Agent CMSS</span>
+                            @else
+                                <span class="badge bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold">👤 Assuré Social</span>
+                            @endif
+                        </td>
+                        <td class="text-slate-600 text-xs font-mono">
+                            {{ $user->telephone ?? '—' }}
+                        </td>
+                        <td class="text-slate-500 font-mono text-xs whitespace-nowrap">
+                            {{ $user->created_at->format('d/m/Y') }}
+                        </td>
+                        <td class="text-right">
+                            <div class="inline-flex items-center gap-1.5">
+                                <a href="{{ route('users.edit', $user) }}"
+                                   class="p-2 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition" title="Modifier">
+                                    <i class="fas fa-edit text-xs"></i>
+                                </a>
+                                @if(auth()->id() !== $user->id)
+                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            onclick="return confirm('Confirmer la suppression de cet utilisateur ?')"
+                                            class="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition" title="Supprimer">
+                                        <i class="fas fa-trash text-xs"></i>
+                                    </button>
+                                </form>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="7" class="text-center py-12 text-slate-400">
+                            <i class="fas fa-users text-4xl mb-2 text-slate-300 block"></i>
+                            <span class="text-sm">Aucun utilisateur trouvé.</span>
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
 
-        <div style="padding: 16px 24px; border-top: 1px solid #e5e7eb;">
+        <!-- Pagination -->
+        <div class="p-4 sm:p-5 border-t border-slate-200 bg-white">
             {{ $users->links() }}
         </div>
 

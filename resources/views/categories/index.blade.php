@@ -14,15 +14,16 @@
     <div class="card" style="padding: 0; overflow: hidden;">
 
         <!-- Header tableau -->
-        <div style="padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb;">
+        <div style="padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb; flex-wrap: wrap; gap: 12px;">
             <div style="color: #6b7280; font-size: 14px;">
                 Total : <strong style="color: #1e3a5f;">{{ $categories->total() }}</strong> catégorie(s)
             </div>
-            <a href="{{ route('categories.create') }}" class="btn-primary">
+            <a href="{{ route('categories.create') }}" class="btn-primary" style="white-space: nowrap;">
                 <i class="fas fa-plus"></i> Nouvelle Catégorie
             </a>
         </div>
 
+        <div class="table-responsive-wrapper">
         <table class="table-custom" style="width: 100%; border-collapse: collapse;">
             <thead>
                 <tr>
@@ -85,6 +86,7 @@
                 @endforelse
             </tbody>
         </table>
+        </div>
 
         <div style="padding: 16px 24px; border-top: 1px solid #e5e7eb;">
             {{ $categories->links() }}

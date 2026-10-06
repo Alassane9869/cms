@@ -465,7 +465,8 @@
                                     class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase tracking-wider">Référence
                                     du dossier</span>
                                 <h3 class="text-lg sm:text-2xl font-mono font-black text-[#0B3B60]">
-                                    {{ $dossierSuivi->reference }}</h3>
+                                    {{ $dossierSuivi->reference }}
+                                </h3>
                             </div>
                             <div>
                                 @if($dossierSuivi->statut == 'en_attente')
@@ -525,7 +526,8 @@
                             <div>
                                 <span class="font-bold text-slate-500 uppercase text-[10px]">Date de dépôt</span>
                                 <p class="font-bold text-slate-800 mt-0.5">
-                                    {{ $dossierSuivi->created_at->format('d/m/Y à H:i') }}</p>
+                                    {{ $dossierSuivi->created_at->format('d/m/Y à H:i') }}
+                                </p>
                             </div>
                             <div>
                                 <span class="font-bold text-slate-500 uppercase text-[10px]">Objet</span>
@@ -631,7 +633,8 @@
                                     retard de remboursement de feuille de soins</span></li>
                             <li class="flex items-center gap-2"><i
                                     class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i>
-                                <span>Non-délivrance ou blocage de carte biométrique AMO</span></li>
+                                <span>Non-délivrance ou blocage de carte biométrique AMO</span>
+                            </li>
                             <li class="flex items-center gap-2"><i
                                     class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Refus
                                     injustifié de prise en charge hospitalière</span></li>
@@ -672,7 +675,8 @@
                         <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
                             <li class="flex items-center gap-2"><i
                                     class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i>
-                                <span>Non-versement des allocations familiales</span></li>
+                                <span>Non-versement des allocations familiales</span>
+                            </li>
                             <li class="flex items-center gap-2"><i
                                     class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Retard de
                                     paiement de congé de maternité</span></li>
@@ -681,7 +685,8 @@
                                     des rentes pour accidents du travail</span></li>
                             <li class="flex items-center gap-2"><i
                                     class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i>
-                                <span>Régularisation des attestations de cotisation</span></li>
+                                <span>Régularisation des attestations de cotisation</span>
+                            </li>
                         </ul>
                     </div>
                     <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
@@ -714,70 +719,167 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Deux Grands Piliers d'Autorité : Direction Générale & Guichet Central -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mb-10">
                     @foreach($equipe as $index => $membre)
                         <div
-                            class="bg-white rounded-2xl border {{ $index === 0 ? 'border-amber-400/80 ring-2 ring-amber-300/40 shadow-md' : 'border-slate-200' }} shadow-sm overflow-hidden flex flex-col justify-between hover:-translate-y-1 transition duration-300">
+                            class="bg-white rounded-3xl border {{ $index === 0 ? 'border-amber-400/90 ring-4 ring-amber-300/20' : 'border-slate-200/90' }} shadow-xl overflow-hidden flex flex-col justify-between hover:-translate-y-1 transition duration-300">
                             <div>
-                                <!-- Photo du membre de l'équipe -->
-                                <div class="relative h-60 sm:h-68 bg-slate-900 overflow-hidden group">
+                                <!-- Photo grand format avec cadrage parfait -->
+                                <div class="relative h-72 sm:h-80 bg-slate-900 overflow-hidden group">
                                     <img src="{{ asset($membre['image']) }}" alt="{{ $membre['nom'] }}" loading="lazy"
                                         decoding="async"
                                         class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105">
 
-                                    <!-- Dégradé ciblé uniquement sur le bas pour laisser le visage lumineux -->
+                                    <!-- Dégradé fin pour contraste du texte -->
                                     <div
-                                        class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/90 via-black/45 to-transparent pointer-events-none">
+                                        class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent pointer-events-none">
                                     </div>
 
-                                    <!-- Badge DG si premier membre -->
-                                    @if($index === 0)
-                                        <div class="absolute top-3 left-3">
+                                    <!-- Badge Institutionnel Haut Gauche -->
+                                    <div class="absolute top-4 left-4">
+                                        @if($index === 0)
                                             <span
-                                                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[9px] font-black bg-amber-400 text-slate-900 shadow-sm uppercase tracking-wider">
-                                                Direction Générale
+                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black bg-amber-400 text-slate-950 shadow-md uppercase tracking-wider">
+                                                Direction Générale CMSS
                                             </span>
-                                        </div>
-                                    @endif
+                                        @else
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black bg-blue-600 text-white shadow-md uppercase tracking-wider">
+                                                Guichet Central National
+                                            </span>
+                                        @endif
+                                    </div>
 
-                                    <!-- Badge de statut opérationnel -->
-                                    <div class="absolute top-3 right-3">
+                                    <!-- Badge Statut Opérationnel Haut Droite -->
+                                    <div class="absolute top-4 right-4">
                                         <span
-                                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-slate-800 shadow-sm border border-slate-200">
+                                            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-md text-slate-800 shadow-md border border-slate-200">
                                             <span
                                                 class="w-2 h-2 rounded-full {{ $membre['badge_color'] == 'emerald' ? 'bg-emerald-500' : 'bg-blue-600' }} animate-pulse"></span>
                                             <span>{{ $membre['statut'] }}</span>
                                         </span>
                                     </div>
 
-                                    <!-- Nom et fonction sur l'image -->
-                                    <div class="absolute bottom-3 left-3 right-3 text-white">
-                                        <h4 class="font-extrabold text-sm sm:text-base leading-tight">{{ $membre['nom'] }}
-                                        </h4>
-                                        <p class="text-[11px] sm:text-xs text-amber-300 font-semibold mt-0.5">
-                                            {{ $membre['role'] }}</p>
+                                    <!-- Nom et Titre sur la photo -->
+                                    <div class="absolute bottom-4 left-5 right-5 text-white">
+                                        <h3 class="font-black text-lg sm:text-xl leading-tight text-white drop-shadow-sm">
+                                            {{ $membre['nom'] }}
+                                        </h3>
+                                        <p class="text-xs sm:text-sm text-amber-300 font-bold mt-1">
+                                            {{ $membre['role'] }}
+                                        </p>
                                     </div>
                                 </div>
 
-                                <!-- Corps descriptif -->
-                                <div class="p-4">
+                                <!-- Corps descriptif riche -->
+                                <div class="p-6 sm:p-7">
                                     <div
-                                        class="text-[10px] sm:text-[11px] font-extrabold text-[#0B3B60] uppercase tracking-wider mb-1.5">
-                                        {{ $membre['direction'] }}
+                                        class="flex items-center gap-2 mb-2 text-xs font-black text-[#0B3B60] uppercase tracking-wider">
+                                        <i class="fas fa-shield-alt text-amber-500"></i>
+                                        <span>{{ $membre['direction'] }}</span>
                                     </div>
-                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
                                         {{ $membre['description'] }}
                                     </p>
                                 </div>
                             </div>
 
+                            <!-- Bas de carte avec repères d'accueil -->
                             <div
-                                class="p-4 pt-0 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                                <span><i class="fas fa-check-circle text-emerald-500 mr-1"></i> Direction CMSS</span>
-                                <span class="font-mono text-slate-400">Bamako, Mali</span>
+                                class="p-5 px-6 sm:px-7 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+                                <span class="flex items-center gap-1.5 font-bold text-slate-700">
+                                    <i class="fas fa-check-circle text-emerald-600"></i>
+                                    <span>{{ $index === 0 ? 'Haute Autorité d\'Arbitrage' : 'Accueil & Réclamations' }}</span>
+                                </span>
+                                <span class="font-mono text-slate-400 text-[11px]">Hamdallaye ACI 2000, Bamako</span>
                             </div>
                         </div>
                     @endforeach
+                </div>
+
+                <!-- Bandeau des 3 Pôles Techniques Opérationnels -->
+                <div class="max-w-5xl mx-auto bg-white rounded-3xl border border-slate-200/90 shadow-md p-6 sm:p-8">
+                    <div class="text-center max-w-2xl mx-auto mb-6">
+                        <span
+                            class="text-[10px] font-black uppercase tracking-wider text-[#0B3B60] bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                            Organisation Technique de la CMSS
+                        </span>
+                        <h3 class="text-base sm:text-xl font-black text-slate-900 mt-2">
+                            Les 3 Pôles Spécialisés d'Instruction des Requêtes
+                        </h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                        <!-- Pôle 1 -->
+                        <div
+                            class="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-blue-300 transition duration-300 flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-blue-100 text-[#0B3B60] flex items-center justify-center text-lg mb-3">
+                                    <i class="fas fa-user-clock"></i>
+                                </div>
+                                <h4 class="font-bold text-sm text-slate-900">Pôle Pensions & Retraites</h4>
+                                <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                                    Liquidation, révision de quotité, arrérages non perçus, pensions d'ayants droit
+                                    civils et militaires.
+                                </p>
+                            </div>
+                            <div
+                                class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
+                                <span class="font-bold text-emerald-700"><i class="fas fa-circle text-[8px] mr-1"></i>
+                                    Instruction 48h-72h</span>
+                                <a href="{{ route('reclamation.publique') }}"
+                                    class="font-bold text-[#0B3B60] hover:underline">Déposer &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Pôle 2 -->
+                        <div
+                            class="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-emerald-300 transition duration-300 flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg mb-3">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <h4 class="font-bold text-sm text-slate-900">Pôle Contentieux AMO</h4>
+                                <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                                    Feuilles de soins rejetées, délivrance des cartes biométriques, régularisation des
+                                    affiliations.
+                                </p>
+                            </div>
+                            <div
+                                class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
+                                <span class="font-bold text-emerald-700"><i class="fas fa-circle text-[8px] mr-1"></i>
+                                    Prise en charge</span>
+                                <a href="{{ route('reclamation.publique') }}"
+                                    class="font-bold text-[#0B3B60] hover:underline">Déposer &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Pôle 3 -->
+                        <div
+                            class="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:border-amber-300 transition duration-300 flex flex-col justify-between">
+                            <div>
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-lg mb-3">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4 class="font-bold text-sm text-slate-900">Prestations Familiales & AT</h4>
+                                <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                                    Allocations pour enfants à charge, indemnités de congé maternité, rentes pour
+                                    accidents de travail.
+                                </p>
+                            </div>
+                            <div
+                                class="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
+                                <span class="font-bold text-emerald-700"><i class="fas fa-circle text-[8px] mr-1"></i>
+                                    Diligence assurée</span>
+                                <a href="{{ route('reclamation.publique') }}"
+                                    class="font-bold text-[#0B3B60] hover:underline">Déposer &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

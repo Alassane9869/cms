@@ -150,6 +150,13 @@
             overflow: hidden;
             border: 1px solid #e2e8f0;
         }
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
         .table-custom thead {
             background: #0f1f38;
             color: white;
@@ -161,6 +168,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             text-align: left;
+            white-space: nowrap;
         }
         .table-custom tbody tr {
             background: white;
@@ -172,6 +180,21 @@
             border-bottom: 1px solid #e2e8f0;
             font-size: 14px;
             color: #334155;
+            white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+            .card {
+                padding: 16px !important;
+                border-radius: 14px !important;
+            }
+            .table-custom thead th, .table-custom tbody td {
+                padding: 10px 12px !important;
+                font-size: 12px !important;
+            }
+            .btn-primary, .btn-secondary, .btn-success, .btn-danger {
+                padding: 8px 14px !important;
+                font-size: 12px !important;
+            }
         }
         .badge {
             padding: 5px 12px;

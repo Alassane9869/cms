@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use App\Models\Reclamation;
 use App\Models\Categorie;
@@ -42,34 +43,16 @@ class PublicReclamationController extends Controller
                 'statut' => 'Direction Active',
                 'badge_color' => 'emerald',
                 'image' => 'images/equipe/dg.jpg',
-                'description' => 'Le Directeur Général dirige la Direction Générale et assure la gestion administrative, technique et financière de l\'organisme sous le contrôle du Conseil d\'Administration. Il veille à la qualité du service public et au traitement diligent des réclamations des usagers.',
-            ],
-            [
-                'nom' => 'M. Bakary Traoré',
-                'role' => 'Directeur des Prestations & Pensions',
-                'direction' => 'Pôle Liquidation des Droits',
-                'statut' => 'Instruction Réclamations Ouverte',
-                'badge_color' => 'blue',
-                'image' => 'images/equipe/prestations.jpg',
-                'description' => 'Instruction technique et régularisation des réclamations portant sur les pensions de retraite, calculs d\'arrérages, pensions de réversion et rentes d\'ayants droit.',
-            ],
-            [
-                'nom' => 'Mme Fatoumata Keïta',
-                'role' => 'Directrice du Recouvrement & Immatriculation',
-                'direction' => 'Pôle Contentieux AMO & Droits',
-                'statut' => 'Instruction Réclamations Ouverte',
-                'badge_color' => 'blue',
-                'image' => 'images/equipe/recouvrement.jpg',
-                'description' => 'Traitement des litiges de feuilles de soins AMO, contestations de rejets médicaux, régularisation des affiliations et délivrance des cartes biométriques.',
+                'description' => 'Le Directeur Général dirige la Direction Générale et assure la gestion administrative, technique et financière de l\'organisme sous le contrôle du Conseil d\'Administration. Il veille à la qualité du service public, à l\'impartialité et au traitement diligent de toutes les réclamations des usagers.',
             ],
             [
                 'nom' => 'Division Accueil, Écoute & Réclamations',
                 'role' => 'Cellule Centrale d\'Écoute Usagers',
-                'direction' => 'Centre de Traitement des Requêtes',
+                'direction' => 'Centre National de Traitement des Requêtes',
                 'statut' => 'Permanence Ouverte (7h30 - 16h00)',
                 'badge_color' => 'emerald',
                 'image' => 'images/caisse.jpg',
-                'description' => 'Guichet unique d\'enregistrement, de notification et d\'orientation de toutes les réclamations formulées par les fonctionnaires, retraités et veuves.',
+                'description' => 'Guichet unique d\'enregistrement, d\'instruction technique, de notification et d\'orientation de toutes les réclamations formulées par les fonctionnaires, militaires, retraités et veuves sur l\'ensemble du territoire national.',
             ],
         ];
 
@@ -178,6 +161,7 @@ class PublicReclamationController extends Controller
         try {
             Mail::send('emails.reclamation_confirmation', [
                 'nom'       => $user->name,
+                'email'     => $user->email,
                 'objet'     => $request->objet,
                 'reference' => $reference,
             ], function($message) use ($user, $reference) {

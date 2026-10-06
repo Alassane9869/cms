@@ -44,14 +44,14 @@
                 </div>
 
                 <!-- Expéditeur et Destinataire -->
-                <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Expéditeur</label>
-                        <p class="text-gray-800">{{ $courrier->expediteur }}</p>
+                        <p class="text-gray-800 font-semibold">{{ $courrier->expediteur }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Destinataire</label>
-                        <p class="text-gray-800">{{ $courrier->destinataire }}</p>
+                        <p class="text-gray-800 font-semibold">{{ $courrier->destinataire }}</p>
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Dates -->
-                <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-500">Date de réception</label>
                         <p class="text-gray-800">{{ $courrier->date_reception ?? 'Non définie' }}</p>
@@ -87,16 +87,16 @@
                     <label class="block text-sm font-medium text-gray-500">Fichier joint</label>
                     <a href="{{ Storage::url($courrier->fichier) }}"
                        target="_blank"
-                       class="text-blue-600 hover:text-blue-900">
+                       class="text-blue-600 hover:text-blue-900 inline-flex items-center gap-1 font-semibold">
                         📎 Télécharger le fichier
                     </a>
                 </div>
                 @endif
 
                 <!-- Actions -->
-                <div class="flex gap-4">
+                <div class="flex flex-wrap gap-3">
                     <a href="{{ route('courriers.edit', $courrier) }}"
-                       class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                       class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-semibold">
                         ✏️ Modifier
                     </a>
                     <form action="{{ route('courriers.destroy', $courrier) }}" method="POST">
@@ -104,7 +104,7 @@
                         @method('DELETE')
                         <button type="submit"
                                 onclick="return confirm('Supprimer ce courrier ?')"
-                                class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 font-semibold">
                             🗑️ Supprimer
                         </button>
                     </form>

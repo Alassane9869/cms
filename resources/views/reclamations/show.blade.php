@@ -8,7 +8,7 @@
     <div class="card">
 
         <!-- Référence -->
-        <div style="background: linear-gradient(135deg, #1e3a5f, #2d6a9f); border-radius: 10px; padding: 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="background: linear-gradient(135deg, #1e3a5f, #2d6a9f); border-radius: 10px; padding: 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
             <div>
                 <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin: 0;">Référence</p>
                 <p style="color: white; font-size: 22px; font-weight: 700; margin: 5px 0 0;">{{ $reclamation->reference }}</p>
@@ -26,16 +26,16 @@
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
 
             <!-- Objet -->
-            <div style="background: #f9fafb; border-radius: 8px; padding: 16px; grid-column: span 2;">
+            <div style="background: #f9fafb; border-radius: 8px; padding: 16px;" class="md:col-span-2">
                 <label style="color: #6b7280; font-size: 12px; font-weight: 600; text-transform: uppercase;">Objet</label>
                 <p style="color: #1e3a5f; font-weight: 600; margin-top: 4px; font-size: 16px;">{{ $reclamation->objet }}</p>
             </div>
 
             <!-- Description -->
-            <div style="background: #f9fafb; border-radius: 8px; padding: 16px; grid-column: span 2;">
+            <div style="background: #f9fafb; border-radius: 8px; padding: 16px;" class="md:col-span-2">
                 <label style="color: #6b7280; font-size: 12px; font-weight: 600; text-transform: uppercase;">Description</label>
                 <p style="color: #374151; margin-top: 4px; line-height: 1.6;">{{ $reclamation->description }}</p>
             </div>

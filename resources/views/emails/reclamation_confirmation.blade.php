@@ -52,7 +52,7 @@
 
         <div class="etape">
             <div class="numero">3</div>
-            <div>Vous recevrez un email de réponse à votre adresse : <strong>{{ $nom }}</strong>.</div>
+            <div>Vous recevrez les notifications d'instruction directement à votre adresse : <strong>{{ $email ?? 'votre boîte email' }}</strong>.</div>
         </div>
 
     </div>
