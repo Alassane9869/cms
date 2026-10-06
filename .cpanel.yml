@@ -1,0 +1,15 @@
+---
+deployment:
+  tasks:
+    - /bin/rsync -a --chmod=D755,F644 --exclude='.git' --exclude='node_modules' --exclude='.env' /home/vuxe8870/repositories/cms/ /home/vuxe8870/cmss.danayaplus.com/
+    - chmod 755 /home/vuxe8870/cmss.danayaplus.com/ /home/vuxe8870/cmss.danayaplus.com/public/
+    - find /home/vuxe8870/cmss.danayaplus.com/ -name ".htaccess" -exec chmod 644 {} +
+    - chmod -R 777 /home/vuxe8870/cmss.danayaplus.com/storage
+    - chmod -R 777 /home/vuxe8870/cmss.danayaplus.com/bootstrap/cache
+    - cp -n /home/vuxe8870/cmss.danayaplus.com/.env.production /home/vuxe8870/cmss.danayaplus.com/.env || true
+    - /opt/cpanel/composer/bin/composer --working-dir=/home/vuxe8870/cmss.danayaplus.com/ install --no-dev --optimize-autoloader || composer --working-dir=/home/vuxe8870/cmss.danayaplus.com/ install --no-dev --optimize-autoloader || true
+    - /usr/local/bin/php /home/vuxe8870/cmss.danayaplus.com/artisan key:generate --force || true
+    - /usr/local/bin/php /home/vuxe8870/cmss.danayaplus.com/artisan migrate --force --seed
+    - /usr/local/bin/php /home/vuxe8870/cmss.danayaplus.com/artisan storage:link || true
+    - /usr/local/bin/php /home/vuxe8870/cmss.danayaplus.com/artisan optimize:clear
+    - /usr/local/bin/php /home/vuxe8870/cmss.danayaplus.com/artisan optimize
