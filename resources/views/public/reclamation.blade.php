@@ -60,11 +60,19 @@
                 </div>
             </div>
 
-            <!-- Espace Agent Sécurisé -->
-            <div class="flex items-center gap-3 shrink-0">
-                <a href="{{ route('login') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-white bg-[#0B3B60] hover:bg-[#07233B] transition shadow-sm">
+            <!-- Espace Particulier & Agent Sécurisé -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <a href="{{ route('home') }}" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:text-[#0B3B60] transition">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Portail CMSS</span>
+                </a>
+                <a href="{{ route('register') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 transition shadow-sm">
+                    <i class="fas fa-user-plus text-xs"></i>
+                    <span>Créer Espace Assuré</span>
+                </a>
+                <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold text-white bg-[#0B3B60] hover:bg-[#07233B] transition shadow-sm">
                     <i class="fas fa-lock text-xs"></i>
-                    <span>Espace Agent CMSS</span>
+                    <span>Connexion</span>
                 </a>
             </div>
 
@@ -75,25 +83,21 @@
     <nav class="bg-[#0B3B60] text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between overflow-x-auto text-xs sm:text-sm font-semibold tracking-wide py-2.5">
             <div class="flex items-center gap-4 sm:gap-8 whitespace-nowrap">
-                <a href="{{ route('reclamation.publique') }}" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
+                <a href="{{ route('home') }}" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
                     <i class="fas fa-home"></i>
-                    <span>Accueil</span>
+                    <span>Accueil Principal</span>
+                </a>
+                <a href="{{ route('guide.reclamation') }}" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
+                    <i class="fas fa-book-open"></i>
+                    <span>Comment réclamer ? (Guide)</span>
                 </a>
                 <a href="#formulaire-reclamation" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
                     <i class="fas fa-edit"></i>
-                    <span>Déposer une réclamation</span>
+                    <span>Déposer sans compte</span>
                 </a>
                 <a href="#suivi-dossier" class="text-white hover:text-amber-300 transition flex items-center gap-2 py-1">
                     <i class="fas fa-search"></i>
                     <span>Suivre mon dossier</span>
-                </a>
-                <a href="#missions-cmss" class="text-blue-100 hover:text-amber-300 transition flex items-center gap-2 py-1">
-                    <i class="fas fa-landmark"></i>
-                    <span>Missions & Prestations</span>
-                </a>
-                <a href="#agences-contacts" class="text-blue-100 hover:text-amber-300 transition flex items-center gap-2 py-1">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Agences & Contacts</span>
                 </a>
             </div>
             <div class="hidden md:flex items-center gap-2 text-xs text-amber-300 font-bold">

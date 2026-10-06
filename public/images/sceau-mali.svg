@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <!-- Fond du sceau officiel -->
+  <defs>
+    <radialGradient id="sealBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="90%" stop-color="#f0f7ff"/>
+      <stop offset="100%" stop-color="#e0eefe"/>
+    </radialGradient>
+    <linearGradient id="goldMali" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <linearGradient id="blueMali" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0c3254"/>
+      <stop offset="100%" stop-color="#072036"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Anneau extérieur officiel -->
+  <circle cx="150" cy="150" r="145" fill="none" stroke="#0c3254" stroke-width="4"/>
+  <circle cx="150" cy="150" r="139" fill="none" stroke="#eab308" stroke-width="2"/>
+  <circle cx="150" cy="150" r="135" fill="url(#sealBg)"/>
+
+  <!-- Inscription circulaire du haut: RÉPUBLIQUE DU MALI -->
+  <path id="textArcTop" d="M 35,150 A 115,115 0 0,1 265,150" fill="none"/>
+  <text font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="14" font-weight="800" fill="#0c3254" letter-spacing="3.5">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">
+      RÉPUBLIQUE DU MALI
+    </textPath>
+  </text>
+
+  <!-- Inscription circulaire du bas: UN PEUPLE - UN BUT - UNE FOI -->
+  <path id="textArcBottom" d="M 265,150 A 115,115 0 0,1 35,150" fill="none"/>
+  <text font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="11.5" font-weight="700" fill="#0c3254" letter-spacing="2">
+    <textPath href="#textArcBottom" startOffset="50%" text-anchor="middle">
+      UN PEUPLE • UN BUT • UNE FOI
+    </textPath>
+  </text>
+
+  <!-- Étoiles séparatrices latérales -->
+  <circle cx="32" cy="150" r="3.5" fill="#ca8a04"/>
+  <circle cx="268" cy="150" r="3.5" fill="#ca8a04"/>
+
+  <!-- Cercle intérieur délimitant le blason -->
+  <circle cx="150" cy="150" r="96" fill="#f8fafc" stroke="#0c3254" stroke-width="2.5"/>
+
+  <!-- Soleil levant (partie inférieure/médiane) -->
+  <g id="sunrise">
+    <!-- Rayons -->
+    <path d="M 150,150 L 150,96 M 150,150 L 122,102 M 150,150 L 178,102 M 150,150 L 100,118 M 150,150 L 200,118 M 150,150 L 85,140 M 150,150 L 215,140" stroke="#facc15" stroke-width="2.5" opacity="0.65"/>
+    <circle cx="150" cy="158" r="28" fill="#fef08a" stroke="#eab308" stroke-width="1.5"/>
+  </g>
+
+  <!-- Silhouette de la Grande Mosquée de Djenné -->
+  <g id="djenne-mosque" fill="#0c3254">
+    <!-- Base -->
+    <rect x="108" y="150" width="84" height="26" rx="1"/>
+    <!-- Tours principales avec pinacles -->
+    <!-- Tour centrale -->
+    <rect x="144" y="130" width="12" height="24"/>
+    <polygon points="144,130 150,122 156,130"/>
+    <circle cx="150" cy="121" r="1.5" fill="#ca8a04"/>
+    <!-- Tour gauche -->
+    <rect x="124" y="135" width="10" height="19"/>
+    <polygon points="124,135 129,128 134,135"/>
+    <circle cx="129" cy="127" r="1.5" fill="#ca8a04"/>
+    <!-- Tour droite -->
+    <rect x="166" y="135" width="10" height="19"/>
+    <polygon points="166,135 171,128 176,135"/>
+    <circle cx="171" cy="127" r="1.5" fill="#ca8a04"/>
+    <!-- Contreforts verticaux -->
+    <rect x="112" y="142" width="4" height="10"/>
+    <rect x="184" y="142" width="4" height="10"/>
+    <!-- Ouvertures / créneaux -->
+    <rect x="136" y="158" width="4" height="8" fill="#f8fafc"/>
+    <rect x="148" y="156" width="4" height="10" fill="#f8fafc"/>
+    <rect x="160" y="158" width="4" height="8" fill="#f8fafc"/>
+  </g>
+
+  <!-- Le vautour Douga en plein vol (au sommet) -->
+  <g id="douga-bird" fill="#0c3254">
+    <!-- Corps -->
+    <path d="M 150,96 C 147,100 148,106 150,110 C 152,106 153,100 150,96 Z"/>
+    <!-- Tête -->
+    <circle cx="150" cy="94" r="3.5"/>
+    <polygon points="150,93 154,94 150,95"/>
+    <!-- Aile gauche déployée -->
+    <path d="M 148,100 C 135,92 120,95 106,104 C 118,105 130,105 146,106 Z"/>
+    <!-- Aile droite déployée -->
+    <path d="M 152,100 C 165,92 180,95 194,104 C 182,105 170,105 154,106 Z"/>
+    <!-- Queue -->
+    <polygon points="147,110 150,118 153,110"/>
+  </g>
+
+  <!-- Les deux arcs opposés et flèches (au premier plan) -->
+  <g id="bows-arrows" stroke="#ca8a04" stroke-width="2.5" fill="none">
+    <!-- Arc gauche -->
+    <path d="M 116,192 C 104,178 104,164 116,150"/>
+    <line x1="116" y1="192" x2="116" y2="150" stroke-width="1.2" stroke="#94a3b8"/>
+    <!-- Arc droit -->
+    <path d="M 184,192 C 196,178 196,164 184,150"/>
+    <line x1="184" y1="192" x2="184" y2="150" stroke-width="1.2" stroke="#94a3b8"/>
+    <!-- Flèches croisées -->
+    <line x1="110" y1="195" x2="190" y2="148" stroke="#0c3254" stroke-width="1.8"/>
+    <polygon points="190,148 184,152 188,155" fill="#0c3254"/>
+    <line x1="190" y1="195" x2="110" y2="148" stroke="#0c3254" stroke-width="1.8"/>
+    <polygon points="110,148 116,152 112,155" fill="#0c3254"/>
+  </g>
+</svg>

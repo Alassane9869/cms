@@ -244,51 +244,85 @@
         <!-- Navigation Links -->
         <nav class="flex-1 overflow-y-auto py-5 space-y-1">
 
-            <div class="px-5 mb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
-                Menu Principal
-            </div>
+            @if(auth()->user() && auth()->user()->isCitoyen())
+                <div class="px-5 mb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
+                    Espace Assuré
+                </div>
 
-            <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="fas fa-tachometer-alt"></i> Tableau de bord
-            </a>
+                <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-home"></i> Mon Espace
+                </a>
 
-            <a href="{{ route('reclamations.index') }}" class="nav-link {{ request()->routeIs('reclamations.*') ? 'active' : '' }}">
-                <i class="fas fa-clipboard-list"></i> Réclamations
-            </a>
+                <a href="{{ route('dashboard') }}#mes-reclamations" class="nav-link">
+                    <i class="fas fa-history"></i> Mes Réclamations
+                </a>
 
-            <a href="{{ route('courriers.index') }}" class="nav-link {{ request()->routeIs('courriers.*') ? 'active' : '' }}">
-                <i class="fas fa-envelope"></i> Courriers
-            </a>
+                <a href="{{ route('dashboard') }}#nouvelle-reclamation" class="nav-link">
+                    <i class="fas fa-plus-circle"></i> Déposer une réclamation
+                </a>
 
-            <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                <i class="fas fa-tags"></i> Catégories
-            </a>
+                <a href="{{ route('guide.reclamation') }}" class="nav-link">
+                    <i class="fas fa-book-reader"></i> Guide & Droits
+                </a>
 
-            <a href="{{ route('rapports.index') }}" class="nav-link {{ request()->routeIs('rapports.*') ? 'active' : '' }}">
-                <i class="fas fa-chart-pie"></i> Rapports & Stats
-            </a>
+                <div class="px-5 pt-4 pb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
+                    Compte & Services
+                </div>
 
-            @if(auth()->user() && auth()->user()->isAdmin())
-            <div class="px-5 pt-4 pb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
-                Administration
-            </div>
+                <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                    <i class="fas fa-user-circle"></i> Mon Profil
+                </a>
 
-            <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                <i class="fas fa-users-cog"></i> Utilisateurs
-            </a>
+                <a href="{{ route('home') }}" class="nav-link">
+                    <i class="fas fa-globe"></i> Portail Public CMSS
+                </a>
+            @else
+                <div class="px-5 mb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
+                    Menu Principal
+                </div>
+
+                <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-tachometer-alt"></i> Tableau de bord
+                </a>
+
+                <a href="{{ route('reclamations.index') }}" class="nav-link {{ request()->routeIs('reclamations.*') ? 'active' : '' }}">
+                    <i class="fas fa-clipboard-list"></i> Réclamations
+                </a>
+
+                <a href="{{ route('courriers.index') }}" class="nav-link {{ request()->routeIs('courriers.*') ? 'active' : '' }}">
+                    <i class="fas fa-envelope"></i> Courriers
+                </a>
+
+                <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                    <i class="fas fa-tags"></i> Catégories
+                </a>
+
+                <a href="{{ route('rapports.index') }}" class="nav-link {{ request()->routeIs('rapports.*') ? 'active' : '' }}">
+                    <i class="fas fa-chart-pie"></i> Rapports & Stats
+                </a>
+
+                @if(auth()->user() && auth()->user()->isAdmin())
+                <div class="px-5 pt-4 pb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
+                    Administration
+                </div>
+
+                <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                    <i class="fas fa-users-cog"></i> Utilisateurs
+                </a>
+                @endif
+
+                <div class="px-5 pt-4 pb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
+                    Mon Espace
+                </div>
+
+                <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                    <i class="fas fa-user-circle"></i> Mon Profil
+                </a>
+
+                <a href="{{ route('home') }}" target="_blank" class="nav-link">
+                    <i class="fas fa-external-link-alt"></i> Portail Public CMSS
+                </a>
             @endif
-
-            <div class="px-5 pt-4 pb-2 text-[11px] font-bold text-blue-200/60 uppercase tracking-wider">
-                Mon Espace
-            </div>
-
-            <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
-                <i class="fas fa-user-circle"></i> Mon Profil
-            </a>
-
-            <a href="{{ route('reclamation.publique') }}" target="_blank" class="nav-link">
-                <i class="fas fa-external-link-alt"></i> Portail Citoyen
-            </a>
         </nav>
 
         <!-- Sidebar User Footer -->

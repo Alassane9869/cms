@@ -11,12 +11,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RapportController;
 use App\Http\Controllers\PushTokenController;
 
-// Redirection accueil vers portail citoyen public
-Route::get('/', function () {
-    return redirect()->route('reclamation.publique');
-});
+// Accueil institutionnel officiel CMSS
+Route::get('/', [PublicReclamationController::class, 'home'])->name('home');
 
-// Portail public réclamation citoyen
+// Guide officiel : Comment faire une réclamation
+Route::get('/guide-reclamation', [PublicReclamationController::class, 'guide'])->name('guide.reclamation');
+
+// Portail public de dépôt rapide et consultation
 Route::get('/soumettre-reclamation', [PublicReclamationController::class, 'index'])->name('reclamation.publique');
 Route::post('/soumettre-reclamation', [PublicReclamationController::class, 'store'])->name('reclamation.publique.store');
 

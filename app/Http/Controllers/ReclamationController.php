@@ -60,7 +60,16 @@ class ReclamationController extends Controller
             'statut'       => 'en_attente',
         ]);
 
-        auth()->user()->notify(new ReclamationCreee($reclamation));
+        try {
+            auth()->user()->notify(new ReclamationCreee($reclamation));
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::info('Notification email non délivrée: ' . $e->getMessage());
+        }
+
+        if (auth()->user()->isCitoyen()) {
+            return redirect()->route('dashboard')
+                             ->with('success', 'Votre réclamation (' . $reclamation->reference . ') a été transmise avec succès aux services de la CMSS !');
+        }
 
         return redirect()->route('reclamations.index')
                          ->with('success', 'Réclamation créée avec succès !');
@@ -68,16 +77,29 @@ class ReclamationController extends Controller
 
     public function show(Reclamation $reclamation)
     {
+        if (auth()->user()->isCitoyen() && $reclamation->user_id !== auth()->id()) {
+            abort(403, 'Vous n\'êtes pas autorisé à consulter ce dossier.');
+        }
+
         return view('reclamations.show', compact('reclamation'));
     }
 
     public function edit(Reclamation $reclamation)
     {
+        if (auth()->user()->isCitoyen()) {
+            abort(403, 'Seuls les agents de la CMSS peuvent instruire cette réclamation.');
+        }
+
         $categories = Categorie::all();
         return view('reclamations.edit', compact('reclamation', 'categories'));
     }
+
     public function update(Request $request, Reclamation $reclamation)
     {
+        if (auth()->user()->isCitoyen()) {
+            abort(403, 'Action non autorisée.');
+        }
+
         $validated = $request->validate([
             'objet'        => 'required|string|max:255',
             'description'  => 'required|string',
@@ -93,7 +115,11 @@ class ReclamationController extends Controller
         if ($ancienStatut !== 'traitee' && $reclamation->statut === 'traitee') {
             $reclamation->load('user');
             if ($reclamation->user) {
-                $reclamation->user->notify(new ReclamationTraitee($reclamation));
+                try {
+                    $reclamation->user->notify(new ReclamationTraitee($reclamation));
+                } catch (\Throwable $e) {
+                    \Illuminate\Support\Facades\Log::info('Notification email non délivrée: ' . $e->getMessage());
+                }
 
                 try {
                     app(\App\Services\FirebaseService::class)->sendReclamationTraitee($reclamation->user, $reclamation->reference);
@@ -109,6 +135,10 @@ class ReclamationController extends Controller
 
     public function destroy(Reclamation $reclamation)
     {
+        if (auth()->user()->isCitoyen()) {
+            abort(403, 'Suppression non autorisée pour un assuré particulier.');
+        }
+
         $reclamation->delete();
         return redirect()->route('reclamations.index')
                          ->with('success', 'Réclamation supprimée !');
@@ -116,6 +146,10 @@ class ReclamationController extends Controller
 
     public function exportPdf(Reclamation $reclamation)
     {
+        if (auth()->user()->isCitoyen() && $reclamation->user_id !== auth()->id()) {
+            abort(403, 'Accès non autorisé à ce document.');
+        }
+
         $pdf = Pdf::loadView('reclamations.pdf', compact('reclamation'));
         return $pdf->download('reclamation-' . $reclamation->reference . '.pdf');
     }

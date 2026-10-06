@@ -12,6 +12,90 @@ use Illuminate\Support\Facades\Hash;
 
 class PublicReclamationController extends Controller
 {
+    /**
+     * Page d'accueil publique officielle de la CMSS
+     */
+    public function home(Request $request)
+    {
+        $categories = Categorie::all();
+        $totalReclamations = Reclamation::count();
+        $reclamationsTraitees = Reclamation::where('statut', 'traitee')->count();
+        $tauxResolution = $totalReclamations > 0 ? round(($reclamationsTraitees / $totalReclamations) * 100) : 98;
+
+        // Suivi express direct depuis la page d'accueil
+        $dossierSuivi = null;
+        $refIntrouvable = false;
+        if ($request->filled('suivi')) {
+            $reference = trim($request->suivi);
+            $dossierSuivi = Reclamation::where('reference', $reference)->with('categorie')->first();
+            if (!$dossierSuivi) {
+                $refIntrouvable = true;
+            }
+        }
+
+        // Équipes dirigeantes & départements opérationnels
+        $equipe = [
+            [
+                'nom' => 'Mme Diarra Aminata Sissoko',
+                'role' => 'Directrice Générale',
+                'direction' => 'Direction Générale CMSS',
+                'statut' => 'Direction Active',
+                'badge_color' => 'emerald',
+                'image' => 'images/equipe/dg.jpg',
+                'description' => 'Pilotage stratégique, modernisation numérique des services de retraite et garantie de la sécurité sociale des agents de l\'État.',
+            ],
+            [
+                'nom' => 'M. Bakary Traoré',
+                'role' => 'Directeur des Prestations & Pensions',
+                'direction' => 'Direction de la Liquidation',
+                'statut' => 'Guichets Opérationnels',
+                'badge_color' => 'blue',
+                'image' => 'images/equipe/prestations.jpg',
+                'description' => 'Liquidation des pensions civiles et militaires, instruction des dossiers de réversion et versement régulier des arrérages.',
+            ],
+            [
+                'nom' => 'Mme Fatoumata Keïta',
+                'role' => 'Directrice du Recouvrement & Immatriculation',
+                'direction' => 'Direction AMO & Cotisations',
+                'statut' => 'Service Opérationnel',
+                'badge_color' => 'blue',
+                'image' => 'images/equipe/recouvrement.jpg',
+                'description' => 'Immatriculation des nouveaux fonctionnaires, délivrance des attestations et contrôle de la conformité des droits AMO.',
+            ],
+            [
+                'nom' => 'Division Accueil, Écoute & Réclamations',
+                'role' => 'Pôle Assistance & Usagers',
+                'direction' => 'Centre de Relation Citoyens',
+                'statut' => 'Permanence Ouverte (7h30 - 16h00)',
+                'badge_color' => 'emerald',
+                'image' => 'images/caisse.jpg',
+                'description' => 'Prise en charge continue des usagers au siège et dans les 9 agences régionales, instruction rapide des litiges.',
+            ],
+        ];
+
+        return view('public.home', compact(
+            'categories',
+            'totalReclamations',
+            'reclamationsTraitees',
+            'tauxResolution',
+            'dossierSuivi',
+            'refIntrouvable',
+            'equipe'
+        ));
+    }
+
+    /**
+     * Page explicative détaillée "Comment faire une réclamation"
+     */
+    public function guide()
+    {
+        $categories = Categorie::all();
+        return view('public.guide', compact('categories'));
+    }
+
+    /**
+     * Page de soumission directe d'une réclamation et consultation
+     */
     public function index(Request $request)
     {
         $categories = Categorie::all();
@@ -29,6 +113,9 @@ class PublicReclamationController extends Controller
         return view('public.reclamation', compact('categories', 'dossierSuivi', 'refIntrouvable'));
     }
 
+    /**
+     * Traitement de la soumission publique
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -83,7 +170,7 @@ class PublicReclamationController extends Controller
             \Illuminate\Support\Facades\Log::warning('Email confirmation réclamation non délivré : ' . $e->getMessage());
         }
 
-        return redirect()->route('reclamation.publique')
-                         ->with('success', 'Votre réclamation a été enregistrée avec succès ! Votre référence est : ' . $reference);
+        return redirect()->route('reclamation.publique', ['suivi' => $reference])
+                         ->with('success', 'Votre réclamation a été enregistrée avec succès ! Référence officielle attribuée : ' . $reference);
     }
 }

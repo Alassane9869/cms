@@ -45,6 +45,12 @@ class User extends Authenticatable
         return $this->role === 'agent';
     }
 
+    // Vérifier si l'utilisateur est un assuré particulier (citoyen)
+    public function isCitoyen(): bool
+    {
+        return $this->role === 'utilisateur';
+    }
+
     // Relations
     public function reclamations()
     {

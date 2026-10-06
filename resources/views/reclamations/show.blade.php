@@ -93,26 +93,69 @@
 
         </div>
 
+        <!-- Chronologie d'avancement du dossier -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+            <p style="font-size: 13px; font-weight: 700; color: #0B3B60; text-transform: uppercase; margin-bottom: 16px;">
+                <i class="fas fa-route"></i> Progression de l'instruction
+            </p>
+            <div style="display: flex; justify-content: space-between; position: relative;">
+                <div style="text-align: center; flex: 1;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #0B3B60; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 13px; font-weight: bold;">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div style="font-size: 12px; font-weight: bold; color: #0B3B60;">Dépôt initial</div>
+                    <div style="font-size: 11px; color: #64748b;">{{ $reclamation->created_at->format('d/m/Y H:i') }}</div>
+                </div>
+
+                <div style="text-align: center; flex: 1;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; background: {{ in_array($reclamation->statut, ['en_cours', 'traitee']) ? '#0284c7' : '#cbd5e1' }}; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 13px; font-weight: bold;">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div style="font-size: 12px; font-weight: bold; color: {{ in_array($reclamation->statut, ['en_cours', 'traitee']) ? '#0284c7' : '#64748b' }};">Instruction technique</div>
+                    <div style="font-size: 11px; color: #64748b;">Services CMSS</div>
+                </div>
+
+                <div style="text-align: center; flex: 1;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; background: {{ $reclamation->statut == 'traitee' ? '#059669' : ($reclamation->statut == 'rejetee' ? '#dc2626' : '#cbd5e1') }}; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 13px; font-weight: bold;">
+                        <i class="fas {{ $reclamation->statut == 'traitee' ? 'fa-check-double' : ($reclamation->statut == 'rejetee' ? 'fa-ban' : 'fa-flag-checkered') }}"></i>
+                    </div>
+                    <div style="font-size: 12px; font-weight: bold; color: {{ $reclamation->statut == 'traitee' ? '#059669' : ($reclamation->statut == 'rejetee' ? '#dc2626' : '#64748b') }};">
+                        {{ $reclamation->statut == 'rejetee' ? 'Dossier Rejeté' : 'Décision / Résolution' }}
+                    </div>
+                    <div style="font-size: 11px; color: #64748b;">
+                        {{ $reclamation->statut == 'traitee' ? 'Traitement finalisé' : 'En attente finale' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Actions -->
-        <div style="display: flex; gap: 12px; margin-top: 10px;">
-            <a href="{{ route('reclamations.pdf', $reclamation) }}" class="btn-danger">
-                <i class="fas fa-file-pdf"></i> Télécharger PDF
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px;">
+            <a href="{{ route('reclamations.pdf', $reclamation) }}" class="btn-danger" style="background: linear-gradient(135deg, #0B3B60, #1c6499);">
+                <i class="fas fa-file-pdf"></i> Télécharger le Récépissé Officiel (PDF)
             </a>
-            <a href="{{ route('reclamations.edit', $reclamation) }}" class="btn-success">
-                <i class="fas fa-edit"></i> Modifier
-            </a>
-            <form action="{{ route('reclamations.destroy', $reclamation) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit"
-                        onclick="return confirm('Supprimer cette réclamation ?')"
-                        class="btn-danger" style="border: none; cursor: pointer;">
-                    <i class="fas fa-trash"></i> Supprimer
-                </button>
-            </form>
-            <a href="{{ route('reclamations.index') }}" class="btn-secondary">
-                <i class="fas fa-arrow-left"></i> Retour
-            </a>
+
+            @if(auth()->user() && !auth()->user()->isCitoyen())
+                <a href="{{ route('reclamations.edit', $reclamation) }}" class="btn-success">
+                    <i class="fas fa-edit"></i> Modifier / Traiter
+                </a>
+                <form action="{{ route('reclamations.destroy', $reclamation) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            onclick="return confirm('Confirmez-vous la suppression définitive de cette réclamation ?')"
+                            class="btn-danger" style="border: none; cursor: pointer;">
+                        <i class="fas fa-trash"></i> Supprimer
+                    </button>
+                </form>
+                <a href="{{ route('reclamations.index') }}" class="btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Liste des Réclamations
+                </a>
+            @else
+                <a href="{{ route('dashboard') }}" class="btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Retour à mon Espace Assuré
+                </a>
+            @endif
         </div>
 
     </div>

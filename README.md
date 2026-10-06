@@ -1,42 +1,4 @@
-# 🏛️ CMSS &mdash; Système Intégré de Gestion des Réclamations et Courriers
 
-Système web moderne et sécurisé conçu pour la **Caisse Malienne de Sécurité Sociale (CMSS)**. La plateforme permet la dématérialisation et le traitement transparent des réclamations des assurés sociaux ainsi que le suivi rigoureux du flux des courriers administratifs entrants et sortants.
-
----
-
-## 🌟 Fonctionnalités Clés
-
-### 1. 📢 Portail Citoyen & Usagers (Accès Public)
-- **Dépôt sans pré-requis** : Soumission simplifiée de réclamations sans obligation de créer un compte à l'avance.
-- **Référence unique horodatée** : Attribution instantanée d'un identifiant de dossier (ex: `REC-2026-001`).
-- **Confirmation immédiate** : Récapitulatif à l'écran et envoi d'un courriel de confirmation.
-- **Interface Mobile-First** : Formulaire 100% responsive adapté aux téléphones, tablettes et ordinateurs.
-
-### 2. 🗂️ Gestion des Réclamations (Espace Agents & Direction)
-- **Cycle de vie complet** : États *En attente*, *En cours d'instruction*, *Traitée*, *Rejetée*.
-- **Gestion des priorités** : Priorisation des dossiers urgents avec indicateurs visuels.
-- **Filtrage multicritères** : Recherche par référence, objet, statut, priorité et catégorie.
-- **Édition & Export PDF** : Génération en un clic d'une fiche officielle récapitulative au format PDF téléchargeable.
-- **Notifications assurés** : Alerte email automatique lors de la clôture et de la disponibilité du dossier.
-
-### 3. ✉️ Gestion des Courriers Administratifs
-- **Flux entrant & sortant** : Numérisation et archivage des correspondances avec ministères, employeurs et partenaires.
-- **Gestion des pièces jointes** : Téléversement sécurisé de bordereaux et documents justificatifs (PDF, Word, Images).
-- **Purge propre** : Nettoyage physique automatique des anciens fichiers sur le serveur lors des suppressions.
-
-### 4. 📊 Tableau de Bord & Rapports Analytiques
-- Statistiques en temps réel sur les volumes de réclamations et courriers.
-- Répartition par catégorie de prestation (Pensions, Cotisations, Prestations familiales, etc.).
-- Graphiques d'évolution mensuelle et taux de traitement.
-
-### 5. 🔐 Administration & Sécurité (RBAC)
-- **Contrôle d'accès par rôle** :
-  - `admin` : Accès global, administration des agents, gestion des catégories et configuration.
-  - `agent` : Instruction des dossiers, gestion des courriers, mise à jour des statuts.
-  - `utilisateur` : Consultation citoyenne.
-- Protection stricte contre les attaques CSRF, injections SQL et failles d'assignation de masse (Mass Assignment).
-
----
 
 ## 🚀 Démarrage Rapide (Environnement Prêt à l'Emploi)
 
@@ -70,8 +32,11 @@ php artisan serve
 ```
 
 L'application est immédiatement accessible sur : **`http://localhost:8000`**
-- **Portail Citoyen** : `http://localhost:8000/soumettre-reclamation`
-- **Espace Agent / Admin** : `http://localhost:8000/login`
+- **Portail d'Accueil Officiel** : `http://localhost:8000/`
+- **Guide des Réclamations & Démarches** : `http://localhost:8000/guide-reclamation`
+- **Espace Particulier (Inscription Assuré)** : `http://localhost:8000/register`
+- **Connexion Assuré & Agent** : `http://localhost:8000/login`
+- **Dépôt Rapide sans compte & Suivi** : `http://localhost:8000/soumettre-reclamation`
 
 ---
 
