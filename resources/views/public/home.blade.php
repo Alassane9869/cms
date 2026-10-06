@@ -30,81 +30,171 @@
 <body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
 
     <!-- Bandeau tricolore national de la République du Mali -->
-    <div class="w-full h-2 flex sticky top-0 z-50">
+    <div class="w-full h-1.5 flex sticky top-0 z-50 shadow-xs">
         <div class="h-full w-1/3 bg-[#15803d]" title="Vert - Espérance et fertilité"></div>
         <div class="h-full w-1/3 bg-[#eab308]" title="Or - Richesse du sous-sol"></div>
         <div class="h-full w-1/3 bg-[#dc2626]" title="Rouge - Sang versé pour la Patrie"></div>
     </div>
 
     <!-- En-tête officiel étatique -->
-    <header class="bg-white border-b border-slate-200">
-        <!-- Top bar étatique -->
-        <div class="bg-slate-100 border-b border-slate-200/80 py-1.5 px-4 sm:px-8 text-[11px] text-slate-600">
-            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
-                <div class="flex items-center gap-2 font-medium">
-                    <span class="font-bold text-slate-700">RÉPUBLIQUE DU MALI</span>
-                    <span>&bull;</span>
-                    <span>Un Peuple &mdash; Un But &mdash; Une Foi</span>
-                    <span>&bull;</span>
-                    <span class="text-slate-500">Ministère de la Santé et du Développement Social</span>
+    <header class="bg-white border-b border-slate-200/80 sticky top-1.5 z-40 backdrop-blur-md bg-white/95 transition-all shadow-xs" x-data="{ mobileMenuOpen: false }">
+        
+        <!-- Top bar étatique prestigieuse (Bleu Nuit & Or) -->
+        <div class="bg-[#0b1e36] text-white text-[11px] py-1.5 px-4 sm:px-8 border-b border-white/10">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-1.5 text-center md:text-left">
+                <!-- Devise républicaine -->
+                <div class="flex items-center gap-2.5 font-medium tracking-wide">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-white/15 text-white font-extrabold text-[10px] uppercase tracking-wider">
+                        🇲🇱 RÉPUBLIQUE DU MALI
+                    </span>
+                    <span class="text-blue-300/60 hidden sm:inline">&bull;</span>
+                    <span class="text-blue-100 hidden sm:inline italic">Un Peuple &mdash; Un But &mdash; Une Foi</span>
+                    <span class="text-blue-300/60 hidden lg:inline">&bull;</span>
+                    <span class="text-blue-200 hidden lg:inline">Ministère de la Santé et du Développement Social</span>
                 </div>
-                <div class="flex items-center gap-4 text-xs font-semibold">
-                    <a href="tel:+22320224500" class="hover:text-[#0B3B60] flex items-center gap-1">
-                        <i class="fas fa-phone-alt text-[10px] text-[#0B3B60]"></i> +223 20 22 45 00
+                
+                <!-- Permanence & Assistance usagers -->
+                <div class="flex items-center gap-4 text-[11px] font-semibold text-blue-100">
+                    <a href="tel:+22320224500" class="hover:text-amber-300 transition flex items-center gap-1.5">
+                        <i class="fas fa-phone-alt text-[10px] text-amber-400"></i>
+                        <span>Assistance : +223 20 22 45 00</span>
                     </a>
-                    <span class="text-slate-300">|</span>
-                    <a href="mailto:contact@cmss.ml" class="hover:text-[#0B3B60] flex items-center gap-1">
-                        <i class="fas fa-envelope text-[10px] text-[#0B3B60]"></i> contact@cmss.ml
+                    <span class="text-white/20">|</span>
+                    <a href="mailto:contact@cmss.ml" class="hover:text-amber-300 transition flex items-center gap-1.5">
+                        <i class="fas fa-envelope text-[10px] text-amber-400"></i>
+                        <span>contact@cmss.ml</span>
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Navigation principale -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
-            <!-- Logos et Marque officielle -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3.5 group">
-                <img src="{{ asset('images/armoiries-mali.jpg') }}" alt="Armoiries du Mali" class="w-12 h-12 rounded-full border border-slate-200 shadow-sm object-cover">
-                <div class="h-10 w-px bg-slate-200 hidden sm:block"></div>
-                <img src="{{ asset('images/logo.jpg') }}" alt="Logo CMSS" class="w-12 h-12 object-contain hidden sm:block">
-                <div>
-                    <span class="block text-lg font-black text-[#0B3B60] tracking-tight leading-none group-hover:text-blue-900 transition">
-                        CMSS
-                    </span>
-                    <span class="block text-xs font-bold text-slate-700 leading-tight">
+        <!-- Navigation principale & Identité CMSS -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
+            
+            <!-- Bloc Marque & Armoiries officiel -->
+            <a href="{{ route('home') }}" class="flex items-center gap-3.5 shrink-0 group">
+                <div class="flex items-center -space-x-2">
+                    <div class="w-12 h-12 rounded-full p-0.5 bg-white border border-slate-200 shadow-sm relative z-10">
+                        <img src="{{ asset('images/armoiries-mali.jpg') }}" alt="Armoiries République du Mali" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <div class="w-12 h-12 rounded-full p-1 bg-white border border-slate-200 shadow-sm relative z-20">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Logo CMSS" class="w-full h-full object-contain">
+                    </div>
+                </div>
+                <div class="border-l border-slate-200 pl-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl font-black text-[#0B3B60] tracking-tight group-hover:text-blue-900 transition leading-none">
+                            CMSS
+                        </span>
+                        <span class="inline-flex px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase bg-emerald-50 text-emerald-800 border border-emerald-200">
+                            Portail Officiel
+                        </span>
+                    </div>
+                    <div class="text-xs font-bold text-slate-800 leading-tight mt-0.5">
                         Caisse Malienne de Sécurité Sociale
-                    </span>
-                    <span class="block text-[10px] text-slate-500 font-medium leading-none mt-0.5">
-                        Établissement Public à Caractère Administratif
-                    </span>
+                    </div>
+                    <div class="text-[10px] font-medium text-slate-500 leading-none mt-0.5 hidden sm:block">
+                        Protection Sociale des Agents de l'État & Ayants Droit
+                    </div>
                 </div>
             </a>
 
-            <!-- Liens de navigation (Desktop) -->
-            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
-                <a href="{{ route('home') }}" class="text-[#0B3B60] font-bold border-b-2 border-[#0B3B60] pb-1">Accueil</a>
-                <a href="#missions" class="hover:text-[#0B3B60] transition">Missions & Régimes</a>
-                <a href="#equipes" class="hover:text-[#0B3B60] transition">Équipes & Direction</a>
-                <a href="{{ route('guide.reclamation') }}" class="hover:text-[#0B3B60] text-blue-700 transition flex items-center gap-1">
-                    <i class="fas fa-book-open text-xs"></i> Comment Réclamer ?
+            <!-- Liens de navigation centrés (Desktop) -->
+            <nav class="hidden xl:flex items-center gap-1.5 text-xs font-bold text-slate-600">
+                <a href="{{ route('home') }}" 
+                   class="px-3.5 py-2 rounded-xl text-[#0B3B60] bg-blue-50 font-extrabold transition">
+                    Accueil
                 </a>
-                <a href="#suivi-rapide" class="hover:text-[#0B3B60] transition">Suivi Dossier</a>
+                <a href="#missions" 
+                   class="px-3.5 py-2 rounded-xl hover:text-[#0B3B60] hover:bg-slate-100 transition">
+                    Missions & Régimes
+                </a>
+                <a href="#equipes" 
+                   class="px-3.5 py-2 rounded-xl hover:text-[#0B3B60] hover:bg-slate-100 transition">
+                    Direction & Équipe
+                </a>
+                <a href="{{ route('guide.reclamation') }}" 
+                   class="px-3.5 py-2 rounded-xl text-blue-700 hover:text-[#0B3B60] hover:bg-blue-50/60 transition inline-flex items-center gap-1.5">
+                    <i class="fas fa-book-reader text-xs text-blue-600"></i>
+                    <span>Comment Réclamer ?</span>
+                </a>
+                <a href="#suivi-rapide" 
+                   class="px-3.5 py-2 rounded-xl hover:text-[#0B3B60] hover:bg-slate-100 transition inline-flex items-center gap-1.5">
+                    <i class="fas fa-search text-xs text-slate-400"></i>
+                    <span>Suivi Dossier</span>
+                </a>
             </nav>
 
-            <!-- Actions Utilisateur & Espace Assuré -->
-            <div class="flex items-center gap-3">
+            <!-- Actions Utilisateur & Espace Assuré (Desktop) -->
+            <div class="hidden sm:flex items-center gap-2.5 shrink-0">
                 @auth
                     <a href="{{ route('dashboard') }}" class="px-4 py-2.5 rounded-xl bg-[#0B3B60] hover:bg-[#07233B] text-white text-xs font-bold uppercase tracking-wider transition shadow-sm flex items-center gap-2">
-                        <i class="fas fa-user-circle text-sm"></i>
+                        <i class="fas fa-user-circle text-sm text-amber-300"></i>
                         <span>{{ auth()->user()->isCitoyen() ? 'Mon Espace Assuré' : 'Tableau de bord' }}</span>
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="px-3.5 py-2 rounded-xl text-xs font-bold text-[#0B3B60] hover:bg-slate-100 transition border border-slate-300">
-                        Se connecter
+                    <a href="{{ route('login') }}" 
+                       class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 hover:text-[#0B3B60] hover:bg-slate-100 border border-slate-300 transition inline-flex items-center gap-1.5">
+                        <i class="fas fa-sign-in-alt text-[11px] text-slate-400"></i>
+                        <span>Se connecter</span>
                     </a>
-                    <a href="{{ route('register') }}" class="px-4 py-2 rounded-xl bg-[#0B3B60] hover:bg-[#07233B] text-white text-xs font-bold uppercase tracking-wider transition shadow-sm flex items-center gap-1.5">
-                        <i class="fas fa-user-plus text-[11px]"></i>
+                    <a href="{{ route('register') }}" 
+                       class="px-4 py-2.5 rounded-xl bg-[#0B3B60] hover:bg-[#07233B] text-white text-xs font-bold uppercase tracking-wider transition shadow-md hover:shadow-lg flex items-center gap-2">
+                        <i class="fas fa-user-shield text-xs text-amber-300"></i>
                         <span>Espace Particulier</span>
+                    </a>
+                @endauth
+            </div>
+
+            <!-- Hamburger Button (Mobile / Tablette) -->
+            <div class="flex items-center xl:hidden gap-2">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                        class="p-2 rounded-xl border border-slate-300 text-slate-700 hover:text-[#0B3B60] hover:bg-slate-100 transition focus:outline-none"
+                        aria-label="Menu de navigation">
+                    <i :class="mobileMenuOpen ? 'fa-times' : 'fa-bars'" class="fas text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Déroulant Mobile & Tablette -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             @click.away="mobileMenuOpen = false"
+             class="xl:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2 shadow-lg"
+             style="display: none;">
+            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-bold text-[#0B3B60] bg-blue-50">
+                <i class="fas fa-home mr-2 text-blue-600"></i> Accueil
+            </a>
+            <a href="#missions" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                <i class="fas fa-shield-alt mr-2 text-slate-400"></i> Missions & Régimes
+            </a>
+            <a href="#equipes" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                <i class="fas fa-users mr-2 text-slate-400"></i> Direction & Équipe
+            </a>
+            <a href="{{ route('guide.reclamation') }}" class="block px-3 py-2 rounded-lg text-sm font-semibold text-blue-700 hover:bg-blue-50">
+                <i class="fas fa-book-reader mr-2 text-blue-600"></i> Comment Réclamer ? (Guide)
+            </a>
+            <a href="#suivi-rapide" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                <i class="fas fa-search mr-2 text-slate-400"></i> Suivi Express de Dossier
+            </a>
+
+            <div class="pt-3 border-t border-slate-200 flex flex-col gap-2">
+                @auth
+                    <a href="{{ route('dashboard') }}" class="w-full py-2.5 px-4 rounded-xl bg-[#0B3B60] text-white text-xs font-bold uppercase tracking-wider text-center">
+                        {{ auth()->user()->isCitoyen() ? 'Mon Espace Assuré' : 'Tableau de bord' }}
+                    </a>
+                @else
+                    <a href="{{ route('register') }}" class="w-full py-2.5 px-4 rounded-xl bg-[#0B3B60] text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-user-shield text-amber-300"></i>
+                        <span>Créer mon Espace Particulier</span>
+                    </a>
+                    <a href="{{ route('login') }}" class="w-full py-2 px-4 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold text-center">
+                        Se connecter
                     </a>
                 @endauth
             </div>
