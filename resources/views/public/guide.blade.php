@@ -71,6 +71,18 @@
         <!-- Contenu du guide -->
         <div class="max-w-5xl mx-auto px-4 sm:px-8 py-12 space-y-12">
 
+            <!-- Cadre de distinction officiel -->
+            <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-blue-900 flex items-start gap-3 shadow-xs">
+                <i class="fas fa-info-circle text-blue-600 text-base mt-0.5 shrink-0"></i>
+                <div class="leading-relaxed">
+                    <strong>Portée exclusive de ce guide :</strong>
+                    Ce guide détaille uniquement la procédure de contestation, de contentieux et de réclamation d'un dossier auprès de la CMSS (pensions non perçues, rejets AMO, allocations familiales). Pour les informations administratives générales, l'immatriculation initiale et les actualités institutionnelles, veuillez consulter le site officiel :
+                    <a href="https://cmss.ml" target="_blank" class="font-bold underline text-[#0B3B60] hover:text-blue-900 inline-flex items-center gap-1 ml-1">
+                        www.cmss.ml <i class="fas fa-external-link-alt text-[9px]"></i>
+                    </a>
+                </div>
+            </div>
+
             <!-- Section 1 : Les 3 canaux de dépôt -->
             <section class="space-y-6">
                 <div class="border-b border-slate-200 pb-3">
@@ -329,9 +341,15 @@
 
     <!-- Pied de page -->
     <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 text-center">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>&copy; {{ date('Y') }} Caisse Malienne de Sécurité Sociale (CMSS) &mdash; République du Mali.</p>
-            <p class="text-[11px] text-slate-500 mt-1">Hamdallaye ACI 2000, BP 247, Bamako &bull; Standard : +223 20 22 45 00</p>
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>&copy; {{ date('Y') }} Caisse Malienne de Sécurité Sociale (CMSS) &mdash; Guichet Officiel des Réclamations &bull; République du Mali.</p>
+            <p class="text-[11px] text-slate-500">Hamdallaye ACI 2000, BP 247, Bamako &bull; Standard : +223 20 22 45 00</p>
+            <p class="text-[11px] text-slate-400 pt-2 border-t border-slate-800">
+                Site officiel d'information générale : 
+                <a href="https://cmss.ml" target="_blank" class="text-amber-300 hover:underline font-bold inline-flex items-center gap-1">
+                    www.cmss.ml <i class="fas fa-external-link-alt text-[9px]"></i>
+                </a>
+            </p>
         </div>
     </footer>
 

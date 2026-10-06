@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Caisse Malienne de Sécurité Sociale (CMSS) - Portail Officiel</title>
-    <meta name="description" content="Portail officiel de la Caisse Malienne de Sécurité Sociale (CMSS). Espace assuré, gestion des pensions, AMO, dépôt et suivi des réclamations en ligne.">
+    <title>Portail Officiel des Réclamations & Requêtes - CMSS Mali</title>
+    <meta name="description" content="Portail numérique officiel dédié au dépôt et au suivi des réclamations des assurés sociaux et retraités de la Caisse Malienne de Sécurité Sociale (CMSS).">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,11 +20,6 @@
         .bg-cmss-navy { background-color: #0B3B60; }
         .text-cmss-navy { color: #0B3B60; }
         .border-cmss-navy { border-color: #0B3B60; }
-        .hero-pattern {
-            background-color: #0B3B60;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
@@ -48,21 +43,21 @@
                         🇲🇱 RÉPUBLIQUE DU MALI
                     </span>
                     <span class="text-blue-300/60 hidden sm:inline">&bull;</span>
-                    <span class="text-blue-100 hidden sm:inline italic">Un Peuple &mdash; Un But &mdash; Une Foi</span>
+                    <span class="text-blue-100 hidden sm:inline italic">Portail Officiel des Réclamations &bull; CMSS</span>
                     <span class="text-blue-300/60 hidden lg:inline">&bull;</span>
                     <span class="text-blue-200 hidden lg:inline">Ministère de la Santé et du Développement Social</span>
                 </div>
                 
-                <!-- Permanence & Assistance usagers -->
+                <!-- Lien Site Principal & Assistance usagers -->
                 <div class="flex items-center gap-4 text-[11px] font-semibold text-blue-100">
                     <a href="tel:+22320224500" class="hover:text-amber-300 transition flex items-center gap-1.5">
                         <i class="fas fa-phone-alt text-[10px] text-amber-400"></i>
                         <span>Assistance : +223 20 22 45 00</span>
                     </a>
                     <span class="text-white/20">|</span>
-                    <a href="mailto:contact@cmss.ml" class="hover:text-amber-300 transition flex items-center gap-1.5">
-                        <i class="fas fa-envelope text-[10px] text-amber-400"></i>
-                        <span>contact@cmss.ml</span>
+                    <a href="https://cmss.ml" target="_blank" class="hover:text-amber-300 text-amber-300 transition flex items-center gap-1.5" title="Accéder au site institutionnel général de la CMSS">
+                        <i class="fas fa-external-link-alt text-[10px]"></i>
+                        <span>Site Général CMSS (cmss.ml)</span>
                     </a>
                 </div>
             </div>
@@ -87,14 +82,14 @@
                             CMSS
                         </span>
                         <span class="inline-flex px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase bg-emerald-50 text-emerald-800 border border-emerald-200">
-                            Portail Officiel
+                            Guichet Réclamations
                         </span>
                     </div>
                     <div class="text-xs font-bold text-slate-800 leading-tight mt-0.5">
                         Caisse Malienne de Sécurité Sociale
                     </div>
                     <div class="text-[10px] font-medium text-slate-500 leading-none mt-0.5 hidden sm:block">
-                        Protection Sociale des Agents de l'État & Ayants Droit
+                        Dépôt et Suivi des Requêtes & Contentieux Usagers
                     </div>
                 </div>
             </a>
@@ -105,23 +100,23 @@
                    class="px-3.5 py-2 rounded-xl text-[#0B3B60] bg-blue-50 font-extrabold transition">
                     Accueil
                 </a>
-                <a href="#missions" 
+                <a href="#motifs-reclamations" 
                    class="px-3.5 py-2 rounded-xl hover:text-[#0B3B60] hover:bg-slate-100 transition">
-                    Missions & Régimes
+                    Motifs de Réclamation
+                </a>
+                <a href="#suivi-rapide" 
+                   class="px-3.5 py-2 rounded-xl hover:text-[#0B3B60] hover:bg-slate-100 transition inline-flex items-center gap-1.5">
+                    <i class="fas fa-search text-xs text-slate-400"></i>
+                    <span>Suivi de Dossier</span>
                 </a>
                 <a href="#equipes" 
                    class="px-3.5 py-2 rounded-xl hover:text-[#0B3B60] hover:bg-slate-100 transition">
-                    Direction & Équipe
+                    Instruction & Équipe
                 </a>
                 <a href="{{ route('guide.reclamation') }}" 
                    class="px-3.5 py-2 rounded-xl text-blue-700 hover:text-[#0B3B60] hover:bg-blue-50/60 transition inline-flex items-center gap-1.5">
                     <i class="fas fa-book-reader text-xs text-blue-600"></i>
                     <span>Comment Réclamer ?</span>
-                </a>
-                <a href="#suivi-rapide" 
-                   class="px-3.5 py-2 rounded-xl hover:text-[#0B3B60] hover:bg-slate-100 transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-search text-xs text-slate-400"></i>
-                    <span>Suivi Dossier</span>
                 </a>
             </nav>
 
@@ -170,8 +165,8 @@
             <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-bold text-[#0B3B60] bg-blue-50">
                 <i class="fas fa-home mr-2 text-blue-600"></i> Accueil
             </a>
-            <a href="#missions" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100">
-                <i class="fas fa-shield-alt mr-2 text-slate-400"></i> Missions & Régimes
+            <a href="#motifs-reclamations" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                <i class="fas fa-file-alt mr-2 text-slate-400"></i> Motifs de Réclamation
             </a>
             <a href="#equipes" @click="mobileMenuOpen = false" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100">
                 <i class="fas fa-users mr-2 text-slate-400"></i> Direction & Équipe
@@ -230,21 +225,33 @@
                     <!-- Colonne Gauche : Titres, Missions & Actions -->
                     <div class="lg:col-span-7 space-y-6">
                         
-                        <!-- Badge Institutionnel -->
+                        <!-- Badge Institutionnel Guichet Réclamations -->
                         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold text-blue-100 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>🇲🇱 Portail Officiel de la Protection Sociale &bull; République du Mali</span>
+                            <span>🇲🇱 Guichet Numérique des Réclamations &bull; CMSS Mali</span>
                         </div>
 
                         <!-- Titre Principal -->
                         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-                            La Sécurité Sociale au service des <span class="text-amber-300">Serviteurs de l'État</span> et de leurs Familles.
+                            Portail Officiel des <span class="text-amber-300">Réclamations & Requêtes</span> de la CMSS
                         </h1>
 
                         <!-- Sous-titre explicatif -->
                         <p class="text-base sm:text-lg text-blue-100/90 font-normal leading-relaxed max-w-2xl">
-                            Pensions civiles et militaires, Assurance Maladie Obligatoire (AMO) et prestations familiales. Déposez vos réclamations et suivez l'instruction de vos dossiers en temps réel.
+                            Plateforme officielle dédiée au dépôt sécurisé et au suivi en temps réel de vos litiges et contentieux (Pensions de Retraite, Assurance Maladie Obligatoire AMO, Prestations Familiales).
                         </p>
+
+                        <!-- Cadre Distinction Officielle : Guichet Réclamations vs Site Général -->
+                        <div class="p-3.5 rounded-xl bg-blue-950/70 backdrop-blur-md border border-white/20 text-xs text-blue-100 flex items-start gap-2.5 max-w-2xl shadow-inner">
+                            <i class="fas fa-info-circle text-amber-300 text-base mt-0.5 shrink-0"></i>
+                            <div class="leading-relaxed">
+                                <strong class="text-white">Guichet Spécialisé Réclamations :</strong>
+                                Ce portail est exclusivement consacré à l'enregistrement, l'instruction et le suivi des réclamations des usagers. Pour les informations institutionnelles générales, actualités et textes de loi de la CMSS, veuillez consulter le site principal :
+                                <a href="https://cmss.ml" target="_blank" class="text-amber-300 font-bold hover:text-white underline ml-1 inline-flex items-center gap-1">
+                                    www.cmss.ml <i class="fas fa-external-link-alt text-[9px]"></i>
+                                </a>
+                            </div>
+                        </div>
 
                         <!-- Call To Actions Stratégiques -->
                         <div class="flex flex-wrap items-center gap-3 pt-2">
@@ -431,86 +438,89 @@
         </section>
 
         <!-- ========================================================= -->
-        <!-- MISSIONS & RÉGIMES DE LA CMSS -->
+        <!-- MOTIFS DE RÉCLAMATIONS PRIS EN CHARGE SUR CE GUICHET -->
         <!-- ========================================================= -->
-        <section id="missions" class="py-20 max-w-7xl mx-auto px-4 sm:px-8">
+        <section id="motifs-reclamations" class="py-20 max-w-7xl mx-auto px-4 sm:px-8">
             <div class="text-center max-w-3xl mx-auto mb-14">
                 <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
-                    Missions Réglementaires
+                    Domaines Traités par ce Guichet
                 </span>
                 <h2 class="text-3xl font-extrabold text-slate-900 mt-2">
-                    Les Régimes de Protection Sociale gérés par la CMSS
+                    Quelles Réclamations Pouvez-Vous Déposer Ici ?
                 </h2>
                 <p class="text-sm text-slate-600 mt-2">
-                    La CMSS assure la gestion déléguée et directe des régimes obligatoires de sécurité sociale pour tous les agents publics de l'État malien.
+                    Ce portail traite en priorité les litiges, retards d'instruction, omissions et anomalies de paiement relatifs aux trois régimes de la CMSS :
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Régime 1 : Pensions -->
+                <!-- Motif 1 : Pensions -->
                 <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition">
                     <div class="w-14 h-14 rounded-2xl bg-blue-50 text-[#0B3B60] flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-user-clock"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Régime des Pensions de Retraite</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Pensions & Retraites</h3>
                     <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Liquidation, révision et paiement régulier des pensions d'ancienneté, des pensions d'invalidité, des pensions de veuvage et d'orphelinat pour les fonctionnaires civils et militaires.
+                        Dépôt de requêtes pour retards de liquidation, arrérages non versés, révision de quotité et régularisation des droits d'ayants droit civils et militaires.
                     </p>
-                    <ul class="text-xs text-slate-500 space-y-2 border-t border-slate-100 pt-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Arrérages et livrets de pension</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Contrôle physique et biométrique</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Droits des ayants droit & réversion</li>
+                    <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Retard de liquidation de dossier de pension</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Arrérages impayés et rappels sur salaire</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Pension de veuvage ou orphelinat (réversion)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Problème de livret de pension ou contrôle physique</li>
                     </ul>
                 </div>
 
-                <!-- Régime 2 : AMO -->
+                <!-- Motif 2 : AMO -->
                 <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition">
                     <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Assurance Maladie Obligatoire (AMO)</h3>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Assurance Maladie (AMO)</h3>
                     <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Organisme gestionnaire délégué (OGD) pour les fonctionnaires, magistrats, militaires et députés. Gestion des cartes AMO, feuilles de soins et conventions médicales.
+                        Contestation de rejet de feuilles de soins, retard de délivrance de carte biométrique ou refus de prise en charge auprès de la CMSS (OGD).
                     </p>
-                    <ul class="text-xs text-slate-500 space-y-2 border-t border-slate-100 pt-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Prise en charge des soins & hospitalisations</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Distribution des cartes biométriques</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Remboursement des prestations médicales</li>
+                    <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Rejet ou retard de remboursement de feuille de soins</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Non-délivrance ou blocage de carte biométrique AMO</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Refus injustifié d'entente préalable ou hospitalisation</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Problème d'affiliation des ayants droit (enfants, conjoint)</li>
                     </ul>
                 </div>
 
-                <!-- Régime 3 : Prestations familiales -->
+                <!-- Motif 3 : Prestations familiales -->
                 <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition">
                     <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">Prestations Familiales & Risques</h3>
                     <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Paiement des allocations familiales, indemnités prénatales et de maternité, ainsi que la réparation des accidents de travail et maladies professionnelles.
+                        Réclamations relatives au non-paiement des allocations pour charges d'enfants, indemnités de maternité ou rentes accidents de service (AT/MP).
                     </p>
-                    <ul class="text-xs text-slate-500 space-y-2 border-t border-slate-100 pt-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Allocations périodiques pour enfants</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Indemnités de congé de maternité</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Rentes en capital accidents du travail</li>
+                    <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Non-versement des allocations familiales</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Retard de paiement de congé de maternité</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Liquidation des rentes pour accidents du travail</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Régularisation des attestations de cotisation</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <!-- ========================================================= -->
-        <!-- SECTION ÉQUIPES & DIRECTION : Images et Statuts réels -->
+        <!-- SECTION ÉQUIPES : La Chaîne de Traitement des Réclamations -->
         <!-- ========================================================= -->
         <section id="equipes" class="py-20 bg-slate-100/70 border-y border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-14">
                     <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm">
-                        Gouvernance & Service Public
+                        Gouvernance & Traitement Diligent
                     </span>
                     <h2 class="text-3xl font-extrabold text-slate-900 mt-2">
-                        Nos Équipes Dirigeantes & Pôles Opérationnels
+                        La Chaîne de Décision & Traitement de vos Requêtes
                     </h2>
                     <p class="text-sm text-slate-600 mt-2">
-                        Une administration moderne, réactive et dévouée au bien-être des assurés sociaux du Mali.
+                        Sous l'autorité de la Direction Générale, des équipes dédiées instruisent et régularisent chaque réclamation d'usager dans le strict respect de la réglementation.
                     </p>
                 </div>
 
@@ -660,6 +670,23 @@
     <!-- PIED DE PAGE INSTITUTIONNEL DE LA RÉPUBLIQUE DU MALI -->
     <!-- ========================================================= -->
     <footer class="bg-slate-900 text-slate-300 text-xs border-t border-slate-800">
+        <!-- Bannière d'information institutionnelle : Portail Réclamations vs Site Général CMSS -->
+        <div class="bg-[#06182a] border-b border-slate-800 py-4 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+                <div class="flex items-center gap-2.5 text-xs text-blue-200">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+                    <span><strong>Précision Importante :</strong> Ce portail est le service numérique dédié exclusivement au dépôt, à l'instruction et au suivi des réclamations des assurés.</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[11px] text-slate-400 hidden sm:inline">Pour les actualités, textes de loi et informations générales :</span>
+                    <a href="https://cmss.ml" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-amber-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-white/15">
+                        <span>Accéder au site officiel CMSS (cmss.ml)</span>
+                        <i class="fas fa-external-link-alt text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-8 py-14 grid grid-cols-1 md:grid-cols-4 gap-8">
             <!-- Col 1 : CMSS Identité -->
             <div class="space-y-4">

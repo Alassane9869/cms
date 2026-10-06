@@ -36,12 +36,19 @@
                 <div>
                     <div class="text-[10px] uppercase font-bold text-slate-500 leading-none">République du Mali</div>
                     <div class="text-sm font-extrabold text-[#0B3B60] leading-tight">Caisse Malienne de Sécurité Sociale</div>
+                    <div class="text-[11px] font-semibold text-emerald-700 leading-none mt-0.5">Guichet Numérique des Réclamations</div>
                 </div>
             </a>
-            <a href="/" class="text-xs font-bold text-[#0B3B60] hover:underline flex items-center gap-1.5">
-                <i class="fas fa-arrow-left"></i>
-                <span>Retour au portail</span>
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="https://cmss.ml" target="_blank" class="hidden sm:inline-flex items-center gap-1 text-xs text-slate-500 hover:text-[#0B3B60]">
+                    <span>Site général cmss.ml</span>
+                    <i class="fas fa-external-link-alt text-[9px]"></i>
+                </a>
+                <a href="/" class="text-xs font-bold text-[#0B3B60] hover:underline flex items-center gap-1.5">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour au portail</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -54,7 +61,7 @@
 
     <!-- Footer -->
     <footer class="py-4 border-t border-slate-200 bg-white text-center text-xs text-slate-500">
-        &copy; {{ date('Y') }} Caisse Malienne de Sécurité Sociale (CMSS) &mdash; République du Mali.
+        &copy; {{ date('Y') }} Caisse Malienne de Sécurité Sociale (CMSS) &mdash; Guichet Officiel des Réclamations &bull; Site institutionnel : <a href="https://cmss.ml" target="_blank" class="text-blue-700 hover:underline font-bold">cmss.ml</a>
     </footer>
 
 </body>

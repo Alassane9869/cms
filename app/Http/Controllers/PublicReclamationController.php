@@ -33,7 +33,7 @@ class PublicReclamationController extends Controller
             }
         }
 
-        // Équipes dirigeantes & départements opérationnels
+        // Équipes de direction & chaîne d'instruction des réclamations
         $equipe = [
             [
                 'nom' => 'M. Ichaka Koné',
@@ -42,34 +42,34 @@ class PublicReclamationController extends Controller
                 'statut' => 'Direction Active',
                 'badge_color' => 'emerald',
                 'image' => 'images/equipe/dg.jpg',
-                'description' => 'Le Directeur Général dirige la Direction Générale et assure la gestion administrative, technique et financière de l\'organisme sous le contrôle du Conseil d\'Administration.',
+                'description' => 'Le Directeur Général dirige la Direction Générale et assure la gestion administrative, technique et financière de l\'organisme sous le contrôle du Conseil d\'Administration. Il veille à la qualité du service public et au traitement diligent des réclamations des usagers.',
             ],
             [
                 'nom' => 'M. Bakary Traoré',
                 'role' => 'Directeur des Prestations & Pensions',
-                'direction' => 'Direction de la Liquidation',
-                'statut' => 'Guichets Opérationnels',
+                'direction' => 'Pôle Liquidation des Droits',
+                'statut' => 'Instruction Réclamations Ouverte',
                 'badge_color' => 'blue',
                 'image' => 'images/equipe/prestations.jpg',
-                'description' => 'Liquidation des pensions civiles et militaires, instruction des dossiers de réversion et versement régulier des arrérages.',
+                'description' => 'Instruction technique et régularisation des réclamations portant sur les pensions de retraite, calculs d\'arrérages, pensions de réversion et rentes d\'ayants droit.',
             ],
             [
                 'nom' => 'Mme Fatoumata Keïta',
                 'role' => 'Directrice du Recouvrement & Immatriculation',
-                'direction' => 'Direction AMO & Cotisations',
-                'statut' => 'Service Opérationnel',
+                'direction' => 'Pôle Contentieux AMO & Droits',
+                'statut' => 'Instruction Réclamations Ouverte',
                 'badge_color' => 'blue',
                 'image' => 'images/equipe/recouvrement.jpg',
-                'description' => 'Immatriculation des nouveaux fonctionnaires, délivrance des attestations et contrôle de la conformité des droits AMO.',
+                'description' => 'Traitement des litiges de feuilles de soins AMO, contestations de rejets médicaux, régularisation des affiliations et délivrance des cartes biométriques.',
             ],
             [
                 'nom' => 'Division Accueil, Écoute & Réclamations',
-                'role' => 'Pôle Assistance & Usagers',
-                'direction' => 'Centre de Relation Citoyens',
+                'role' => 'Cellule Centrale d\'Écoute Usagers',
+                'direction' => 'Centre de Traitement des Requêtes',
                 'statut' => 'Permanence Ouverte (7h30 - 16h00)',
                 'badge_color' => 'emerald',
                 'image' => 'images/caisse.jpg',
-                'description' => 'Prise en charge continue des usagers au siège et dans les 9 agences régionales, instruction rapide des litiges.',
+                'description' => 'Guichet unique d\'enregistrement, de notification et d\'orientation de toutes les réclamations formulées par les fonctionnaires, retraités et veuves.',
             ],
         ];
 
