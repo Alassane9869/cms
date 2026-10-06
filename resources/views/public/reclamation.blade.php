@@ -1,259 +1,289 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMSS - Soumettre une Réclamation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Portail des Réclamations &mdash; Caisse Malienne de Sécurité Sociale (CMSS)</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-        .header img {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-        .header p {
-            opacity: 0.8;
-            font-size: 15px;
-        }
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-        }
-        .success {
-            background: #d1fae5;
-            border-left: 4px solid #10b981;
-            color: #065f46;
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin-bottom: 24px;
-            font-size: 15px;
-        }
-        .error-box {
-            background: #fee2e2;
-            border-left: 4px solid #ef4444;
-            color: #991b1b;
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin-bottom: 24px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-label {
-            display: block;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        .form-control {
-            width: 100%;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 12px 16px;
-            font-size: 15px;
-            transition: all 0.3s;
-            outline: none;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .form-control:focus {
-            border-color: #2d6a9f;
-            box-shadow: 0 0 0 3px rgba(45,106,159,0.1);
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        @media (max-width: 640px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            .card {
-                padding: 22px 18px !important;
-            }
-            .header h1 {
-                font-size: 24px !important;
-            }
-        }
-        .btn-submit {
-            width: 100%;
-            background: linear-gradient(135deg, #1e3a5f, #2d6a9f);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(30,58,95,0.4);
-        }
-        .footer {
-            text-align: center;
-            color: rgba(255,255,255,0.7);
-            margin-top: 20px;
-            font-size: 13px;
-        }
-        .info-box {
-            background: #eff6ff;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #1e3a5f;
-            font-size: 14px;
-        }
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1e3a5f;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eff6ff;
-        }
+        body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     </style>
 </head>
-<body>
+<body class="min-h-full bg-slate-100/70 text-slate-900 antialiased flex flex-col justify-between">
 
-    <div class="container">
+    <!-- 1. Bandeau Tricolore National de la République du Mali -->
+    <div class="w-full h-1.5 flex">
+        <div class="h-full w-1/3 bg-[#15803d]"></div>
+        <div class="h-full w-1/3 bg-[#eab308]"></div>
+        <div class="h-full w-1/3 bg-[#dc2626]"></div>
+    </div>
 
-        <!-- Header -->
-        <div class="header">
-            <div style="background: white; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-               <img src="{{ asset('images/logo.jpg') }}" alt="CMSS Logo" style="width: 80px; height: 80px; object-fit: contain;">
+    <!-- 2. En-tête Institutionnel & Républicain -->
+    <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+
+            <!-- Identité de l'institution -->
+            <div class="flex items-center gap-3.5 sm:gap-4">
+                <a href="{{ route('reclamation.publique') }}" class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-lg p-0.5 flex items-center justify-center shrink-0 border border-slate-200 bg-white">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Logo CMSS" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500 leading-none">
+                            République du Mali
+                        </div>
+                        <div class="text-base sm:text-lg font-bold text-[#0c3254] leading-tight mt-0.5">
+                            Caisse Malienne de Sécurité Sociale
+                        </div>
+                        <div class="text-[11px] text-slate-500 font-medium hidden sm:block">
+                            Établissement Public à Caractère Administratif (EPA)
+                        </div>
+                    </div>
+                </a>
             </div>
-            <h1>CMSS</h1>
-            <p>Caisse Malienne de Sécurité Sociale</p>
-            <p style="margin-top: 5px; font-size: 18px; font-weight: 600;">Portail de Réclamations en Ligne</p>
+
+            <!-- Espace Agent & Liens utiles -->
+            <div class="flex items-center gap-3">
+                <a href="{{ route('login') }}" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold text-[#0c3254] bg-slate-100 hover:bg-slate-200 border border-slate-300 transition">
+                    <i class="fas fa-lock text-slate-500"></i>
+                    <span>Espace Agent</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Fil d'Ariane & Titre de Démarche Publique -->
+    <div class="bg-white border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                <span>Accueil</span>
+                <span>&rsaquo;</span>
+                <span>Services en ligne</span>
+                <span>&rsaquo;</span>
+                <span class="text-slate-800 font-semibold">Réclamation usager</span>
+            </nav>
+            <h1 class="text-xl sm:text-2xl font-bold text-[#0c3254] tracking-tight">
+                Enregistrement d'une réclamation en ligne
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Formulaire officiel destiné aux assurés sociaux, pensionnés et partenaires pour toute contestation ou signalement d'anomalie.
+            </p>
+        </div>
+    </div>
+
+    <!-- 4. Contenu Principal : Formulaire Administratif Soigné -->
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+
+        <!-- Message d'information réglementaire -->
+        <div class="mb-6 p-4 rounded-lg bg-blue-50/80 border border-blue-200 text-slate-800 text-xs sm:text-sm flex items-start gap-3">
+            <i class="fas fa-info-circle text-[#0c3254] text-base mt-0.5 shrink-0"></i>
+            <div class="leading-relaxed">
+                <strong>Information importante :</strong> Votre requête sera instruite par les services compétents de la CMSS. Dès validation, un numéro de dossier unique vous sera transmis à l'écran et par courriel pour assurer votre suivi.
+            </div>
         </div>
 
-        <!-- Card -->
-        <div class="card">
-
-            @if(session('success'))
-                <div class="success">
-                    <i class="fas fa-check-circle"></i> {{ session('success') }}
+        <!-- Alerte Succès / Récépissé Officiel -->
+        @if(session('success'))
+            <div class="mb-6 p-5 rounded-lg bg-emerald-50 border-2 border-emerald-400 text-emerald-950 shadow-sm">
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-bold text-sm text-emerald-900 mb-1">Confirmation d'Enregistrement</div>
+                        <div class="text-xs sm:text-sm text-emerald-800 leading-relaxed font-medium">
+                            {{ session('success') }}
+                        </div>
+                        <div class="mt-2 text-xs text-emerald-700">
+                            Veuillez noter précieusement cette référence pour toute démarche physique à nos guichets.
+                        </div>
+                    </div>
                 </div>
-            @endif
-
-            @if($errors->any())
-                <div class="error-box">
-                    <ul style="padding-left: 20px;">
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            <div class="info-box">
-                <i class="fas fa-info-circle" style="font-size: 20px;"></i>
-                <span>Soumettez votre réclamation en ligne sans vous déplacer. Vous recevrez une confirmation par email avec votre numéro de référence.</span>
             </div>
+        @endif
 
-            <form action="{{ route('reclamation.publique.store') }}" method="POST">
+        <!-- Erreurs de validation -->
+        @if($errors->any())
+            <div class="mb-6 p-4 rounded-lg bg-red-50 border border-red-200 text-red-900 text-xs sm:text-sm">
+                <div class="font-bold text-red-800 flex items-center gap-2 mb-2">
+                    <i class="fas fa-exclamation-triangle text-red-600"></i>
+                    <span>Certains champs obligatoires n'ont pas été correctement remplis :</span>
+                </div>
+                <ul class="list-disc pl-5 space-y-1 text-red-700">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <!-- Carte Principale du Formulaire -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 sm:p-8">
+
+            <form action="{{ route('reclamation.publique.store') }}" method="POST" class="space-y-6">
                 @csrf
 
-                <!-- Informations personnelles -->
-                <div class="section-title">
-                    <i class="fas fa-user"></i> Vos Informations
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label class="form-label">Nom complet *</label>
-                        <input type="text" name="nom" value="{{ old('nom') }}"
-                               class="form-control" placeholder="Votre nom complet">
+                <!-- SECTION 1 : Identité du Demandeur -->
+                <div>
+                    <div class="flex items-center gap-2 pb-2 mb-4 border-b border-slate-200">
+                        <span class="w-6 h-6 rounded bg-[#0c3254] text-white text-xs font-bold flex items-center justify-center">1</span>
+                        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-800">
+                            Renseignements sur l'assuré / le demandeur
+                        </h2>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Email *</label>
-                        <input type="email" name="email" value="{{ old('email') }}"
-                               class="form-control" placeholder="votre@email.com">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                        <!-- Nom complet -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                                Nom et Prénoms <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" 
+                                   name="nom" 
+                                   value="{{ old('nom') }}" 
+                                   required
+                                   class="w-full rounded-lg border-slate-300 shadow-sm focus:border-[#0c3254] focus:ring focus:ring-[#0c3254]/10 text-sm py-2 px-3"
+                                   placeholder="Ex: Amadou Diallo">
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                                Adresse E-mail <span class="text-red-600">*</span>
+                            </label>
+                            <input type="email" 
+                                   name="email" 
+                                   value="{{ old('email') }}" 
+                                   required
+                                   class="w-full rounded-lg border-slate-300 shadow-sm focus:border-[#0c3254] focus:ring focus:ring-[#0c3254]/10 text-sm py-2 px-3"
+                                   placeholder="exemple@email.com">
+                        </div>
+                    </div>
+
+                    <!-- Téléphone -->
+                    <div class="mt-4">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                            Numéro de téléphone
+                        </label>
+                        <input type="text" 
+                               name="telephone" 
+                               value="{{ old('telephone') }}" 
+                               class="w-full sm:w-1/2 rounded-lg border-slate-300 shadow-sm focus:border-[#0c3254] focus:ring focus:ring-[#0c3254]/10 text-sm py-2 px-3"
+                               placeholder="+223 XX XX XX XX">
+                        <p class="text-[11px] text-slate-500 mt-1">Numéro joignable pour les échanges et notifications de l'agent instructeur.</p>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Téléphone</label>
-                    <input type="text" name="telephone" value="{{ old('telephone') }}"
-                           class="form-control" placeholder="+223 XX XX XX XX">
+                <!-- SECTION 2 : Détails de la Réclamation -->
+                <div class="pt-2">
+                    <div class="flex items-center gap-2 pb-2 mb-4 border-b border-slate-200">
+                        <span class="w-6 h-6 rounded bg-[#0c3254] text-white text-xs font-bold flex items-center justify-center">2</span>
+                        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-800">
+                            Objet et motifs de la réclamation
+                        </h2>
+                    </div>
+
+                    <!-- Catégorie -->
+                    <div class="mb-4">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                            Prestation ou domaine concerné
+                        </label>
+                        <select name="categorie_id" 
+                                class="w-full rounded-lg border-slate-300 shadow-sm focus:border-[#0c3254] focus:ring focus:ring-[#0c3254]/10 text-sm py-2 px-3 bg-white">
+                            <option value="">-- Sélectionner la catégorie correspondante --</option>
+                            @foreach($categories as $categorie)
+                                <option value="{{ $categorie->id }}" {{ old('categorie_id') == $categorie->id ? 'selected' : '' }}>
+                                    {{ $categorie->nom }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Objet -->
+                    <div class="mb-4">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                            Objet de la réclamation <span class="text-red-600">*</span>
+                        </label>
+                        <input type="text" 
+                               name="objet" 
+                               value="{{ old('objet') }}" 
+                               required
+                               class="w-full rounded-lg border-slate-300 shadow-sm focus:border-[#0c3254] focus:ring focus:ring-[#0c3254]/10 text-sm py-2 px-3"
+                               placeholder="Ex: Retard de liquidation de ma pension de retraite militaire">
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+                            Exposé détaillé des faits <span class="text-red-600">*</span>
+                        </label>
+                        <textarea name="description" 
+                                  rows="6" 
+                                  required
+                                  class="w-full rounded-lg border-slate-300 shadow-sm focus:border-[#0c3254] focus:ring focus:ring-[#0c3254]/10 text-sm p-3"
+                                  placeholder="Veuillez préciser votre numéro de matricule/NINA, votre service d'origine, les démarches déjà entreprises et les pièces en votre possession...">{{ old('description') }}</textarea>
+                    </div>
                 </div>
 
-                <!-- Réclamation -->
-                <div class="section-title" style="margin-top: 10px;">
-                    <i class="fas fa-clipboard-list"></i> Votre Réclamation
+                <!-- Engagement et Mentions Légales -->
+                <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600 leading-relaxed">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-lock text-slate-500 mt-0.5"></i>
+                        <span>
+                            <strong>Protection des données :</strong> Les informations recueillies sur ce formulaire officiel sont traitées dans le strict respect du secret professionnel et des dispositions légales encadrant la protection des données au Mali.
+                        </span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Catégorie</label>
-                    <select name="categorie_id" class="form-control">
-                        <option value="">-- Sélectionner une catégorie --</option>
-                        @foreach($categories as $categorie)
-                            <option value="{{ $categorie->id }}" {{ old('categorie_id') == $categorie->id ? 'selected' : '' }}>
-                                {{ $categorie->nom }}
-                            </option>
-                        @endforeach
-                    </select>
+                <!-- Bouton de Soumission Officiel -->
+                <div class="pt-2">
+                    <button type="submit" 
+                            class="w-full sm:w-auto px-8 py-3 rounded-lg bg-[#0c3254] hover:bg-[#08223a] text-white font-bold text-sm tracking-wide shadow-sm hover:shadow transition flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                        <span>Transmettre la réclamation</span>
+                    </button>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label">Objet de la réclamation *</label>
-                    <input type="text" name="objet" value="{{ old('objet') }}"
-                           class="form-control" placeholder="Résumez votre réclamation en une ligne">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Description détaillée *</label>
-                    <textarea name="description" rows="6" class="form-control"
-                              placeholder="Décrivez votre réclamation en détail...">{{ old('description') }}</textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">
-                    <i class="fas fa-paper-plane"></i> Envoyer ma Réclamation
-                </button>
 
             </form>
 
         </div>
 
-        <div class="footer">
-            <p>© {{ date('Y') }} CMSS - Caisse Malienne de Sécurité Sociale</p>
-            <p style="margin-top: 5px;">Vous avez un compte ? <a href="{{ route('login') }}" style="color: white; font-weight: 600;">Se connecter</a></p>
+        <!-- Coordonnées et permanences officielles de la CMSS -->
+        <div class="mt-8 border border-slate-200 bg-white rounded-xl p-5 text-xs text-slate-600">
+            <div class="font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">
+                <i class="fas fa-building text-[#0c3254]"></i>
+                <span>Caisse Malienne de Sécurité Sociale &mdash; Guichets et Permanence</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                <div>
+                    <span class="font-semibold text-slate-700">Siège social :</span> Hamdallaye ACI 2000, Bamako
+                </div>
+                <div>
+                    <span class="font-semibold text-slate-700">Standard téléphonique :</span> +223 20 22 45 00
+                </div>
+                <div>
+                    <span class="font-semibold text-slate-700">Heures d'accueil :</span> Lundi au Vendredi, 7h30 &ndash; 16h00
+                </div>
+            </div>
         </div>
 
-    </div>
+    </main>
+
+    <!-- 5. Pied de Page Républicain Officiel -->
+    <footer class="border-t border-slate-200 bg-white py-6 text-xs text-slate-500 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div>
+                &copy; {{ date('Y') }} <strong>Caisse Malienne de Sécurité Sociale (CMSS)</strong> &mdash; République du Mali.
+            </div>
+            <div class="text-slate-400">
+                Ministère de la Santé et du Développement Social
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
