@@ -352,34 +352,35 @@
         </section>
 
         <!-- ========================================================= -->
+        <!-- ========================================================= -->
         <!-- WIDGET : Suivi Express de Dossier en Ligne -->
         <!-- ========================================================= -->
-        <section id="suivi-rapide" class="relative -mt-8 z-20 max-w-5xl mx-auto px-4">
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+        <section id="suivi-rapide" class="relative -mt-6 sm:-mt-8 z-20 max-w-5xl mx-auto px-3.5 sm:px-6">
+            <div class="bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border border-slate-200/90 p-4 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-4">
                     <div>
-                        <span class="text-[11px] font-bold text-[#0B3B60] uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-full">
-                            <i class="fas fa-search mr-1"></i> Recherche Immédiate
+                        <span class="text-[10px] sm:text-[11px] font-extrabold text-[#0B3B60] uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-full border border-blue-200/60 inline-flex items-center gap-1">
+                            <i class="fas fa-search text-amber-500"></i> Recherche Immédiate
                         </span>
-                        <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mt-1">
+                        <h2 class="text-base sm:text-xl font-black text-slate-900 mt-1.5 leading-tight">
                             Suivre l'état d'avancement de votre réclamation
                         </h2>
                     </div>
-                    <span class="text-xs text-slate-500">
-                        Numéro figurant sur votre récépissé officiel
+                    <span class="text-[11px] sm:text-xs text-slate-500 font-medium">
+                        Référence figurant sur votre récépissé officiel
                     </span>
                 </div>
 
-                <form method="GET" action="{{ route('home') }}#suivi-rapide" class="flex flex-col sm:flex-row gap-3">
+                <form method="GET" action="{{ route('home') }}#suivi-rapide" class="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
                     <div class="relative flex-1">
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                            <i class="fas fa-barcode"></i>
+                            <i class="fas fa-barcode text-sm"></i>
                         </span>
                         <input type="text" name="suivi" value="{{ request('suivi') }}" required
                                placeholder="Ex: REC-A1B2C3D4"
-                               class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 text-sm font-mono font-bold text-slate-900 uppercase tracking-wider focus:ring-2 focus:ring-[#0B3B60] focus:border-[#0B3B60] outline-none">
+                               class="w-full pl-10 pr-4 py-3 sm:py-3.5 rounded-xl border border-slate-300 text-xs sm:text-sm font-mono font-bold text-slate-900 uppercase tracking-wider focus:ring-2 focus:ring-[#0B3B60] focus:border-[#0B3B60] outline-none transition bg-slate-50/50 focus:bg-white">
                     </div>
-                    <button type="submit" class="px-6 py-3 rounded-xl bg-[#0B3B60] hover:bg-[#07233B] text-white font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full sm:w-auto px-6 py-3 sm:py-3.5 rounded-xl bg-[#0B3B60] hover:bg-[#07233B] text-white font-extrabold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 shrink-0">
                         <i class="fas fa-search"></i>
                         <span>Vérifier le statut</span>
                     </button>
@@ -387,34 +388,50 @@
 
                 <!-- Affichage du résultat de recherche si soumis -->
                 @if($dossierSuivi)
-                    <div class="mt-6 p-5 rounded-2xl bg-blue-50/70 border border-blue-200">
+                    <div class="mt-5 p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-blue-200/80 pb-3 mb-4">
                             <div>
-                                <span class="text-xs text-slate-500 font-medium">Référence du dossier</span>
-                                <h3 class="text-xl font-mono font-black text-[#0B3B60]">{{ $dossierSuivi->reference }}</h3>
+                                <span class="text-[10px] sm:text-xs text-slate-500 font-semibold uppercase tracking-wider">Référence du dossier</span>
+                                <h3 class="text-lg sm:text-2xl font-mono font-black text-[#0B3B60]">{{ $dossierSuivi->reference }}</h3>
                             </div>
                             <div>
                                 @if($dossierSuivi->statut == 'en_attente')
-                                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 inline-flex items-center gap-1.5">
-                                        <i class="fas fa-clock"></i> Statut : En attente d'instruction
+                                    <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 inline-flex items-center gap-1.5">
+                                        <i class="fas fa-clock"></i> En attente d'instruction
                                     </span>
                                 @elseif($dossierSuivi->statut == 'en_cours')
-                                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-100 text-sky-800 border border-sky-300 inline-flex items-center gap-1.5">
-                                        <i class="fas fa-spinner fa-spin"></i> Statut : En cours d'examen technique
+                                    <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sky-100 text-sky-800 border border-sky-300 inline-flex items-center gap-1.5">
+                                        <i class="fas fa-spinner fa-spin"></i> En cours d'examen technique
                                     </span>
                                 @elseif($dossierSuivi->statut == 'traitee')
-                                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 inline-flex items-center gap-1.5">
-                                        <i class="fas fa-check-circle"></i> Statut : Traitée / Décision rendue
+                                    <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 inline-flex items-center gap-1.5">
+                                        <i class="fas fa-check-circle"></i> Traitée / Décision rendue
                                     </span>
                                 @else
-                                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 inline-flex items-center gap-1.5">
-                                        <i class="fas fa-times-circle"></i> Statut : Non retenue / Rejetée
+                                    <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 inline-flex items-center gap-1.5">
+                                        <i class="fas fa-times-circle"></i> Non retenue / Rejetée
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <!-- Mini timeline visuelle du traitement -->
+                        <div class="grid grid-cols-3 gap-2 pb-4 mb-4 border-b border-blue-200/60 text-center text-[10px] sm:text-xs">
+                            <div class="p-2 rounded-lg bg-white border border-blue-200 font-bold text-slate-700">
+                                <span class="text-emerald-600 block sm:inline mr-1"><i class="fas fa-check-circle"></i></span>
+                                <span>1. Enregistré</span>
+                            </div>
+                            <div class="p-2 rounded-lg {{ in_array($dossierSuivi->statut, ['en_cours', 'traitee', 'rejetee']) ? 'bg-white border-blue-200 font-bold text-slate-700' : 'bg-slate-100/70 text-slate-400' }} border">
+                                <span class="{{ in_array($dossierSuivi->statut, ['en_cours', 'traitee', 'rejetee']) ? 'text-sky-600' : 'text-slate-400' }} block sm:inline mr-1"><i class="fas fa-spinner"></i></span>
+                                <span>2. Instruction</span>
+                            </div>
+                            <div class="p-2 rounded-lg {{ in_array($dossierSuivi->statut, ['traitee', 'rejetee']) ? 'bg-white border-blue-200 font-bold text-slate-700' : 'bg-slate-100/70 text-slate-400' }} border">
+                                <span class="{{ $dossierSuivi->statut == 'traitee' ? 'text-emerald-600' : ($dossierSuivi->statut == 'rejetee' ? 'text-rose-600' : 'text-slate-400') }} block sm:inline mr-1"><i class="fas fa-gavel"></i></span>
+                                <span>3. Décision</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-xs">
                             <div>
                                 <span class="font-bold text-slate-500 uppercase text-[10px]">Catégorie</span>
                                 <p class="font-bold text-slate-800 mt-0.5">{{ $dossierSuivi->categorie->nom ?? 'Générale' }}</p>
@@ -430,8 +447,8 @@
                         </div>
                     </div>
                 @elseif($refIntrouvable)
-                    <div class="mt-6 p-4 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-center gap-3">
-                        <i class="fas fa-exclamation-triangle text-base text-red-600"></i>
+                    <div class="mt-5 p-4 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-start sm:items-center gap-3">
+                        <i class="fas fa-exclamation-triangle text-base text-red-600 shrink-0 mt-0.5 sm:mt-0"></i>
                         <span>Aucune réclamation ne correspond à la référence <strong>{{ request('suivi') }}</strong>. Veuillez vérifier votre saisie ou contacter nos services.</span>
                     </div>
                 @endif
@@ -441,69 +458,108 @@
         <!-- ========================================================= -->
         <!-- MOTIFS DE RÉCLAMATIONS PRIS EN CHARGE SUR CE GUICHET -->
         <!-- ========================================================= -->
-        <section id="motifs-reclamations" class="py-20 max-w-7xl mx-auto px-4 sm:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
+        <section id="motifs-reclamations" class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+                <span class="text-[10px] sm:text-xs font-extrabold text-[#0B3B60] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-200/60">
                     Domaines Traités par ce Guichet
                 </span>
-                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mt-2.5 leading-tight">
                     Quelles Réclamations Pouvez-Vous Déposer Ici ?
                 </h2>
-                <p class="text-sm text-slate-600 mt-2">
-                    Ce portail traite en priorité les litiges, retards d'instruction, omissions et anomalies de paiement relatifs aux trois régimes de la CMSS :
+                <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-2xl mx-auto leading-relaxed">
+                    Ce portail traite en priorité les litiges, retards d'instruction, omissions et anomalies de calcul relatifs aux trois régimes de la CMSS :
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
                 <!-- Motif 1 : Pensions -->
-                <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-[#0B3B60] flex items-center justify-center text-2xl mb-6">
-                        <i class="fas fa-user-clock"></i>
+                <div class="bg-white rounded-2xl p-5 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-[#0B3B60] flex items-center justify-center text-xl shadow-xs">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-100 text-[#0B3B60]">
+                                Retraites & Droits
+                            </span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">Pensions & Retraites</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Dépôt de requêtes pour retards de liquidation, arrérages non versés, révision de quotité et régularisation des droits d'ayants droit civils et militaires.
+                        </p>
+                        <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Retard de liquidation de dossier de pension</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Arrérages impayés et rappels sur salaire</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Pension de veuvage ou orphelinat (réversion)</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Problème de livret de pension ou contrôle physique</span></li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Pensions & Retraites</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Dépôt de requêtes pour retards de liquidation, arrérages non versés, révision de quotité et régularisation des droits d'ayants droit civils et militaires.
-                    </p>
-                    <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Retard de liquidation de dossier de pension</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Arrérages impayés et rappels sur salaire</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Pension de veuvage ou orphelinat (réversion)</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Problème de livret de pension ou contrôle physique</li>
-                    </ul>
+                    <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500 font-medium">Délai indicatif : 48h - 72h</span>
+                        <a href="{{ route('reclamation.publique') }}" class="text-xs font-bold text-[#0B3B60] hover:text-blue-900 inline-flex items-center gap-1 transition">
+                            <span>Réclamer</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Motif 2 : AMO -->
-                <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-6">
-                        <i class="fas fa-heartbeat"></i>
+                <div class="bg-white rounded-2xl p-5 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl shadow-xs">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">
+                                Soins & Cartes
+                            </span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">Assurance Maladie (AMO)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Contestation de rejet de feuilles de soins, retard de délivrance de carte biométrique ou refus de prise en charge auprès de la CMSS (OGD).
+                        </p>
+                        <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Rejet ou retard de remboursement de feuille de soins</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Non-délivrance ou blocage de carte biométrique AMO</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Refus injustifié de prise en charge hospitalière</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Problème d'affiliation des ayants droit</span></li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Assurance Maladie (AMO)</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Contestation de rejet de feuilles de soins, retard de délivrance de carte biométrique ou refus de prise en charge auprès de la CMSS (OGD).
-                    </p>
-                    <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Rejet ou retard de remboursement de feuille de soins</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Non-délivrance ou blocage de carte biométrique AMO</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Refus injustifié d'entente préalable ou hospitalisation</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Problème d'affiliation des ayants droit (enfants, conjoint)</li>
-                    </ul>
+                    <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500 font-medium">OGD CMSS &bull; Bamako & Régions</span>
+                        <a href="{{ route('reclamation.publique') }}" class="text-xs font-bold text-[#0B3B60] hover:text-blue-900 inline-flex items-center gap-1 transition">
+                            <span>Réclamer</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Motif 3 : Prestations familiales -->
-                <div class="bg-white rounded-2xl p-7 border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl mb-6">
-                        <i class="fas fa-users"></i>
+                <div class="bg-white rounded-2xl p-5 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl shadow-xs">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800">
+                                Famille & Risques
+                            </span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">Prestations Familiales & Risques</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Réclamations relatives au non-paiement des allocations pour charges d'enfants, indemnités de maternité ou rentes accidents de service (AT/MP).
+                        </p>
+                        <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Non-versement des allocations familiales</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Retard de paiement de congé de maternité</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Liquidation des rentes pour accidents du travail</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs shrink-0"></i> <span>Régularisation des attestations de cotisation</span></li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-2">Prestations Familiales & Risques</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
-                        Réclamations relatives au non-paiement des allocations pour charges d'enfants, indemnités de maternité ou rentes accidents de service (AT/MP).
-                    </p>
-                    <ul class="text-xs text-slate-600 space-y-2 border-t border-slate-100 pt-4">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Non-versement des allocations familiales</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Retard de paiement de congé de maternité</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Liquidation des rentes pour accidents du travail</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-600 text-xs"></i> Régularisation des attestations de cotisation</li>
-                    </ul>
+                    <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500 font-medium">Protection des fonctionnaires</span>
+                        <a href="{{ route('reclamation.publique') }}" class="text-xs font-bold text-[#0B3B60] hover:text-blue-900 inline-flex items-center gap-1 transition">
+                            <span>Réclamer</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -511,29 +567,38 @@
         <!-- ========================================================= -->
         <!-- SECTION ÉQUIPES : La Chaîne de Traitement des Réclamations -->
         <!-- ========================================================= -->
-        <section id="equipes" class="py-20 bg-slate-100/70 border-y border-slate-200">
+        <section id="equipes" class="py-12 sm:py-20 bg-slate-100/70 border-y border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-14">
-                    <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm">
+                <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+                    <span class="text-[10px] sm:text-xs font-extrabold text-[#0B3B60] uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-slate-200 shadow-xs">
                         Gouvernance & Traitement Diligent
                     </span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-2">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mt-2.5 leading-tight">
                         La Chaîne de Décision & Traitement de vos Requêtes
                     </h2>
-                    <p class="text-sm text-slate-600 mt-2">
-                        Sous l'autorité de la Direction Générale, des équipes dédiées instruisent et régularisent chaque réclamation d'usager dans le strict respect de la réglementation.
+                    <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-2xl mx-auto leading-relaxed">
+                        Sous l'autorité du Directeur Général, des équipes dédiées instruisent et régularisent chaque réclamation d'usager dans le strict respect de la réglementation.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    @foreach($equipe as $membre)
-                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:-translate-y-1 transition duration-300">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    @foreach($equipe as $index => $membre)
+                        <div class="bg-white rounded-2xl border {{ $index === 0 ? 'border-amber-400/80 ring-2 ring-amber-300/40 shadow-md' : 'border-slate-200' }} shadow-sm overflow-hidden flex flex-col justify-between hover:-translate-y-1 transition duration-300">
                             <div>
                                 <!-- Photo du membre de l'équipe -->
-                                <div class="relative h-60 bg-slate-200 overflow-hidden">
+                                <div class="relative h-56 sm:h-64 bg-slate-200 overflow-hidden">
                                     <img src="{{ asset($membre['image']) }}" alt="{{ $membre['nom'] }}" class="w-full h-full object-cover object-top">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                                     
+                                    <!-- Badge DG si premier membre -->
+                                    @if($index === 0)
+                                        <div class="absolute top-3 left-3">
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[9px] font-black bg-amber-400 text-slate-900 shadow-sm uppercase tracking-wider">
+                                                ⭐ Direction Générale
+                                            </span>
+                                        </div>
+                                    @endif
+
                                     <!-- Badge de statut opérationnel -->
                                     <div class="absolute top-3 right-3">
                                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/95 text-slate-800 shadow-sm border border-slate-200">
@@ -544,14 +609,14 @@
 
                                     <!-- Nom et fonction sur l'image -->
                                     <div class="absolute bottom-3 left-3 right-3 text-white">
-                                        <h4 class="font-extrabold text-sm leading-tight">{{ $membre['nom'] }}</h4>
-                                        <p class="text-xs text-blue-200 font-semibold">{{ $membre['role'] }}</p>
+                                        <h4 class="font-extrabold text-sm sm:text-base leading-tight">{{ $membre['nom'] }}</h4>
+                                        <p class="text-[11px] sm:text-xs text-amber-300 font-semibold mt-0.5">{{ $membre['role'] }}</p>
                                     </div>
                                 </div>
 
                                 <!-- Corps descriptif -->
                                 <div class="p-4">
-                                    <div class="text-[11px] font-bold text-[#0B3B60] uppercase tracking-wider mb-1.5">
+                                    <div class="text-[10px] sm:text-[11px] font-extrabold text-[#0B3B60] uppercase tracking-wider mb-1.5">
                                         {{ $membre['direction'] }}
                                     </div>
                                     <p class="text-xs text-slate-600 leading-relaxed">
@@ -573,69 +638,101 @@
         <!-- ========================================================= -->
         <!-- COMMENT FAIRE UNE RÉCLAMATION : 4 Étapes Simples -->
         <!-- ========================================================= -->
-        <section class="py-20 max-w-7xl mx-auto px-4 sm:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="text-xs font-bold text-[#0B3B60] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">
-                    Démarche Simplifiée
+        <section class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+                <span class="text-[10px] sm:text-xs font-extrabold text-[#0B3B60] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-200/60">
+                    Démarche Simplifiée & 100% Gratuite
                 </span>
-                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mt-2.5 leading-tight">
                     Comment faire une Réclamation en 4 étapes ?
                 </h2>
-                <p class="text-sm text-slate-600 mt-2">
+                <p class="text-xs sm:text-sm text-slate-600 mt-2 max-w-2xl mx-auto leading-relaxed">
                     Un processus 100% numérisé pour un traitement équitable, transparent et rapide de toutes vos requêtes.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <!-- Étape 1 -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-white flex items-center justify-center font-extrabold text-base mb-4">
-                        1
+                <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-amber-300 flex items-center justify-center font-black text-base shadow-sm">
+                                1
+                            </div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700">1 minute</span>
+                        </div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 mb-1.5">Créez votre Espace</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Inscrivez-vous avec votre email et téléphone pour conserver l'historique complet de vos demandes et recevoir les alertes SMS.
+                        </p>
                     </div>
-                    <h3 class="font-bold text-base text-slate-900 mb-2">Créez votre Espace</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Inscrivez-vous en 1 minute avec votre email et téléphone pour conserver l'historique complet de vos demandes.
-                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-blue-700 font-semibold flex items-center gap-1.5">
+                        <i class="fas fa-lock text-[10px]"></i> Espace sécurisé
+                    </div>
                 </div>
 
                 <!-- Étape 2 -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-white flex items-center justify-center font-extrabold text-base mb-4">
-                        2
+                <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-amber-300 flex items-center justify-center font-black text-base shadow-sm">
+                                2
+                            </div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700">Formulaire</span>
+                        </div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 mb-1.5">Décrivez votre litige</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Sélectionnez la catégorie (Pensions, AMO, Prestations) et indiquez votre matricule ou NINA avec vos pièces justificatives.
+                        </p>
                     </div>
-                    <h3 class="font-bold text-base text-slate-900 mb-2">Décrivez votre dossier</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Sélectionnez la catégorie (Pensions, AMO, Prestations) et indiquez votre numéro NINA ou matricule de solde.
-                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-blue-700 font-semibold flex items-center gap-1.5">
+                        <i class="fas fa-paperclip text-[10px]"></i> Pièces jointes PDF/Photos
+                    </div>
                 </div>
 
                 <!-- Étape 3 -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-white flex items-center justify-center font-extrabold text-base mb-4">
-                        3
+                <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-amber-300 flex items-center justify-center font-black text-base shadow-sm">
+                                3
+                            </div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Immédiat</span>
+                        </div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 mb-1.5">Récépissé Officiel</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Recevez instantanément votre référence unique <code class="text-[#0B3B60] font-bold">REC-XXXXXXXX</code> et téléchargez votre récépissé PDF certifié.
+                        </p>
                     </div>
-                    <h3 class="font-bold text-base text-slate-900 mb-2">Récépissé Officiel</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Recevez immédiatement votre référence unique <code class="text-[#0B3B60] font-bold">REC-XXXXXXXX</code> et téléchargez votre récépissé PDF.
-                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-blue-700 font-semibold flex items-center gap-1.5">
+                        <i class="fas fa-file-pdf text-red-500 text-[10px]"></i> Récépissé certifié
+                    </div>
                 </div>
 
                 <!-- Étape 4 -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-white flex items-center justify-center font-extrabold text-base mb-4">
-                        4
+                <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#0B3B60] text-amber-300 flex items-center justify-center font-black text-base shadow-sm">
+                                4
+                            </div>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">48h &ndash; 72h</span>
+                        </div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 mb-1.5">Résolution diligente</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Les inspecteurs examinent votre requête, régularisent votre situation et vous notifient de la décision par SMS, email et en ligne.
+                        </p>
                     </div>
-                    <h3 class="font-bold text-base text-slate-900 mb-2">Résolution sous 72h</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Les agents examinent votre situation et vous notifient de la résolution par SMS, email et sur votre espace en ligne.
-                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-700 font-semibold flex items-center gap-1.5">
+                        <i class="fas fa-check-circle text-[10px]"></i> Notification directe
+                    </div>
                 </div>
             </div>
 
-            <!-- Bouton vers le guide complet -->
-            <div class="mt-10 text-center">
-                <a href="{{ route('guide.reclamation') }}" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#0B3B60] hover:bg-[#07233B] text-white font-bold text-xs uppercase tracking-wider transition shadow-md">
-                    <i class="fas fa-book-reader"></i>
+            <!-- Bouton vers le guide complet (optimisé mobile) -->
+            <div class="mt-8 sm:mt-12 text-center">
+                <a href="{{ route('guide.reclamation') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#0B3B60] hover:bg-[#07233B] text-white font-extrabold text-xs uppercase tracking-wider transition shadow-md">
+                    <i class="fas fa-book-reader text-amber-300"></i>
                     <span>Consulter le Guide Détaillé & Liste des Pièces</span>
                 </a>
             </div>
@@ -644,21 +741,30 @@
         <!-- ========================================================= -->
         <!-- BANNIÈRE D'APPEL À L'ACTION ESPACE PARTICULIER -->
         <!-- ========================================================= -->
-        <section class="bg-gradient-to-r from-[#0B3B60] to-[#124d7c] text-white py-14">
-            <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
-                <div class="max-w-2xl">
-                    <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight">
+        <section class="bg-gradient-to-r from-[#0B3B60] via-[#093557] to-[#124d7c] text-white py-10 sm:py-14 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 relative z-10">
+                <div class="max-w-2xl text-center md:text-left">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[10px] sm:text-xs font-semibold text-amber-300 border border-white/20 mb-3">
+                        <i class="fas fa-shield-alt"></i> Guichet Dédié aux Serviteurs de l'État
+                    </span>
+                    <h2 class="text-xl sm:text-3xl font-black leading-tight">
                         Vous êtes fonctionnaire, retraité ou ayant droit ?
                     </h2>
-                    <p class="mt-2 text-sm text-blue-100">
+                    <p class="mt-2 text-xs sm:text-sm text-blue-100 leading-relaxed">
                         Ouvrez votre compte sécurisé dès aujourd'hui pour déposer vos requêtes, consulter l'état de traitement de vos pensions et télécharger tous vos récépissés officiels.
                     </p>
+                    <div class="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-4 text-[11px] text-blue-200">
+                        <span class="flex items-center gap-1"><i class="fas fa-check text-emerald-400"></i> Récépissés PDF horodatés</span>
+                        <span class="flex items-center gap-1"><i class="fas fa-check text-emerald-400"></i> Sans déplacement</span>
+                        <span class="flex items-center gap-1"><i class="fas fa-check text-emerald-400"></i> Suivi direct</span>
+                    </div>
                 </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <a href="{{ route('register') }}" class="px-6 py-3.5 rounded-xl bg-white text-[#0B3B60] hover:bg-blue-50 font-extrabold text-xs uppercase tracking-wider shadow-lg transition">
-                        Créer mon Compte Assuré
+                <div class="w-full md:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+                    <a href="{{ route('register') }}" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-[#0B3B60] hover:bg-blue-50 font-extrabold text-xs uppercase tracking-wider shadow-lg transition text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-user-plus text-[#0B3B60]"></i>
+                        <span>Créer mon Compte Assuré</span>
                     </a>
-                    <a href="{{ route('login') }}" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold text-xs uppercase tracking-wider transition">
+                    <a href="{{ route('login') }}" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold text-xs uppercase tracking-wider transition text-center">
                         Connexion
                     </a>
                 </div>
@@ -672,61 +778,72 @@
     <!-- ========================================================= -->
     <footer class="bg-slate-900 text-slate-300 text-xs border-t border-slate-800">
         <!-- Bannière d'information institutionnelle : Portail Réclamations vs Site Général CMSS -->
-        <div class="bg-[#06182a] border-b border-slate-800 py-4 px-4 sm:px-8">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
-                <div class="flex items-center gap-2.5 text-xs text-blue-200">
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+        <div class="bg-[#06182a] border-b border-slate-800 py-3.5 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5 text-center md:text-left">
+                <div class="flex items-center gap-2 text-xs text-blue-200">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
                     <span><strong>Précision Importante :</strong> Ce portail est le service numérique dédié exclusivement au dépôt, à l'instruction et au suivi des réclamations des assurés.</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span class="text-[11px] text-slate-400 hidden sm:inline">Pour les actualités, textes de loi et informations générales :</span>
-                    <a href="https://cmss.ml" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-amber-300 font-bold text-xs inline-flex items-center gap-1.5 transition border border-white/15">
+                    <span class="text-[11px] text-slate-400 hidden sm:inline">Pour les actualités et textes de loi :</span>
+                    <a href="https://cmss.ml" target="_blank" class="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-amber-300 font-bold text-[11px] sm:text-xs inline-flex items-center gap-1.5 transition border border-white/15">
                         <span>Accéder au site officiel CMSS (cmss.ml)</span>
-                        <i class="fas fa-external-link-alt text-[10px]"></i>
+                        <i class="fas fa-external-link-alt text-[9px]"></i>
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-14 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-10 sm:py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <!-- Col 1 : CMSS Identité -->
-            <div class="space-y-4">
+            <div class="space-y-3.5">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('images/logo.jpg') }}" alt="CMSS" class="w-10 h-10 bg-white p-1 rounded-xl">
+                    <div class="w-10 h-10 bg-white p-1 rounded-xl shadow-xs shrink-0">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="CMSS" class="w-full h-full object-contain">
+                    </div>
                     <div>
                         <div class="font-extrabold text-white text-base leading-tight">CMSS MALI</div>
-                        <div class="text-[10px] text-slate-400">Sécurité Sociale des Agents de l'État</div>
+                        <div class="text-[10px] text-slate-400">Guichet Réclamations & Requêtes</div>
                     </div>
                 </div>
                 <p class="text-slate-400 leading-relaxed text-[11px]">
                     Établissement Public à Caractère Administratif (EPA) doté de la personnalité morale et de l'autonomie financière, placé sous la tutelle du Ministère de la Santé et du Développement Social.
                 </p>
+                <div class="pt-1">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-semibold text-blue-200">
+                        🇲🇱 République du Mali &bull; Un Peuple - Un But - Une Foi
+                    </span>
+                </div>
             </div>
 
             <!-- Col 2 : Coordonnées Siège -->
             <div class="space-y-2">
-                <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-3">Siège National</h4>
+                <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-3 flex items-center gap-1.5">
+                    <i class="fas fa-landmark text-amber-400"></i> Siège National
+                </h4>
                 <p class="flex items-start gap-2 text-slate-400">
-                    <i class="fas fa-map-marker-alt text-red-500 mt-1"></i>
+                    <i class="fas fa-map-marker-alt text-red-500 mt-1 shrink-0"></i>
                     <span>Hamdallaye ACI 2000, BP 247, Bamako &mdash; République du Mali</span>
                 </p>
                 <p class="flex items-center gap-2 text-slate-400">
-                    <i class="fas fa-phone text-blue-400"></i>
-                    <span>+223 20 22 45 00 / 20 22 45 02</span>
+                    <i class="fas fa-phone text-blue-400 shrink-0"></i>
+                    <a href="tel:+22320224500" class="hover:text-white transition">+223 20 22 45 00 / 20 22 45 02</a>
                 </p>
                 <p class="flex items-center gap-2 text-slate-400">
-                    <i class="fas fa-envelope text-emerald-400"></i>
-                    <span>contact@cmss.ml</span>
+                    <i class="fas fa-envelope text-emerald-400 shrink-0"></i>
+                    <a href="mailto:contact@cmss.ml" class="hover:text-white transition">contact@cmss.ml</a>
                 </p>
                 <p class="flex items-center gap-2 text-slate-400">
-                    <i class="fas fa-clock text-amber-400"></i>
+                    <i class="fas fa-clock text-amber-400 shrink-0"></i>
                     <span>Lun &ndash; Ven : 7h30 &ndash; 16h00</span>
                 </p>
             </div>
 
             <!-- Col 3 : Agences Régionales -->
             <div class="space-y-2">
-                <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-3">Agences Régionales</h4>
+                <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-3 flex items-center gap-1.5">
+                    <i class="fas fa-map-marked-alt text-emerald-400"></i> Agences Régionales
+                </h4>
                 <ul class="text-[11px] text-slate-400 space-y-1">
                     <li>&bull; Direction Régionale de Kayes</li>
                     <li>&bull; Direction Régionale de Koulikoro</li>
@@ -739,7 +856,9 @@
 
             <!-- Col 4 : Liens Rapides -->
             <div class="space-y-2">
-                <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-3">Services en ligne</h4>
+                <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-3 flex items-center gap-1.5">
+                    <i class="fas fa-link text-sky-400"></i> Services en ligne
+                </h4>
                 <ul class="text-[11px] text-slate-400 space-y-1.5">
                     <li><a href="{{ route('guide.reclamation') }}" class="hover:text-white transition">&rarr; Comment faire une réclamation</a></li>
                     <li><a href="{{ route('register') }}" class="hover:text-white transition">&rarr; Créer mon Espace Assuré</a></li>
@@ -750,8 +869,8 @@
             </div>
         </div>
 
-        <div class="border-t border-slate-800 py-4 px-4 sm:px-8 text-center text-[11px] text-slate-500">
-            &copy; {{ date('Y') }} Caisse Malienne de Sécurité Sociale (CMSS) &mdash; République du Mali. Tous droits réservés.
+        <div class="border-t border-slate-800 py-4 px-4 sm:px-8 text-center text-[10px] sm:text-[11px] text-slate-500">
+            &copy; {{ date('Y') }} Caisse Malienne de Sécurité Sociale (CMSS) &mdash; Guichet Officiel des Réclamations &bull; République du Mali. Tous droits réservés.
         </div>
     </footer>
 
