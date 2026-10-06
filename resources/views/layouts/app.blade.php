@@ -33,9 +33,43 @@
         }
         body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
         .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 0px); }
-        .safe-bottom { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px); }
         .sidebar-gradient {
             background: linear-gradient(180deg, #0f1f38 0%, #17325c 50%, #1e3a5f 100%);
+        }
+        .banner-cmss-official {
+            background-color: #0B3B60 !important;
+            background-image: linear-gradient(135deg, #07233B 0%, #0B3B60 55%, #125386 100%) !important;
+            color: #ffffff !important;
+        }
+        .banner-cmss-official h1,
+        .banner-cmss-official h2,
+        .banner-cmss-official h3 {
+            color: #ffffff !important;
+        }
+        .banner-btn-gold {
+            background-color: #FCD116 !important;
+            color: #0F172A !important;
+            font-weight: 800 !important;
+            box-shadow: 0 4px 14px rgba(252, 209, 22, 0.35) !important;
+        }
+        .banner-btn-gold:hover {
+            background-color: #EAB308 !important;
+            color: #0F172A !important;
+        }
+        .banner-btn-glass {
+            background-color: rgba(255, 255, 255, 0.16) !important;
+            border: 1px solid rgba(255, 255, 255, 0.28) !important;
+            color: #ffffff !important;
+            backdrop-filter: blur(8px) !important;
+        }
+        .banner-btn-glass:hover {
+            background-color: rgba(255, 255, 255, 0.28) !important;
+            color: #ffffff !important;
+        }
+        .banner-pill-dark {
+            background-color: rgba(0, 0, 0, 0.35) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #f1f5f9 !important;
         }
         .nav-link {
             display: flex;

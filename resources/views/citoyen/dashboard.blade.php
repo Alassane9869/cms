@@ -16,7 +16,8 @@
     </x-slot>
 
     <!-- 1. Bannière d'accueil personnalisé de l'assuré avec bordure tricolore nationale -->
-    <div class="mb-6 sm:mb-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#07233B] via-[#0B3B60] to-[#125386] text-white shadow-md relative overflow-hidden border border-[#0B3B60]/30">
+    <div class="banner-cmss-official mb-6 sm:mb-8 rounded-2xl sm:rounded-3xl shadow-md relative overflow-hidden border border-[#0B3B60]/30"
+         style="background-color: #0B3B60 !important; background-image: linear-gradient(135deg, #07233B 0%, #0B3B60 55%, #125386 100%) !important; color: #ffffff !important;">
         <!-- Ruban Tricolore National du Mali -->
         <div class="h-1.5 w-full flex">
             <div class="flex-1 bg-[#1EB53A]"></div>
@@ -28,53 +29,64 @@
             <div class="max-w-3xl">
                 <!-- Badges d'état & institution -->
                 <div class="flex flex-wrap items-center gap-2 mb-3">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-[11px] font-semibold text-white border border-white/20">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold text-white banner-btn-glass"
+                          style="background-color: rgba(255,255,255,0.18) !important; border: 1px solid rgba(255,255,255,0.3) !important; color: #ffffff !important;">
                         <i class="fas fa-shield-alt text-amber-300"></i> CMSS &bull; Protection Sociale des Fonctionnaires et Militaires
                     </span>
-                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-bold">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold"
+                          style="background-color: rgba(16, 185, 129, 0.25) !important; border: 1px solid rgba(52, 211, 153, 0.4) !important; color: #6ee7b7 !important;">
                         <i class="fas fa-check-circle"></i> Compte Assuré Vérifié
                     </span>
                 </div>
 
                 <!-- Salutation personnalisée -->
-                <h1 class="text-xl sm:text-3xl font-black tracking-tight leading-tight">
+                <h1 class="text-xl sm:text-3xl font-black tracking-tight leading-tight text-white" style="color: #ffffff !important;">
                     Bonjour, {{ $user->name }}
                 </h1>
-                <p class="mt-2 text-xs sm:text-sm text-blue-100 font-normal leading-relaxed max-w-2xl">
+                <p class="mt-2 text-xs sm:text-sm font-normal leading-relaxed max-w-2xl" style="color: #e0f2fe !important;">
                     Bienvenue sur votre portail officiel sécurisé. Vous pouvez déposer directement vos réclamations (Pensions, AMO, Prestations), suivre en temps réel l'avancement de vos dossiers et télécharger vos récépissés officiels.
                 </p>
 
                 <!-- Puces d'informations utilisateur -->
-                <div class="mt-4 sm:mt-5 flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-blue-100">
-                    <div class="flex items-center gap-1.5 bg-black/25 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-white/10">
+                <div class="mt-4 sm:mt-5 flex flex-wrap items-center gap-2 sm:gap-3 text-xs">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg banner-pill-dark"
+                         style="background-color: rgba(0,0,0,0.35) !important; border: 1px solid rgba(255,255,255,0.15) !important; color: #f1f5f9 !important;">
                         <i class="fas fa-envelope text-white/70 text-[11px]"></i>
-                        <span class="truncate max-w-[200px] sm:max-w-none">{{ $user->email }}</span>
+                        <span class="truncate max-w-[200px] sm:max-w-none text-white">{{ $user->email }}</span>
                     </div>
 
                     @if($user->telephone)
-                    <div class="flex items-center gap-1.5 bg-black/25 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-white/10">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg banner-pill-dark"
+                         style="background-color: rgba(0,0,0,0.35) !important; border: 1px solid rgba(255,255,255,0.15) !important; color: #f1f5f9 !important;">
                         <i class="fas fa-phone text-white/70 text-[11px]"></i>
-                        <span>{{ $user->telephone }}</span>
+                        <span class="text-white">{{ $user->telephone }}</span>
                     </div>
                     @endif
 
-                    <div class="flex items-center gap-1.5 bg-black/25 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-white/10">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg banner-pill-dark"
+                         style="background-color: rgba(0,0,0,0.35) !important; border: 1px solid rgba(255,255,255,0.15) !important; color: #f1f5f9 !important;">
                         <i class="fas fa-calendar-alt text-white/70 text-[11px]"></i>
-                        <span>Inscrit le {{ $user->created_at->format('d/m/Y') }}</span>
+                        <span class="text-white">Inscrit le {{ $user->created_at->format('d/m/Y') }}</span>
                     </div>
                 </div>
 
                 <!-- Boutons d'action clairs vers les modules dédiés -->
                 <div class="mt-5 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
-                    <a href="{{ route('reclamations.create') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-md active:scale-98 transition">
+                    <a href="{{ route('reclamations.create') }}" 
+                       class="banner-btn-gold inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-md active:scale-98 transition"
+                       style="background-color: #FCD116 !important; color: #0F172A !important;">
                         <i class="fas fa-plus-circle text-sm"></i>
                         <span>Déposer une Réclamation</span>
                     </a>
-                    <a href="{{ route('reclamations.index') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs tracking-wide backdrop-blur-xs border border-white/20 active:scale-98 transition">
+                    <a href="{{ route('reclamations.index') }}" 
+                       class="banner-btn-glass inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs tracking-wide active:scale-98 transition"
+                       style="background-color: rgba(255,255,255,0.18) !important; border: 1px solid rgba(255,255,255,0.3) !important; color: #ffffff !important;">
                         <i class="fas fa-folder-open text-xs text-amber-300"></i>
                         <span>Historique de mes dossiers ({{ $totalDeposees }})</span>
                     </a>
-                    <a href="{{ route('guide.reclamation') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs tracking-wide backdrop-blur-xs border border-white/20 active:scale-98 transition">
+                    <a href="{{ route('guide.reclamation') }}" 
+                       class="banner-btn-glass inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs tracking-wide active:scale-98 transition"
+                       style="background-color: rgba(255,255,255,0.18) !important; border: 1px solid rgba(255,255,255,0.3) !important; color: #ffffff !important;">
                         <i class="fas fa-book-open text-xs text-sky-300"></i>
                         <span>Guide des Démarches</span>
                     </a>

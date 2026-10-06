@@ -18,7 +18,8 @@
     <div class="max-w-4xl mx-auto space-y-6">
 
         <!-- Carte d'en-tête de référence -->
-        <div class="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#07233B] via-[#0B3B60] to-[#125386] text-white shadow-md overflow-hidden border border-[#0B3B60]/30">
+        <div class="banner-cmss-official rounded-2xl sm:rounded-3xl shadow-md overflow-hidden border border-[#0B3B60]/30"
+             style="background-color: #0B3B60 !important; background-image: linear-gradient(135deg, #07233B 0%, #0B3B60 55%, #125386 100%) !important; color: #ffffff !important;">
             <!-- Ruban Tricolore National du Mali -->
             <div class="h-1.5 w-full flex">
                 <div class="flex-1 bg-[#1EB53A]"></div>
