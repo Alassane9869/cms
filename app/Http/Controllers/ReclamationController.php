@@ -16,6 +16,11 @@ class ReclamationController extends Controller
     {
         $query = Reclamation::with(['user', 'categorie']);
 
+        // Si l'utilisateur est un assuré citoyen, il ne voit que ses propres dossiers
+        if (auth()->user()->isCitoyen()) {
+            $query->where('user_id', auth()->id());
+        }
+
         if ($request->filled('search')) {
             $query->where(function($q) use ($request) {
                 $q->where('reference', 'like', '%' . $request->search . '%')
@@ -32,7 +37,22 @@ class ReclamationController extends Controller
         }
 
         $reclamations = $query->latest()->paginate(10)->withQueryString();
-        return view('reclamations.index', compact('reclamations'));
+
+        if (auth()->user()->isCitoyen()) {
+            $base = auth()->user()->reclamations();
+        } else {
+            $base = Reclamation::query();
+        }
+
+        $counts = [
+            'total'      => (clone $base)->count(),
+            'en_attente' => (clone $base)->where('statut', 'en_attente')->count(),
+            'en_cours'   => (clone $base)->where('statut', 'en_cours')->count(),
+            'traitee'    => (clone $base)->where('statut', 'traitee')->count(),
+            'rejetee'    => (clone $base)->where('statut', 'rejetee')->count(),
+        ];
+
+        return view('reclamations.index', compact('reclamations', 'counts'));
     }
 
     public function create()
@@ -67,8 +87,8 @@ class ReclamationController extends Controller
         }
 
         if (auth()->user()->isCitoyen()) {
-            return redirect()->route('dashboard')
-                             ->with('success', 'Votre réclamation (' . $reclamation->reference . ') a été transmise avec succès aux services de la CMSS !');
+            return redirect()->route('reclamations.show', $reclamation)
+                             ->with('success', 'Votre réclamation (' . $reclamation->reference . ') a été transmise avec succès ! Vous pouvez télécharger votre récépissé officiel ci-dessous.');
         }
 
         return redirect()->route('reclamations.index')

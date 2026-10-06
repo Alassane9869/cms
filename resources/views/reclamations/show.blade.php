@@ -203,9 +203,13 @@
                             <span>Retour</span>
                         </a>
                     @else
-                        <a href="{{ route('dashboard') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
-                            <i class="fas fa-arrow-left"></i>
-                            <span>Retour à mon Espace Assuré</span>
+                        <a href="{{ route('reclamations.index') }}" class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+                            <i class="fas fa-folder-open text-xs text-[#0B3B60]"></i>
+                            <span>Mes Réclamations</span>
+                        </a>
+                        <a href="{{ route('dashboard') }}" class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+                            <i class="fas fa-home text-xs"></i>
+                            <span>Mon Espace</span>
                         </a>
                     @endif
                 </div>

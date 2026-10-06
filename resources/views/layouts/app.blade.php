@@ -296,15 +296,15 @@
                     <i class="fas fa-home"></i> Mon Espace
                 </a>
 
-                <a href="{{ route('dashboard') }}#mes-reclamations" class="nav-link">
-                    <i class="fas fa-history"></i> Mes Réclamations
+                <a href="{{ route('reclamations.index') }}" class="nav-link {{ request()->routeIs('reclamations.index') ? 'active' : '' }}">
+                    <i class="fas fa-folder-open"></i> Mes Réclamations
                 </a>
 
-                <a href="{{ route('dashboard') }}#nouvelle-reclamation" class="nav-link">
+                <a href="{{ route('reclamations.create') }}" class="nav-link {{ request()->routeIs('reclamations.create') ? 'active' : '' }}">
                     <i class="fas fa-plus-circle"></i> Déposer une réclamation
                 </a>
 
-                <a href="{{ route('guide.reclamation') }}" class="nav-link">
+                <a href="{{ route('guide.reclamation') }}" class="nav-link {{ request()->routeIs('guide.*') ? 'active' : '' }}">
                     <i class="fas fa-book-reader"></i> Guide & Droits
                 </a>
 
@@ -427,11 +427,18 @@
                 </div>
 
                 <div class="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-3 sm:border-l sm:border-slate-200">
+                    <!-- Badge Rôle Propre & Compact -->
                     <span class="inline-flex items-center px-2 py-0.5 sm:px-2.5 rounded-full text-[10px] sm:text-xs font-bold {{ auth()->user() && auth()->user()->isAdmin() ? 'bg-indigo-100 text-indigo-800' : 'bg-blue-100 text-blue-800' }}">
                         <i class="fas fa-shield-alt mr-1 text-[9px] sm:text-[10px]"></i>
-                        {{ strtoupper(auth()->user()->role ?? 'AGENT') }}
+                        {{ (auth()->user() && auth()->user()->isCitoyen()) ? 'ASSURÉ' : strtoupper(auth()->user()->role ?? 'AGENT') }}
                     </span>
 
+                    <!-- Raccourci Profil Utilisateur -->
+                    <a href="{{ route('profile.edit') }}" title="Mon Profil" class="w-8 h-8 rounded-full bg-[#0B3B60] text-white flex items-center justify-center font-bold text-xs border border-white shadow-xs hover:opacity-90 active:scale-95 transition">
+                        {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
+                    </a>
+
+                    <!-- Bouton Déconnexion Sécurisé -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" title="Se déconnecter" class="text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-2.5 py-1.5 sm:px-3 rounded-lg transition inline-flex items-center gap-1.5 active:scale-95">
@@ -501,14 +508,14 @@
                     </a>
 
                     <!-- 2. Mes Réclamations -->
-                    <a href="{{ route('dashboard') }}#mes-reclamations" class="flex flex-col items-center justify-center py-1 text-slate-500 hover:text-[#0B3B60] active:scale-95 transition">
+                    <a href="{{ route('reclamations.index') }}" class="flex flex-col items-center justify-center py-1 {{ request()->routeIs('reclamations.index') ? 'text-[#0B3B60] font-extrabold' : 'text-slate-500' }} hover:text-[#0B3B60] active:scale-95 transition">
                         <i class="fas fa-folder-open text-lg mb-0.5"></i>
                         <span class="text-[10px] leading-tight">Dossiers</span>
                     </a>
 
                     <!-- 3. Bouton Central Surélevé (FAB) : Déposer une réclamation -->
                     <div class="flex flex-col items-center justify-center -mt-5">
-                        <a href="{{ route('dashboard') }}#nouvelle-reclamation" 
+                        <a href="{{ route('reclamations.create') }}" 
                            class="w-12 h-12 rounded-full bg-[#0B3B60] text-amber-300 shadow-lg shadow-[#0B3B60]/30 border-2 border-white flex items-center justify-center text-xl active:scale-90 transition hover:bg-[#07233B]" 
                            title="Déposer une réclamation">
                             <i class="fas fa-plus"></i>
@@ -522,11 +529,11 @@
                         <span class="text-[10px] leading-tight">Guide</span>
                     </a>
 
-                    <!-- 5. Menu Drawer -->
-                    <button @click="sidebarOpen = true" class="flex flex-col items-center justify-center py-1 text-slate-500 hover:text-[#0B3B60] active:scale-95 transition">
-                        <i class="fas fa-bars text-lg mb-0.5"></i>
-                        <span class="text-[10px] leading-tight">Menu</span>
-                    </button>
+                    <!-- 5. Mon Profil -->
+                    <a href="{{ route('profile.edit') }}" class="flex flex-col items-center justify-center py-1 {{ request()->routeIs('profile.*') ? 'text-[#0B3B60] font-extrabold' : 'text-slate-500' }} hover:text-[#0B3B60] active:scale-95 transition">
+                        <i class="fas fa-user-circle text-lg mb-0.5"></i>
+                        <span class="text-[10px] leading-tight">Profil</span>
+                    </a>
                 @else
                     <!-- Navigation Mobile pour Agents / Administrateurs -->
                     <!-- 1. Tableau de bord -->
