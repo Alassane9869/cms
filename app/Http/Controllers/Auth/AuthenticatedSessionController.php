@@ -21,7 +21,10 @@ class AuthenticatedSessionController extends Controller
             'password' => 'required',
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+        // Maintenir la session active par défaut pour éviter les déconnexions intempestives
+        $remember = $request->has('remember') ? $request->boolean('remember') : true;
+
+        if (!Auth::attempt($request->only('email', 'password'), $remember)) {
             return back()->withErrors([
                 'email' => 'Les identifiants sont incorrects.',
             ]);
@@ -50,10 +53,13 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        try {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        } catch (\Throwable $e) {
+            // Silencieux si la session était déjà expirée
+        }
 
-        $request->session()->regenerateToken();
-
-        return redirect()->route('reclamation.publique');
+        return redirect()->route('login')->with('status', 'Vous avez été déconnecté avec succès.');
     }
 }

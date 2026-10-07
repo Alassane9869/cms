@@ -76,11 +76,9 @@
 
     <!-- Déconnexion / Changer de compte -->
     <div class="mt-4 text-center">
-        <form method="POST" action="{{ route('logout') }}" class="inline">
-            @csrf
-            <button type="submit" class="text-[11px] text-slate-400 hover:text-red-600 transition">
-                Se déconnecter / Utiliser une autre adresse
-            </button>
-        </form>
+        <a href="{{ route('logout') }}" class="text-[11px] text-slate-400 hover:text-rose-600 transition inline-flex items-center gap-1.5 font-medium">
+            <i class="fas fa-sign-out-alt text-[10px]"></i>
+            <span>Se déconnecter / Utiliser une autre adresse</span>
+        </a>
     </div>
 </x-guest-layout>

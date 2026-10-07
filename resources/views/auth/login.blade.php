@@ -61,11 +61,11 @@
             <x-input-error :messages="$errors->get('password')" class="mt-1" />
         </div>
 
-        <!-- Remember Me -->
+        <!-- Remember Me (Coché par défaut pour éviter les déconnexions intempestives) -->
         <div class="flex items-center">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-slate-300 text-[#0B3B60] shadow-sm focus:ring-[#0B3B60]" name="remember">
-                <span class="ms-2 text-xs text-slate-600">Se souvenir de moi</span>
+            <label for="remember_me" class="inline-flex items-center cursor-pointer">
+                <input id="remember_me" type="checkbox" checked value="1" class="rounded border-slate-300 text-[#0B3B60] shadow-sm focus:ring-[#0B3B60]" name="remember">
+                <span class="ms-2 text-xs text-slate-600 font-semibold">Rester connecté sur cet appareil</span>
             </label>
         </div>
 
